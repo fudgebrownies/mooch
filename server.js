@@ -11,16 +11,19 @@ var PORT = process.env.PORT || 8000;
 //parses json data
 app.use(bodyParser.json());
 //parses urlencoded bodies 
-app.use(bodyParser.urlendcoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true}));
 //parses text 
 app.use(bodyParser.text());
 
 //link libraries / sscript files to this folder
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.get("/", function(req, res) {
+    res.send('hello group');
+  });
+  
 
-
-require("./controller/api-routes.js")(app);
-require("./controller/html-routes.js")(app);
+// require("./controller/api-routes.js")(app);
+// require("./controller/html-routes.js")(app);
 
 app.listen(PORT, function(){
     console.log("App listening on PORT" + PORT);
