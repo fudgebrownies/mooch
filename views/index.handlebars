@@ -1,19 +1,11 @@
-<!-- <!doctype html>
-<html lang='en'>
 
-<head>
-    <meta charset="utf-8">
-    <title>The Drone Project</title>
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous">
-</head>
-
-<body>
-  <nav id ='navbar' class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd">
+ <nav id ='navbar' class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd">
     <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    
+    <h1 style="color:red">Rent Your Stuff with Mooch</h1>
+   <a  id='signIn'class="nav-link" href="#">Sign In</a>
+  <a  id='register'class="nav-link" href="#">Register</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -60,12 +52,10 @@
     </div>
     
    
-      <input id='searchSite' class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button  class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
- 
-    <a  id='signIn'class="nav-link" href="#">Sign In</a>
+  
   </nav>
-    <div class="container-fluid">
+
+<div class="container-fluid">
         <div class="row">
           
           <div class="col-sm-12">
@@ -99,26 +89,33 @@
               </div>
             </div>
       </div>
-     
 
+      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal">
+  Launch d
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please Sign In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    <form >
+        <input type="text">Username:
+        <input type="" 
 
-
-
-
-
-
-
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    
-        <script type="text/javascript" src="assets/javascript/index.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-        crossorigin="anonymous"></script>
-</body>
-
-</html> -->
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
