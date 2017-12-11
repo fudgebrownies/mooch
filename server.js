@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.text());
 
 //link libraries / sscript files to this folder
-// app.use(express.static("public"));
+app.use(express.static("public"));
 
 
 require("./controller/api-routes.js")(app);
