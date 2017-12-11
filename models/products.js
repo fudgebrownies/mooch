@@ -2,7 +2,7 @@
 //Export defined table to api routes 
 module.exports = function(sequelize, DataTypes) {
     var product = sequelize.define("product", {
-        username:{
+        email:{
             type:DataTypes.STRING
         },
         category:{

@@ -15,9 +15,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-router.get('/api/', function(req, res) {
-  res.json({ message: 'welcome to our upload module apis' });
-});
+
+var router = express.Router();
+
+router.post('/register',login.register);
+router.post('/login',login.login)
+app.use('/api', router);
 //Set up express app to process data parsing 
 //parses json data
 app.use(bodyParser.json());
@@ -33,7 +36,7 @@ app.use(express.static("public/assets"));
 require("./controller/api-routes.js")(app);
 // require("./controller/html-routes.js")(app);
 
-db.sequelize.sync({}).then(function() {
+db.sequelize.sync({force:true}).then(function() {
     app.listen(PORT, function() {
       console.log("App listening on PORT " + PORT);
     });

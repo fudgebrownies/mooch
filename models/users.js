@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     var users = sequelize.define("users", {
-      username: {
+      email: {
         type: DataTypes.STRING,
         // AllowNull is a flag that restricts a todo from being entered if it doesn't
         // have a text value
@@ -21,9 +21,7 @@ type:DataTypes.STRING
       address:{
         type:DataTypes.STRING
       },
-      email:{
-        type:DataTypes.STRING
-      },
+      
       signedIn:{
           type:DataTypes.BOOLEAN,
           defaultValue:false
