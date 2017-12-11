@@ -1,7 +1,7 @@
 //Require NPM packages needed to create a server
 var express = require("express");
 var bodyParser = require("body-parser");
-
+var db = require("./models");
 //Set up express APP and create PORT to start listening to 
 var app = express();
 var PORT = process.env.PORT || 8000;
@@ -17,15 +17,13 @@ app.use(bodyParser.text());
 
 //link libraries / sscript files to this folder
 // app.use(express.static("public"));
-app.get("/", function(req, res) {
-    res.send('hello group');
-  });
-  
 
-// require("./controller/api-routes.js")(app);
+
+require("./controller/api-routes.js")(app);
 // require("./controller/html-routes.js")(app);
 
-app.listen(PORT, function(){
-    console.log("App listening on PORT" + PORT);
-});
-
+db.sequelize.sync({ force: true }).then(function() {
+    app.listen(PORT, function() {
+      console.log("App listening on PORT " + PORT);
+    });
+  });
