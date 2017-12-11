@@ -15,6 +15,12 @@ module.exports = function(sequelize, DataTypes) {
       profilePic:{
 type:DataTypes.STRING
       },
+      phoneNumber:{
+        type:DataTypes.INTEGER
+      },
+      address:{
+        type:DataTypes.STRING
+      },
       signedIn:{
           type:DataTypes.BOOLEAN
       },
