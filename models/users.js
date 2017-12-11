@@ -16,16 +16,21 @@ module.exports = function(sequelize, DataTypes) {
 type:DataTypes.STRING
       },
       phoneNumber:{
-        type:DataTypes.INTEGER
+        type:DataTypes.STRING
       },
       address:{
         type:DataTypes.STRING
       },
+      email:{
+        type:DataTypes.STRING
+      },
       signedIn:{
-          type:DataTypes.BOOLEAN
+          type:DataTypes.BOOLEAN,
+          defaultValue:false
       },
       active:{
-          type:DataTypes.BOOLEAN
+          type:DataTypes.BOOLEAN,
+          defaultValue:true
       }
     });
     return users;
