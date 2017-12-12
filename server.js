@@ -15,9 +15,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-router.get('/api/', function(req, res) {
-  res.json({ message: 'welcome to our upload module apis' });
-});
+
+// var router = express.Router();
+
+// router.post('/register',login.register);
+// router.post('/login',login.login)
+// app.use('/api', router);
 //Set up express app to process data parsing 
 //parses json data
 app.use(bodyParser.json());
