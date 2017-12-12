@@ -1,7 +1,7 @@
 use h86seikwmg60df0v;
 
 INSERT INTO users(email,password,firstName,lastName,profilePic,phoneNumber,address)
-VALUES('me@gmail.com','sell','mooch','sell','cartman.jpg','714-467-9086','1967 raybands Newport,CA 9489');
+VALUES('drill@gmail.com','sell','mooch','sell','cartman.jpg','714-467-9086','1967 raybands Newport,CA 9489');
 
 
 INSERT INTO products(email,category,product_name,product_description,userUploadImage1, userUploadImage2, daily, weekly, monthly, security_deposit)
