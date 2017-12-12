@@ -16,11 +16,11 @@ app.use(function(req, res, next) {
 });
 
 
-var router = express.Router();
+// var router = express.Router();
 
-router.post('/register',login.register);
-router.post('/login',login.login)
-app.use('/api', router);
+// router.post('/register',login.register);
+// router.post('/login',login.login)
+// app.use('/api', router);
 //Set up express app to process data parsing 
 //parses json data
 app.use(bodyParser.json());
@@ -36,7 +36,7 @@ app.use(express.static("public/assets"));
 require("./controller/api-routes.js")(app);
 // require("./controller/html-routes.js")(app);
 
-db.sequelize.sync({force:true}).then(function() {
+db.sequelize.sync({}).then(function() {
     app.listen(PORT, function() {
       console.log("App listening on PORT " + PORT);
     });

@@ -12,6 +12,12 @@ module.exports = function(sequelize, DataTypes) {
         // defaultValue is a flag that defaults a new todos complete value to false if
         // it isn't supplied one
       },
+      firstName:{
+        type:DataTypes.STRING
+      },
+      lastName:{
+        type:DataTypes.STRING
+      },
       profilePic:{
 type:DataTypes.STRING
       },
