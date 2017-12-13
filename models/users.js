@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
         type:DataTypes.STRING
       },
       profilePic:{
-type:DataTypes.STRING
+        type:DataTypes.STRING
       },
       phoneNumber:{
         type:DataTypes.STRING
@@ -35,7 +35,10 @@ type:DataTypes.STRING
       active:{
           type:DataTypes.BOOLEAN,
           defaultValue:true
-      }
+      }, 
+    }, {
+      timestamps: true
+    
     });
     return users;
   };
