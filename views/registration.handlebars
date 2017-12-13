@@ -105,7 +105,7 @@
 
             <div class="form-group">
 
-                <?php //$date_entered = date('m/d/Y H:i:s'); ?>
+                {{!-- <?php //$date_entered = date('m/d/Y H:i:s'); ?> --}}
                 <input type="hidden" value="<?php //echo $date_entered; ?>" name="dateregistered">
                 <input type="hidden" value="0" name="activate" />
                 <hr>
@@ -118,7 +118,7 @@
             </div>
 
             <div class="form-group">
-                <input class="btn btn-success" type="submit" name="submit_reg" value="Register">
+                <input class="btn btn-success"  id='submitUser'type="submit" name="submit_reg" value="Register">
             </div>
             <h5>You will receive an email to complete the registration and validation process. </h5>
             <h5>Be sure to check your spam folders. </h5>

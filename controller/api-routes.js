@@ -8,6 +8,16 @@ app.get("/", function(req, res) {
     // res.render(path.join(__dirname, "index.html"));
     res.render("index");
   });
+  app.get('/add',function(req,res){
+
+
+    res.render('addProduct')
+  })
+  app.get('/new/user',function(req,res){
+    
+    
+        res.render('registration')
+      })
 //   app.get("/index/:user", function(req, res) {
 //     // Find one Author with the id in req.params.id and return them to the user with res.json
 //    db.Author.findOne({
