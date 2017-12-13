@@ -60,9 +60,11 @@ app.get("/", function(req, res) {
        monthly:req.body.monthly,
        security_deposit:req.body.security_deposit
    })
-   .then(function(dbPost) {
-    res.json(dbPost);
+   .then(function() {
+    res.send("done");
    })
+   console.log(req.body.email)
+   
  
  
 
