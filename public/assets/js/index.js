@@ -2,7 +2,22 @@
 $(function() {
 
   // Create user ajax call
-
+$('#signInButton').on('click',function(event){
+  event.preventDefault();
+  var signingIn={
+    email:$('#usr').val().trim(),
+    password:$('#pwd').val().trim()
+  };
+  $.ajax("/signIn",{
+    type:'PUT',
+    data:signingIn
+  }).then(
+    function(){
+      console.log('done')
+      $('#signInModal').modal('hide')
+    }
+  )
+})
   $("#submitUser").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();

@@ -1,9 +1,9 @@
 
 //Export defined table to api routes 
 module.exports = function(sequelize, DataTypes) {
-    var product = sequelize.define("product", {
+    var products = sequelize.define("products", {
         email:{
-            type:DataTypes.STRING
+            type:DataTypes.TEXT
         },
         category:{
             
@@ -24,11 +24,9 @@ module.exports = function(sequelize, DataTypes) {
                 },
                 security_deposit:{
                     type:DataTypes.INTEGER
-                },
-                
-    });
+                }
     
-
-    return product;
+    });
+    return products;
   };
   
