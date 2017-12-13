@@ -3,7 +3,7 @@ $(function() {
 
   // Create user ajax call
 
-  $(".create-user").on("submit", function(event) {
+  $("#submitUser").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
@@ -46,7 +46,7 @@ $(".create-post").on("submit", function(event) {
   };
 
   // Send the POST request.
-  $.ajax("/api/users", {
+  $.ajax("/api/item", {
     type: "POST",
     data: newPost
   }).then(
