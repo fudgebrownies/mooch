@@ -28,15 +28,15 @@ app.get("/", function(req, res) {
      }
     }).then(function(db) {
       var currentUser={
-        id:db.dataValues.id,
+        id: db.dataValues.id,
         email: db.dataValues.email,
-        password:db.dataValues.password,
-        firstName:db.dataValues.firstName,
-        lastName:db.dataValues.lastName,
-        profilePic:db.dataValues.profilePic,
-        phoneNumber:db.dataValues.phoneNumber,
-        address:db.dataValues.address,
-        signedInStatus:db.dataValues.signedIn
+        password: db.dataValues.password,
+        firstName: db.dataValues.firstName,
+        lastName: db.dataValues.lastName,
+        profilePic: db.dataValues.profilePic,
+        phoneNumber: db.dataValues.phoneNumber,
+        address: db.dataValues.address,
+        signedInStatus: db.dataValues.signedIn
               }
       console.log(currentUser);
       res.json({currentUser})
