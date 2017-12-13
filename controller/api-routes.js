@@ -45,32 +45,39 @@ app.get("/", function(req, res) {
   });
   app.post("/api/item", function(req, res) {
     console.log("Book Data:");
-    var a =req.body.email
-    console.log(JSON.parse(a));
-  //  product.create({
-  //     email: req.body.email,
-  //     category: req.body.category,
-  //     product_name: req.body.product_name,
-  //     product_description: req.body.product_description,
-  //     userUploadImage1:req.body.userUploadImage1,
-  //     userUploadImage2:req.body.userUploadImage2,
-  //    daily:req.body.daily,
-  //      weekly:req.body.weekly,
-  //       monthly:req.body.monthly,
-  //       security_deposit:req.body.security_deposit
-  //   })
-    console.log({
-      email: req.body.email,
-      category: req.body.category,
-      product_name: req.body.product_name,
-      product_description: req.body.product_description,
-      userUploadImage1:req.body.userUploadImage1,
-      userUploadImage2:req.body.userUploadImage2,
-     daily:req.body.daily,
-       weekly:req.body.weekly,
-        monthly:req.body.monthly,
-        security_deposit:req.body.security_deposit
-    })
+    console.log(req.body)
+    // var a = req.body.email
+    // console.log(JSON.parse(a));
+   db.product.create({
+     email: req.body.email,
+     category: req.body.category,
+     product_name: req.body.product_name,
+     product_description: req.body.product_description,
+     userUploadImage1:req.body.userUploadImage1,
+     userUploadImage2:req.body.userUploadImage2,
+    daily:req.body.daily,
+      weekly:req.body.weekly,
+       monthly:req.body.monthly,
+       security_deposit:req.body.security_deposit
+   })
+   .then(function(dbPost) {
+    res.json(dbPost);
+   })
+ 
+ 
+
+    // console.log({
+    //   email: req.body.email,
+    //   category: req.body.category,
+    //   product_name: req.body.product_name,
+    //   product_description: req.body.product_description,
+    //   userUploadImage1:req.body.userUploadImage1,
+    //   userUploadImage2:req.body.userUploadImage2,
+    //  daily:req.body.daily,
+    //    weekly:req.body.weekly,
+    //     monthly:req.body.monthly,
+    //     security_deposit:req.body.security_deposit
+    // })
   });
 }
 // email:{
