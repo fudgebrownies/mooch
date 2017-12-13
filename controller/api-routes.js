@@ -75,6 +75,8 @@ app.get("/", function(req, res) {
    .then(function(dbPost) {
     res.json(dbPost);
    })
+  })
+   
  
    
    app.post("/api/new/users", function(req, res) {
@@ -85,16 +87,17 @@ app.get("/", function(req, res) {
    db.users.create({
     username: req.body.username,
     password: req.body.password,
-    profilePic: req.body.profilePice,
+    profilePic: req.body.profilePic,
     phoneNumber: req.body.phoneNumber,
-    address:req.body.address,
+    address: req.body.address
      
    
    })
-   .then(function(dbPost) {
-    res.json(dbPost);
+   .then(function() {
+    res.send("done");
    })
   })
+}
     // console.log({
     //   email: req.body.email,
     //   category: req.body.category,
@@ -107,8 +110,7 @@ app.get("/", function(req, res) {
     //     monthly:req.body.monthly,
     //     security_deposit:req.body.security_deposit
     // })
-  });
-}
+  
 // email:{
 //   type:DataTypes.STRING
 // },
@@ -131,4 +133,4 @@ app.get("/", function(req, res) {
 //       },
 //       security_deposit:{
 //           type:DataTypes.INTEGER
-//       }
+//       

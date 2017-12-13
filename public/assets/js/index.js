@@ -8,10 +8,16 @@ $(function() {
     event.preventDefault();
 
     var newUser = {
+      firstname: $("#firstname").val().trim(),
+      lastname: $("#lastname").val().trim(),
+      phonenumber: $("#phone").val().trim(),
       email: $("#email").val().trim(),
-      password: $("#password").val().trim(),
-      phonenumber: $("#phonenumber").val().trim(),
-      address: $("#address").val().trim(),
+      address: $("#homeAddress").val().trim(),
+      state: $("#homeState").val().trim(),
+      zipcode: $("#zipCode").val().trim(),
+      password: $("#pass1").val().trim(),
+      password2: $("#pass2").val().trim(),
+     
       
     };
 
