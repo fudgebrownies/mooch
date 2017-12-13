@@ -24,9 +24,11 @@ module.exports = function(sequelize, DataTypes) {
                 },
                 security_deposit:{
                     type:DataTypes.INTEGER
-                }
-    
+                },
+                
     });
+    
+
     return product;
   };
   
