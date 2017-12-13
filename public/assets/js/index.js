@@ -2,7 +2,7 @@
 $(function() {
 
   // Create user ajax call
-$('#signIn').on('click',function(event){
+$('#signInButton').on('click',function(event){
   event.preventDefault();
   var signingIn={
     email:$('#usr').val().trim(),
@@ -14,6 +14,7 @@ $('#signIn').on('click',function(event){
   }).then(
     function(){
       console.log('done')
+      $('#signInModal').modal('hide')
     }
   )
 })
