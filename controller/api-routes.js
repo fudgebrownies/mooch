@@ -5,6 +5,7 @@ var db = require("../models");
 module.exports=function(app){
 
 app.get("/", function(req, res) {
+  
     // res.render(path.join(__dirname, "index.html"));
     res.render("index");
   });
@@ -18,6 +19,7 @@ app.get("/", function(req, res) {
     
         res.render('registration')
       })
+
 //   app.get("/index/:user", function(req, res) {
 //     // Find one Author with the id in req.params.id and return them to the user with res.json
 //    db.Author.findOne({
@@ -74,8 +76,25 @@ app.get("/", function(req, res) {
     res.json(dbPost);
    })
  
- 
-
+   
+   app.post("/api/new/users", function(req, res) {
+    console.log("Book Data:");
+    console.log(req.body)
+    // var a = req.body.email
+    // console.log(JSON.parse(a));
+   db.users.create({
+    username: req.body.username,
+    password: req.body.password,
+    profilePic: req.body.profilePice,
+    phoneNumber: req.body.phoneNumber,
+    address:req.body.address,
+     
+   
+   })
+   .then(function(dbPost) {
+    res.json(dbPost);
+   })
+  })
     // console.log({
     //   email: req.body.email,
     //   category: req.body.category,
