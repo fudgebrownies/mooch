@@ -1,7 +1,37 @@
+body{
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
 #s{
     color:white;
 }
 
-  #searchSite{
-width: 150px;
+#searchSite{
+  width: 150px;
   }
+
+  #carouselExampleIndicators {
+    position: absolute;
+    z-index: -1;
+}
+
+#searchBar {
+  padding : 100px;
+  
+}
+
+#uploadPhoto {
+  border: 1px dashed blue;
+  margin-top: 50px;
+}
+
+a.navbar-brand {
+  padding-left: 20px;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
