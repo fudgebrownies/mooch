@@ -15,6 +15,7 @@ $('#signInButton').on('click',function(event){
     function(){
       console.log('done')
       $('#signInModal').modal('hide')
+      window.location.reload(true);
     }
   )
 })
