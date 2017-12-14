@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">MOOCH</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+
+            {{#if signedIn}}
+            <p id=userId> {{!-- Navbar drop downs --}}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="list-style: none">
+                        <li>
+                            <a href="#">Profile</a>
+                        </li>
+                        <li>
+                            <a href="#">Transactions</a>
+                        </li>
+                        <li>
+                            <p>
+                                <a class="btn btn-primary" href="#">Sign Out</a>
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+            </p>
+            {{else}}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+                Sign-in
+            </button>
+            <form action="/registration">
+                <input type="submit" class="btn" value="Register" />
+            </form>
+            {{/if}}
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{category}}</h1>
+            <h4>Description : {{product_description}}</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <p>{{userUploadImage1}}</p>
+
+        </div>
+        <div class="col-sm-6">
+            <p>{{userUploadImage2}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <p>Rental Costs : </p>
+            <p>${{daily}}/day</p>
+            <p>${{weekly}}/week</p>
+            <p>${{monthly}}/month</p>
+            <p>Security Deposit : ${{security_deposit}}</p>
+            <p>Desciption : {{product_description}}</p>
+
+            <a class="btn btn-primary" href="" id="emailOwner">Ask owner questions</a>
+            <a class="btn btn-primary" href="" id="requestRent">Request/Schedule Rent</a>
+        </div>
+        <div class="col-sm-6">
+        </div>
+    </div>
+</div>
