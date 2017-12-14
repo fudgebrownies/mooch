@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js">
+
+    <link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">MOOCH</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+
+                {{#if signedIn}}
+                <p id=userId> {{email}} {{!-- Navbar drop downs --}}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="list-style: none">
+                            <li>
+                                <a href="#">Profile</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 1-2</a>
+                            </li>
+                            <li>
+                               <p><a class="btn btn-primary" href="#">Sign Out</a></p>
+                            </li>
+                        </ul>
+                    </li>
+                </p>
+                {{else}}
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+                    Sign-in
+                </button>
+                <form action="/registration">
+                    <input type="submit" class="btn" value="Register" />
+                </form>
+                {{/if}}
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row class=" text-center "">
+            <div class="col-12-sm">
+                <h1>USER Profile Settings</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12-sm">
+                <p>Profile Picture : {{profilePic}}</p>
+                <p>Email : {{email}}</p>
+                <p>Phone number : {{phoneNumber}}</p>
+                <p>Address : {{address}}</p>
+                <p><a class="btn btn-primary" href="/editProfile">EDIT</a></p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>
