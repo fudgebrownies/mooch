@@ -33,13 +33,9 @@ module.exports = function(sequelize, DataTypes) {
     },
       ratingRenter:{
         type:DataTypes.INTEGER,
-        defaultvalue:0
+        defaultvalue:0,
     },
       ratingRentee:{
-        type:DataTypes.INTEGER,
-        defaultvalue:0
-      },
-      ratingCommunication:{
         type:DataTypes.INTEGER,
         defaultvalue:0
       },
