@@ -48,12 +48,15 @@ $(function () {
   var userNewAddress=$("#address").val().trim() +' '+ $('#state').val().trim() + ' '+ $('#zip').val().trim();
   
     var newUser = {
+
       firstName:$('#firstName').val().trim(),
       lastName:$('# lastName').val().trim(),
       email: $("#email").val().trim(),
       password: $("#pass1").val().trim(),
       phonenumber: $("#phone").val().trim(),
       address: userNewAddress
+     
+
       
 
 
