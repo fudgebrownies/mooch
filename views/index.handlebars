@@ -51,9 +51,9 @@
     </ul>
 
     {{#if signedIn}}
-   <p id=userId>  {{!-- Navbar drop downs --}}
+   <p id={{emai}}>  {{!-- Navbar drop downs --}}
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
+                        <a class="dropdown-toggle" data-toggle="dropdown" >{{email}}
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" style="list-style: none">
@@ -64,7 +64,7 @@
                                 <a href="#">Transactions</a>
                             </li>
                             <li>
-                               <p><a class="btn btn-primary" id='signOutUser' href="#">Sign Out</a></p>
+                               <p><a class="btn btn-primary" id='signOutUser' email={{email}} >Sign Out</a></p>
                             </li>
                         </ul>
                     </li>

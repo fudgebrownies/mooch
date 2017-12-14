@@ -1,6 +1,6 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
-
+var emailAddress;
   // Create user ajax call
   $('#signInButton').on('click',function(event){
     event.preventDefault();
@@ -8,19 +8,36 @@ $(function() {
       email:$('#usr').val().trim(),
       password:$('#pwd').val().trim()
     };
+    emailAddress=$('#usr').val().trim(),
+   
     $.ajax("/signIn",{
       type:'PUT',
       data:signingIn
     }).then(
       function(){
         console.log('done')
-        // $('#signInModal').modal('hide')
+        
         window.location.reload(true);
       }
     )
   })
 $('#signOutUser').on('click',function(event){
   event.preventDefault();
+  console.log('bitches')
+  signingOut={
+email:$('#signOutUser').attr('email')
+  }
+  console.log(signingOut)
+  $.ajax("/signOut",{
+    type:'PUT',
+    data:signingOut
+  }).then(
+    function(){
+      console.log('done')
+      
+      // window.location.reload(true);
+    }
+  )
 
 })
   
