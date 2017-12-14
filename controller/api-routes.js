@@ -126,18 +126,21 @@ var users=[]
               .then(function (dbPost) {
                 res.json(dbPost);
               })
-
+            })
 
 
             app.post("/api/new/users", function (req, res) {
              
-              // console.log(req.body)
+              console.log(req.body)
               // var a = req.body.email
               // console.log(JSON.parse(a));
               db.users.create({
-                  username: req.body.username,
+
+                  email: req.body.email,
                   password: req.body.password,
-                  profilePic: req.body.profilePice,
+                  firstName:req.body.firstName,
+                  lastName:req.body.lastName,
+                  profilePic: req.body.profilePic,
                   phoneNumber: req.body.phoneNumber,
                   address: req.body.address,
 
@@ -148,40 +151,3 @@ var users=[]
                 })
             })
 
-
-    // console.log({
-    //   email: req.body.email,
-    //   category: req.body.category,
-    //   product_name: req.body.product_name,
-    //   product_description: req.body.product_description,
-    //   userUploadImage1:req.body.userUploadImage1,
-    //   userUploadImage2:req.body.userUploadImage2,
-    //  daily:req.body.daily,
-    //    weekly:req.body.weekly,
-    //     monthly:req.body.monthly,
-    //     security_deposit:req.body.security_deposit
-    // })
-  
-// email:{
-//   type:DataTypes.STRING
-// },
-// category:{
-
-//       type:DataTypes.STRING},
-//   product_name:{type: DataTypes.STRING},
-
-//       product_description:{type: DataTypes.STRING},
-//       userUploadImage1:{ type: DataTypes.STRING},
-//       userUploadImage2:{type: DataTypes.STRING},
-//       daily:{
-//           type:DataTypes.INTEGER
-//       },
-//       weekly:{
-//           type:DataTypes.INTEGER
-//       },
-//       monthly: {
-//           type:DataTypes.INTEGER
-//       },
-//       security_deposit:{
-//           type:DataTypes.INTEGER
-//       
