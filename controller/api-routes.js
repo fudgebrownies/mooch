@@ -126,18 +126,21 @@ var users=[]
               .then(function (dbPost) {
                 res.json(dbPost);
               })
-
+            })
 
 
             app.post("/api/new/users", function (req, res) {
              
-              // console.log(req.body)
+              console.log(req.body)
               // var a = req.body.email
               // console.log(JSON.parse(a));
               db.users.create({
-                  username: req.body.username,
+
+                  email: req.body.email,
                   password: req.body.password,
-                  profilePic: req.body.profilePice,
+                  firstName:req.body.firstName,
+                  lastName:req.body.lastName,
+                  profilePic: req.body.profilePic,
                   phoneNumber: req.body.phoneNumber,
                   address: req.body.address,
 
@@ -148,5 +151,5 @@ var users=[]
                 })
             })
 
-          });
+          
         }
