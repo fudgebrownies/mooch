@@ -1,17 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">MOOCH</a>
+  <a class="navbar-brand" href="#">MOOCH</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto">
+    
+    </ul>
 
-        </ul>
-
-        {{#if signedIn}}
-        <p id=userId>  {{!-- Navbar drop downs --}}
+    {{#if signedIn}}
+   <p id=userId>  {{!-- Navbar drop downs --}}
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
                             <span class="caret"></span>
@@ -24,20 +24,20 @@
                                 <a href="#">Transactions</a>
                             </li>
                             <li>
-                               <p><a class="btn btn-primary" href="#">Sign Out</a></p>
+                               <p><a class="btn btn-primary" id='signOutUser' href="#">Sign Out</a></p>
                             </li>
                         </ul>
                     </li>
                 </p>
-        {{else}}
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-            Sign-in
-        </button>
-        <form action="/registration">
-            <input type="submit" class="btn" value="Register" />
-        </form>
-        {{/if}}
-    </div>
+    {{else}}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+      Sign-in
+    </button>
+    <form action="/registration">
+      <input type="submit" class="btn" value="Register" />
+    </form>
+    {{/if}}
+  </div>
 
 </nav>
 
@@ -55,14 +55,14 @@
             <div class="form-group">
                 <label for="firstname">
                     <span class="req">* </span> First name: </label>
-                <input class="form-control" type="text" name="firstname" id="txt" onkeyup="Validate(this)" required />
+                <input class="form-control" type="text" name="firstname" id="firstname" onkeyup="Validate(this)" required />
                 <div id="errFirst"></div>
             </div>
 
             <div class="form-group">
                 <label for="lastname">
                     <span class="req">* </span> Last name: </label>
-                <input class="form-control" type="text" name="lastname" id="txt" onkeyup="Validate(this)" placeholder="hyphen or single quote OK"
+                <input class="form-control" type="text" name="lastname" id="lastname" onkeyup="Validate(this)" placeholder="hyphen or single quote OK"
                     required />
                 <div id="errLast"></div>
             </div>
@@ -70,7 +70,7 @@
             <div class="form-group">
                 <label for="phonenumber">
                     <span class="req">* </span> Phone Number: </label>
-                <input required type="text" name="phonenumber" id="phone" class="form-control phone" maxlength="28" onkeyup="validatephone(this);"
+                <input required type="text" name="phonenumber" id="phonenumber" class="form-control phone" maxlength="28" onkeyup="validatephone(this);"
                     placeholder="not used for marketing" />
             </div>
 
@@ -85,7 +85,7 @@
                 <label for="homeAddress">
                     <span class="req">* </span> Home Address:
                 </label>
-                <input class="form-control" type="text" name="homeAddress" id="txt" onkeyup="Validate(this)" placeholder="minimum 6 letters"
+                <input class="form-control" type="text" name="homeAddress" id="homeAddress" onkeyup="Validate(this)" placeholder="minimum 6 letters"
                     required />
                 <div id="errLast"></div>
             </div>
@@ -94,7 +94,7 @@
                 <label for="homeState">
                     <span class="req">* </span> State:
                 </label>
-                <input class="form-control" type="text" name="homeState" id="txt" onkeyup="Validate(this)" placeholder="minimum 6 letters"
+                <input class="form-control" type="text" name="homeState" id="homeState" onkeyup="Validate(this)" placeholder="minimum 6 letters"
                     required />
                 <div id="errLast"></div>
             </div>
