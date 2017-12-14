@@ -1,215 +1,217 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">MOOCH</a>
+    <a class="navbar-brand" href="#">MOOCH</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
-    
-    </ul>
-
-    {{#if signedIn}}
-   <p id=userId>  {{!-- Navbar drop downs --}}
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" style="list-style: none">
-                            <li>
-                                <a href="#">Profile</a>
-                            </li>
-                            <li>
-                                <a href="#">Transactions</a>
-                            </li>
-                            <li>
-                               <p><a class="btn btn-primary" id='signOutUser' href="#">Sign Out</a></p>
-                            </li>
-                        </ul>
-                    </li>
-                </p>
-    {{else}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-      Sign-in
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <form action="/registration">
-      <input type="submit" class="btn" value="Register" />
-    </form>
-    {{/if}}
-  </div>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+
+        {{#if signedIn}}
+        <p id=userId> {{!-- Navbar drop downs --}}
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="list-style: none">
+                    <li>
+                        <a href="#">Profile</a>
+                    </li>
+                    <li>
+                        <a href="#">Transactions</a>
+                    </li>
+                    <li>
+                        <p>
+                            <a class="btn btn-primary" id='signOutUser' href="#">Sign Out</a>
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </p>
+        {{else}}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+            Sign-in
+        </button>
+        <form action="/registration">
+            <input type="submit" class="btn" value="Register" />
+        </form>
+        {{/if}}
+    </div>
 
 </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6" id="uploadPhoto">
-                <img src="assets/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
-                <div class="form-group file optional item_photo_1">
-                    <label class="file optional control-label" for="item_photo_1"></label>
-                    <input class="file optional" type="file" name="item[photo_1]" id="item_photo_1" />
-                </div>
-                <input type="hidden" name="item[photo_1_cache]" id="item_photo_1_cache" />
-                <div class="drop-here">
-                    <p>
-                        <label>
-                            <input name="item[remove_photo_1]" type="hidden" value="0" />
-                            <input type="checkbox" value="1" name="item[remove_photo_1]" id="item_remove_photo_1" /> Remove photo
-                        </label>
-                    </p>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6" id="uploadPhoto">
+            <img src="assets/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
+            <div class="form-group file optional item_photo_1">
+                <label class="file optional control-label" for="item_photo_1"></label>
+                <input class="file optional" type="file" name="item[photo_1]" id="item_photo_1" />
             </div>
-            <div class="col-sm-6" id="uploadPhoto">
-
-                <img src="assets/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
-                <div class="form-group file optional item_photo_1">
-                    <label class="file optional control-label" for="item_photo_1"></label>
-                    <input class="file optional" type="file" name="item[photo_1]" id="item_photo_1" />
-                </div>
-                <input type="hidden" name="item[photo_1_cache]" id="item_photo_1_cache" />
-                <div class="drop-here">
-                    <p>
-                        <label>
-                            <input name="item[remove_photo_1]" type="hidden" value="0" />
-                            <input type="checkbox" value="1" name="item[remove_photo_1]" id="item_remove_photo_1" /> Remove photo
-                        </label>
-                    </p>
-                </div>
+            <input type="hidden" name="item[photo_1_cache]" id="item_photo_1_cache" />
+            <div class="drop-here">
+                <p>
+                    <label>
+                        <input name="item[remove_photo_1]" type="hidden" value="0" />
+                        <input type="checkbox" value="1" name="item[remove_photo_1]" id="item_remove_photo_1" /> Remove photo
+                    </label>
+                </p>
             </div>
         </div>
-        <br>
-        <br>
+        <div class="col-sm-6" id="uploadPhoto">
 
-        <h2>Choose a category related to item being posted!</h2>
-
-        <div class="form-group select required item_category_id">
-            <select class="select required form-control" name="item[category_id]" id="item_category_id">
-                <option value="">Choose Category</option>
-                <option value="78">Apparel: Costume</option>
-                <option value="131">Apparel: Dress</option>
-                <option value="133">Apparel: Jewelry</option>
-                <option value="85">Apparel: Misc. Apparel</option>
-                <option value="92">Automotive: Boat</option>
-                <option value="122">Automotive: Car</option>
-                <option value="81">Automotive: Car Top Carrier</option>
-                <option value="138">Automotive: Engine Hoist</option>
-                <option value="21">Automotive: Misc. Automotive</option>
-                <option value="120">Automotive: Motorcycle</option>
-                <option value="119">Automotive: Rv</option>
-                <option value="100">Automotive: Trailer</option>
-                <option value="114">Automotive: Truck</option>
-                <option value="107">Av Equipment: Amplifier</option>
-                <option value="135">Av Equipment: Misc. Av Equipment</option>
-                <option value="76">Av Equipment: Projector</option>
-                <option value="129">Av Equipment: Sound System</option>
-                <option value="52">Electronics: Camera</option>
-                <option value="94">Electronics: Computer</option>
-                <option value="47">Electronics: Gps</option>
-                <option value="136">Electronics: Ipad/Tablet</option>
-                <option value="87">Electronics: Misc. Electronic</option>
-                <option value="74">Electronics: Video Game</option>
-                <option value="55">Home &amp; Kitchen: Appliance</option>
-                <option value="83">Home &amp; Kitchen: Arts &amp; Crafts</option>
-                <option value="72">Home &amp; Kitchen: Baby Gear</option>
-                <option value="116">Home &amp; Kitchen: Carpet Cleaner</option>
-                <option value="90">Home &amp; Kitchen: Dog</option>
-                <option value="132">Home &amp; Kitchen: Dog Crate</option>
-                <option value="57">Home &amp; Kitchen: Dolly</option>
-                <option value="99">Home &amp; Kitchen: Furniture</option>
-                <option value="32">Home &amp; Kitchen: Ladder</option>
-                <option value="73">Home &amp; Kitchen: Medical Good</option>
-                <option value="39">Home &amp; Kitchen: Misc. Home &amp; Kitchen</option>
-                <option value="71">Home &amp; Kitchen: Musical Instrument</option>
-                <option value="111">Home &amp; Kitchen: Painting Supplies</option>
-                <option value="82">Home &amp; Kitchen: Pet Carrier</option>
-                <option value="86">Home &amp; Kitchen: Sewing Machine</option>
-                <option value="69">Home &amp; Kitchen: Vacuum Cleaner</option>
-                <option value="50">Lawn &amp; Garden: Animal Trap</option>
-                <option value="130">Lawn &amp; Garden: Bbq Grill</option>
-                <option value="112">Lawn &amp; Garden: Construction Equipment</option>
-                <option value="48">Lawn &amp; Garden: Fertilizer Spreader</option>
-                <option value="115">Lawn &amp; Garden: Generator</option>
-                <option value="41">Lawn &amp; Garden: Hedge Trimmer</option>
-                <option value="121">Lawn &amp; Garden: Lawn Aerator</option>
-                <option value="70">Lawn &amp; Garden: Lawn Mower</option>
-                <option value="93">Lawn &amp; Garden: Lawn Trimmer</option>
-                <option value="44">Lawn &amp; Garden: Leaf Blower</option>
-                <option value="56">Lawn &amp; Garden: Misc. Lawn &amp; Garden</option>
-                <option value="109">Lawn &amp; Garden: Post Hole Digger</option>
-                <option value="89">Lawn &amp; Garden: Pressure Washer</option>
-                <option value="53">Lawn &amp; Garden: Shovel</option>
-                <option value="134">Lawn &amp; Garden: Smoker</option>
-                <option value="84">Lawn &amp; Garden: Tiller</option>
-                <option value="35">Lawn &amp; Garden: Tree Pruner</option>
-                <option value="36">Lawn &amp; Garden: Wheelbarrow</option>
-                <option value="118">Lawn &amp; Garden: Wood Chipper</option>
-                <option value="65">Miscellaneous Stuff: Media</option>
-                <option value="124">Miscellaneous Stuff: Real Estate</option>
-                <option value="88">Miscellaneous Stuff: Service Provider</option>
-                <option value="126">Party &amp; Entertainment: Bounce Houses/Inflatables</option>
-                <option value="102">Party &amp; Entertainment: Canopy</option>
-                <option value="60">Party &amp; Entertainment: Casino Game</option>
-                <option value="51">Party &amp; Entertainment: Chafing Dish</option>
-                <option value="110">Party &amp; Entertainment: Chair</option>
-                <option value="137">Party &amp; Entertainment: Chocolate Fountain</option>
-                <option value="67">Party &amp; Entertainment: Cooler</option>
-                <option value="66">Party &amp; Entertainment: Folding Table</option>
-                <option value="38">Party &amp; Entertainment: Game</option>
-                <option value="117">Party &amp; Entertainment: Glassware</option>
-                <option value="113">Party &amp; Entertainment: Misc. Party &amp; Entertainment</option>
-                <option value="101">Party &amp; Entertainment: Speaker</option>
-                <option value="33">Sporting Goods: Bike</option>
-                <option value="49">Sporting Goods: Bike Rack</option>
-                <option value="97">Sporting Goods: Bike Trailer</option>
-                <option value="54">Sporting Goods: Camping Gear</option>
-                <option value="139">Sporting Goods: Climbing Gear</option>
-                <option value="127">Sporting Goods: Exercise Equipment</option>
-                <option value="23">Sporting Goods: Golf Club</option>
-                <option value="91">Sporting Goods: Kayak/Canoe</option>
-                <option value="108">Sporting Goods: Life Vest</option>
-                <option value="68">Sporting Goods: Misc. Sporting Good</option>
-                <option value="123">Sporting Goods: Rollerblade</option>
-                <option value="45">Sporting Goods: Ski Gear</option>
-                <option value="79">Sporting Goods: Tent</option>
-                <option value="63">Tools: Air Compressor</option>
-                <option value="80">Tools: Chainsaw</option>
-                <option value="29">Tools: Circular Saw</option>
-                <option value="27">Tools: Dremel/Rotary Tool</option>
-                <option value="28">Tools: Drill</option>
-                <option value="103">Tools: Drill Press</option>
-                <option value="105">Tools: Hammer Drill</option>
-                <option value="40">Tools: Jack</option>
-                <option value="43">Tools: Jig Saw</option>
-                <option value="125">Tools: Log Splitter</option>
-                <option value="26">Tools: Misc. Tool</option>
-                <option value="25">Tools: Miter Saw</option>
-                <option value="62">Tools: Nailer</option>
-                <option value="95">Tools: Reciprocating Saw</option>
-                <option value="106">Tools: Router</option>
-                <option value="96">Tools: Sander</option>
-                <option value="58">Tools: Saw</option>
-                <option value="128">Tools: Scaffolding</option>
-                <option value="42">Tools: Shop Vac</option>
-                <option value="59">Tools: Staple Gun</option>
-                <option value="98">Tools: Table Saw</option>
-                <option value="61">Tools: Tile Saw</option>
-                <option value="104">Tools: Welder</option>
-                <option value="30">Tools: Work Light</option>
-            </select>
+            <img src="assets/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
+            <div class="form-group file optional item_photo_1">
+                <label class="file optional control-label" for="item_photo_1"></label>
+                <input class="file optional" type="file" name="item[photo_1]" id="item_photo_1" />
+            </div>
+            <input type="hidden" name="item[photo_1_cache]" id="item_photo_1_cache" />
+            <div class="drop-here">
+                <p>
+                    <label>
+                        <input name="item[remove_photo_1]" type="hidden" value="0" />
+                        <input type="checkbox" value="1" name="item[remove_photo_1]" id="item_remove_photo_1" /> Remove photo
+                    </label>
+                </p>
+            </div>
         </div>
+    </div>
+    <br>
+    <br>
 
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group string optional item_name">
-                    <label class="string optional control-label" for="item_name">Item Name</label>
-                    <input class="string optional form-control" type="text" name="item[name]" id="item_name" />
-                </div>
-                <div class="form-group text optional item_description">
-                    <label class="text optional control-label" for="item_description">Description</label>
-                    <textarea rows="5" class="text optional form-control" name="item[description]" id="item_description">
+    <h2>Choose a category related to item being posted!</h2>
+
+    <div class="form-group select required item_category_id">
+        <select class="select required form-control" name="item[category_id]" id="item_category_id">
+            <option value="">Choose Category</option>
+            <option value="78">Apparel: Costume</option>
+            <option value="131">Apparel: Dress</option>
+            <option value="133">Apparel: Jewelry</option>
+            <option value="85">Apparel: Misc. Apparel</option>
+            <option value="92">Automotive: Boat</option>
+            <option value="122">Automotive: Car</option>
+            <option value="81">Automotive: Car Top Carrier</option>
+            <option value="138">Automotive: Engine Hoist</option>
+            <option value="21">Automotive: Misc. Automotive</option>
+            <option value="120">Automotive: Motorcycle</option>
+            <option value="119">Automotive: Rv</option>
+            <option value="100">Automotive: Trailer</option>
+            <option value="114">Automotive: Truck</option>
+            <option value="107">Av Equipment: Amplifier</option>
+            <option value="135">Av Equipment: Misc. Av Equipment</option>
+            <option value="76">Av Equipment: Projector</option>
+            <option value="129">Av Equipment: Sound System</option>
+            <option value="52">Electronics: Camera</option>
+            <option value="94">Electronics: Computer</option>
+            <option value="47">Electronics: Gps</option>
+            <option value="136">Electronics: Ipad/Tablet</option>
+            <option value="87">Electronics: Misc. Electronic</option>
+            <option value="74">Electronics: Video Game</option>
+            <option value="55">Home &amp; Kitchen: Appliance</option>
+            <option value="83">Home &amp; Kitchen: Arts &amp; Crafts</option>
+            <option value="72">Home &amp; Kitchen: Baby Gear</option>
+            <option value="116">Home &amp; Kitchen: Carpet Cleaner</option>
+            <option value="90">Home &amp; Kitchen: Dog</option>
+            <option value="132">Home &amp; Kitchen: Dog Crate</option>
+            <option value="57">Home &amp; Kitchen: Dolly</option>
+            <option value="99">Home &amp; Kitchen: Furniture</option>
+            <option value="32">Home &amp; Kitchen: Ladder</option>
+            <option value="73">Home &amp; Kitchen: Medical Good</option>
+            <option value="39">Home &amp; Kitchen: Misc. Home &amp; Kitchen</option>
+            <option value="71">Home &amp; Kitchen: Musical Instrument</option>
+            <option value="111">Home &amp; Kitchen: Painting Supplies</option>
+            <option value="82">Home &amp; Kitchen: Pet Carrier</option>
+            <option value="86">Home &amp; Kitchen: Sewing Machine</option>
+            <option value="69">Home &amp; Kitchen: Vacuum Cleaner</option>
+            <option value="50">Lawn &amp; Garden: Animal Trap</option>
+            <option value="130">Lawn &amp; Garden: Bbq Grill</option>
+            <option value="112">Lawn &amp; Garden: Construction Equipment</option>
+            <option value="48">Lawn &amp; Garden: Fertilizer Spreader</option>
+            <option value="115">Lawn &amp; Garden: Generator</option>
+            <option value="41">Lawn &amp; Garden: Hedge Trimmer</option>
+            <option value="121">Lawn &amp; Garden: Lawn Aerator</option>
+            <option value="70">Lawn &amp; Garden: Lawn Mower</option>
+            <option value="93">Lawn &amp; Garden: Lawn Trimmer</option>
+            <option value="44">Lawn &amp; Garden: Leaf Blower</option>
+            <option value="56">Lawn &amp; Garden: Misc. Lawn &amp; Garden</option>
+            <option value="109">Lawn &amp; Garden: Post Hole Digger</option>
+            <option value="89">Lawn &amp; Garden: Pressure Washer</option>
+            <option value="53">Lawn &amp; Garden: Shovel</option>
+            <option value="134">Lawn &amp; Garden: Smoker</option>
+            <option value="84">Lawn &amp; Garden: Tiller</option>
+            <option value="35">Lawn &amp; Garden: Tree Pruner</option>
+            <option value="36">Lawn &amp; Garden: Wheelbarrow</option>
+            <option value="118">Lawn &amp; Garden: Wood Chipper</option>
+            <option value="65">Miscellaneous Stuff: Media</option>
+            <option value="124">Miscellaneous Stuff: Real Estate</option>
+            <option value="88">Miscellaneous Stuff: Service Provider</option>
+            <option value="126">Party &amp; Entertainment: Bounce Houses/Inflatables</option>
+            <option value="102">Party &amp; Entertainment: Canopy</option>
+            <option value="60">Party &amp; Entertainment: Casino Game</option>
+            <option value="51">Party &amp; Entertainment: Chafing Dish</option>
+            <option value="110">Party &amp; Entertainment: Chair</option>
+            <option value="137">Party &amp; Entertainment: Chocolate Fountain</option>
+            <option value="67">Party &amp; Entertainment: Cooler</option>
+            <option value="66">Party &amp; Entertainment: Folding Table</option>
+            <option value="38">Party &amp; Entertainment: Game</option>
+            <option value="117">Party &amp; Entertainment: Glassware</option>
+            <option value="113">Party &amp; Entertainment: Misc. Party &amp; Entertainment</option>
+            <option value="101">Party &amp; Entertainment: Speaker</option>
+            <option value="33">Sporting Goods: Bike</option>
+            <option value="49">Sporting Goods: Bike Rack</option>
+            <option value="97">Sporting Goods: Bike Trailer</option>
+            <option value="54">Sporting Goods: Camping Gear</option>
+            <option value="139">Sporting Goods: Climbing Gear</option>
+            <option value="127">Sporting Goods: Exercise Equipment</option>
+            <option value="23">Sporting Goods: Golf Club</option>
+            <option value="91">Sporting Goods: Kayak/Canoe</option>
+            <option value="108">Sporting Goods: Life Vest</option>
+            <option value="68">Sporting Goods: Misc. Sporting Good</option>
+            <option value="123">Sporting Goods: Rollerblade</option>
+            <option value="45">Sporting Goods: Ski Gear</option>
+            <option value="79">Sporting Goods: Tent</option>
+            <option value="63">Tools: Air Compressor</option>
+            <option value="80">Tools: Chainsaw</option>
+            <option value="29">Tools: Circular Saw</option>
+            <option value="27">Tools: Dremel/Rotary Tool</option>
+            <option value="28">Tools: Drill</option>
+            <option value="103">Tools: Drill Press</option>
+            <option value="105">Tools: Hammer Drill</option>
+            <option value="40">Tools: Jack</option>
+            <option value="43">Tools: Jig Saw</option>
+            <option value="125">Tools: Log Splitter</option>
+            <option value="26">Tools: Misc. Tool</option>
+            <option value="25">Tools: Miter Saw</option>
+            <option value="62">Tools: Nailer</option>
+            <option value="95">Tools: Reciprocating Saw</option>
+            <option value="106">Tools: Router</option>
+            <option value="96">Tools: Sander</option>
+            <option value="58">Tools: Saw</option>
+            <option value="128">Tools: Scaffolding</option>
+            <option value="42">Tools: Shop Vac</option>
+            <option value="59">Tools: Staple Gun</option>
+            <option value="98">Tools: Table Saw</option>
+            <option value="61">Tools: Tile Saw</option>
+            <option value="104">Tools: Welder</option>
+            <option value="30">Tools: Work Light</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group string optional item_name">
+                <label class="string optional control-label" for="item_name">Item Name</label>
+                <input class="string optional form-control" type="text" name="item[name]" id="item_name" />
+            </div>
+            <div class="form-group text optional item_description">
+                <label class="text optional control-label" for="item_description">Description</label>
+                <textarea rows="5" class="text optional form-control" name="item[description]" id="item_description">
               </textarea>
-                </div>
-                <!-- <p>
+            </div>
+            <!-- <p>
                         <h3 class="blue-text">Groups</h3>
                         <div class="form-group boolean optional item_publicly_visible">
                             <div class="checkbox">
@@ -220,56 +222,58 @@
                             </div>
                         </div>
                     </p> -->
-            </div>
         </div>
-        <br>
-        <br>
-        <div class="row">
-            <div class="col-sm-12 bordered">
-                <h3>Rental Rate</h3>
-                <p>
-                    <a data-target="#priceListModal" href="" data-toggle="modal">
-                        What should I charge?
-                    </a>
-                </p>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 bordered">
+            <h3>Rental Rate</h3>
+            <p>
+                <a data-target="#priceListModal" href="" data-toggle="modal">
+                    What should I charge?
+                </a>
+            </p>
 
-                <div>
-                    <label class="string optional" for="item_Daily">Daily</label>
-                    <div class="form-group decimal optional item_price_per_day">
-                        <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_day]" id="item_price_per_day"/>
-                        <span class="dollar">&#36;</span>
-                    </div>
-                    <label class="string optional" for="item_Weekly">Weekly</label>
-                    <div class="form-group decimal optional item_price_per_week">
-                        <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_week]" id="item_price_per_week"/>
-                        <span class="dollar">&#36;</span>
-                    </div>
-                    <label class="string optional" for="item_Monthly">Monthly</label>
-                    <div class="form-group decimal optional item_price_per_month">
-                        <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_month]"
-                            id="item_price_per_month" />
-                        <span class="dollar">&#36;</span>
-                    </div>
+            <div>
+                <label class="string optional" for="item_Daily">Daily</label>
+                <div class="form-group decimal optional item_price_per_day">
+                    <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_day]" id="item_price_per_day"
+                    />
+                    <span class="dollar">&#36;</span>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 bordered">
-                <label class="string optional" for="item_Security Deposit">Security deposit</label>
-                <div class="form-group decimal optional item_security_deposit">
-                    <input label="false" hint="Leave blank if you do not require a deposit" class="numeric decimal optional" type="number" step="any"
-                        name="item[security_deposit]" id="item_security_deposit" />
+                <label class="string optional" for="item_Weekly">Weekly</label>
+                <div class="form-group decimal optional item_price_per_week">
+                    <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_week]" id="item_price_per_week"
+                    />
+                    <span class="dollar">&#36;</span>
+                </div>
+                <label class="string optional" for="item_Monthly">Monthly</label>
+                <div class="form-group decimal optional item_price_per_month">
+                    <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_month]"
+                        id="item_price_per_month" />
                     <span class="dollar">&#36;</span>
                 </div>
             </div>
         </div>
-        <br>
-        <div>
-            <a href="/items/list">Back</a>
-            <input type="submit" name="commit" value="Next (to preview)" class="button btn-lg btn-warning" />
+    </div>
+    <div class="row">
+        <div class="col-sm-12 bordered">
+            <label class="string optional" for="item_Security Deposit">Security deposit</label>
+            <div class="form-group decimal optional item_security_deposit">
+                <input label="false" hint="Leave blank if you do not require a deposit" class="numeric decimal optional" type="number" step="any"
+                    name="item[security_deposit]" id="item_security_deposit" />
+                <span class="dollar">&#36;</span>
+            </div>
         </div>
-        </form>
-    
+    </div>
+    <br>
+    <div>
+        <a href="/items/list">Back</a>
+        <input type="submit" name="commit" value="Next (to preview)" class="button btn-lg btn-warning" />
+    </div>
+    </form>
+
 
     <div class="modal fade" id="priceListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -280,9 +284,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-

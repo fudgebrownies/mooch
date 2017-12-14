@@ -5,7 +5,7 @@ var users=[]
     app.get("/", function (req, res) {
      
      
-      console.log(users);
+      // console.log(users);
       
       res.render("index", users[0]);
 
@@ -24,16 +24,6 @@ var users=[]
       res.render('registration')
     })
 
-    //   app.get("/index/:user", function(req, res) {
-    //     // Find one Author with the id in req.params.id and return them to the user with res.json
-    //    db.Author.findOne({
-    //      where: {
-    //        id: req.params.id
-    //      }
-    //    }).then(function(dbAuthor) {
-    //      res.json(dbAuthor);
-    //    });
-    //  });
 
     app.get("/index/:user", function (req, res) {
       // db.users.findOne
@@ -54,7 +44,7 @@ var users=[]
           address: db.dataValues.address,
           signedInStatus: db.dataValues.signedIn
         }
-        console.log(currentUser);
+        // console.log(currentUser);
         res.json({
           currentUser
         })
@@ -63,7 +53,7 @@ var users=[]
     });
 
     app.put("/signIn", function (req, res) {
-          console.log(req.body)
+          // console.log(req.body)
           db.users.update({
             signedIn: true
           }, {
@@ -88,27 +78,37 @@ var users=[]
                 address: db.dataValues.address,
                 signedIn: db.dataValues.signedIn
         }
-        // .then(function(){
-            
-        //       console.log(currentUser);
+     
             users.push(currentUser)
-            console.log(currentUser)
-            console.log(users)
+            // console.log(currentUser)
+            // console.log(users)
            
              res.redirect(303,'/')
-        //  return   res.redirect('back');
-        //     })
-           
-              //   res.render("index",currentUser);
+      
 
-              // });
             })
           })
         })
 
+        app.put('/signOut',function(req,res){
+          console.log('i am bfore you whore')
+          console.log(req.body)
+          db.users.update({
+            signedIn: false
+          }, {
+            where: {
+              email: req.body.email
+            }
+          }).then(function(){
+            res.redirect(303,'/')
+            users.splice('')
+            console.log(users)
+          })
+        })
+
           app.post("/api/item", function (req, res) {
-            console.log("Book Data:");
-            console.log(req.body)
+          
+            // console.log(req.body)
             // var a = req.body.email
             // console.log(JSON.parse(a));
             db.product.create({
@@ -126,18 +126,21 @@ var users=[]
               .then(function (dbPost) {
                 res.json(dbPost);
               })
-
+            })
 
 
             app.post("/api/new/users", function (req, res) {
-              console.log("Book Data:");
+             
               console.log(req.body)
               // var a = req.body.email
               // console.log(JSON.parse(a));
               db.users.create({
-                  username: req.body.username,
+
+                  email: req.body.email,
                   password: req.body.password,
-                  profilePic: req.body.profilePice,
+                  firstName:req.body.firstName,
+                  lastName:req.body.lastName,
+                  profilePic: req.body.profilePic,
                   phoneNumber: req.body.phoneNumber,
                   address: req.body.address,
 
@@ -147,6 +150,4 @@ var users=[]
                   res.json(dbPost);
                 })
             })
-
-          });
-        }
+          }

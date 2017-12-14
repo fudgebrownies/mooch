@@ -27,7 +27,18 @@ module.exports = function(sequelize, DataTypes) {
       address:{
         type:DataTypes.STRING
       },
-      
+      agreeTerms:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:false
+    },
+      ratingRenter:{
+        type:DataTypes.INTEGER,
+        defaultvalue:0,
+    },
+      ratingRentee:{
+        type:DataTypes.INTEGER,
+        defaultvalue:0
+      },
       signedIn:{
           type:DataTypes.BOOLEAN,
           defaultValue:false
