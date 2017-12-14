@@ -148,5 +148,40 @@ var users=[]
                 })
             })
 
-          });
-        }
+
+    // console.log({
+    //   email: req.body.email,
+    //   category: req.body.category,
+    //   product_name: req.body.product_name,
+    //   product_description: req.body.product_description,
+    //   userUploadImage1:req.body.userUploadImage1,
+    //   userUploadImage2:req.body.userUploadImage2,
+    //  daily:req.body.daily,
+    //    weekly:req.body.weekly,
+    //     monthly:req.body.monthly,
+    //     security_deposit:req.body.security_deposit
+    // })
+  
+// email:{
+//   type:DataTypes.STRING
+// },
+// category:{
+
+//       type:DataTypes.STRING},
+//   product_name:{type: DataTypes.STRING},
+
+//       product_description:{type: DataTypes.STRING},
+//       userUploadImage1:{ type: DataTypes.STRING},
+//       userUploadImage2:{type: DataTypes.STRING},
+//       daily:{
+//           type:DataTypes.INTEGER
+//       },
+//       weekly:{
+//           type:DataTypes.INTEGER
+//       },
+//       monthly: {
+//           type:DataTypes.INTEGER
+//       },
+//       security_deposit:{
+//           type:DataTypes.INTEGER
+//       
