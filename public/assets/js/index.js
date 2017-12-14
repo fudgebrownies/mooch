@@ -35,7 +35,7 @@ email:$('#signOutUser').attr('email')
     function(){
       console.log('done')
       
-      // window.location.reload(true);
+      window.location.reload(true);
     }
   )
 

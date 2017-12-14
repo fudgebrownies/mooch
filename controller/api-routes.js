@@ -89,7 +89,7 @@ var users=[]
             })
           })
         })
-        
+
         app.put('/signOut',function(req,res){
           console.log('i am bfore you whore')
           console.log(req.body)
@@ -99,6 +99,10 @@ var users=[]
             where: {
               email: req.body.email
             }
+          }).then(function(){
+            res.redirect(303,'/')
+            users.splice('')
+            console.log(users)
           })
         })
 
