@@ -14,12 +14,15 @@ $(function() {
     }).then(
       function(){
         console.log('done')
-        $('#signInModal').modal('hide')
+        // $('#signInModal').modal('hide')
         window.location.reload(true);
       }
     )
   })
+$('#signOutUser').on('click',function(event){
+  event.preventDefault();
 
+})
   
   $("#submitUser").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
