@@ -10,14 +10,14 @@
     </ul>
 
     {{#if signedIn}}
-    <p id={{emai}}> {{!-- Navbar drop downs --}}
+    <p   id={{emai}}> {{!-- Navbar drop downs --}}
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown">{{email}}
+        <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" style="list-style: none">
           <li>
-            <a href="#">Profile</a>
+            <a href='/user/profile' >Profile</a>
           </li>
           <li>
             <a href="#">Transactions</a>
