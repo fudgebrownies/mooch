@@ -1,12 +1,26 @@
 var db = require("../models");
 
 module.exports = function (app) {
-var users=[]
+  var users=[];
+  userproducts=[];
+userNProductsArray=[];
+
     app.get("/", function (req, res) {
+      console.log('i ma here bfore your bitch')
+      // console.log(userproducts)
+      console.log('wrapers')
+      //console.log(userproducts)
+      console.log('end wrappepr')
+
+      userNProducts={
+        user: users[0],
+        userproducts:userproducts[1]
+      };
      
-     
-      // console.log(users);
-      
+    userNProductsArray.push(userNProducts)
+    // console.log(users);
+    console.log('i ma jfinfknkfnkerknrknk')
+    console.log(userNProductsArray)
       res.render("index", users[0]);
 
       // });
@@ -22,6 +36,12 @@ var users=[]
 
 
       res.render('registration',users[0])
+    })
+
+    app.get('/user/products',function(req,res){
+
+
+      res.render('userProductList',users[0])
     })
 
 
@@ -86,6 +106,21 @@ var users=[]
              res.redirect(303,'/')
       
 
+            })
+          })
+          .then(function(){
+            db.products.findAll({
+              where:{
+                email:req.body.email
+              }
+            }).then(function(db){
+
+            
+              // console.log(db[2])
+              for(var i=0;i<db.length;i++){
+                userproducts.push(db[i].dataValues)
+
+              }
             })
           })
         })
