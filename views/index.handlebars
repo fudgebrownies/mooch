@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">MOOCH</a>
+  <a class="navbar-brand" href="/">MOOCH</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
     aria-expanded="false" aria-label="Toggle navigation">
@@ -7,46 +7,6 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
-      {{!--
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-
-      <li class="nav-item margin-left">
-        <a class="nav-link" href="#">Information</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          the first link works
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a data-toggle="tooltip" data-placement="top" title="This Link Works" class="dropdown-item" href="drones.html">hover over this then click</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown  mr-auto">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown links
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="drones.html">Drone</a>
-          <a class="dropdown-item</form>" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Amazon
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="https://www.amazon.com/s/ref=nb_sb_noss_1?url=search-alias%3Daps&field-keywords=drones">Amazon</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> --}}
     </ul>
 
     {{#if signedIn}}
@@ -78,7 +38,7 @@
       Sign-in
     </button>
  
-     <button class='newUserReg'  value="Register">Register</button>
+     <button class="newUserReg btn btn-secondary" value="Register">Register</button>
   
     {{/if}}
   </div>
@@ -116,6 +76,8 @@
     </div>
   </div>
 </div>
+
+{{!-- Carousel --}}
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -145,66 +107,6 @@
       <input type="text" class="form-control" placeholder="Zipcode" id="zipCode">
       <span id="error"></span>
     </div>
-    {{!--
-    <div class="col-sm-3">
-      <select class="form-control" id="state" name="state">
-        <option value="">State</option>
-
-        <option value="AK">Alaska</option>
-        <option value="AL">Alabama</option>
-        <option value="AR">Arkansas</option>
-        <option value="AZ">Arizona</option>
-        <option value="CA">California</option>
-        <option value="CO">Colorado</option>
-        <option value="CT">Connecticut</option>
-        <option value="DC">District of Columbia</option>
-        <option value="DE">Delaware</option>
-        <option value="FL">Florida</option>
-        <option value="GA">Georgia</option>
-        <option value="HI">Hawaii</option>
-        <option value="IA">Iowa</option>
-        <option value="ID">Idaho</option>
-        <option value="IL">Illinois</option>
-        <option value="IN">Indiana</option>
-        <option value="KS">Kansas</option>
-        <option value="KY">Kentucky</option>
-        <option value="LA">Louisiana</option>
-        <option value="MA">Massachusetts</option>
-        <option value="MD">Maryland</option>
-        <option value="ME">Maine</option>
-        <option value="MI">Michigan</option>
-        <option value="MN">Minnesota</option>
-        <option value="MO">Missouri</option>
-        <option value="MS">Mississippi</option>
-        <option value="MT">Montana</option>
-        <option value="NC">North Carolina</option>
-        <option value="ND">North Dakota</option>
-        <option value="NE">Nebraska</option>
-        <option value="NH">New Hampshire</option>
-        <option value="NJ">New Jersey</option>
-        <option value="NM">New Mexico</option>
-        <option value="NV">Nevada</option>
-        <option value="NY">New York</option>
-        <option value="OH">Ohio</option>
-        <option value="OK">Oklahoma</option>
-        <option value="OR">Oregon</option>
-        <option value="PA">Pennsylvania</option>
-        <option value="PR">Puerto Rico</option>
-        <option value="RI">Rhode Island</option>
-        <option value="SC">South Carolina</option>
-        <option value="SD">South Dakota</option>
-        <option value="TN">Tennessee</option>
-        <option value="TX">Texas</option>
-        <option value="UT">Utah</option>
-        <option value="VA">Virginia</option>
-        <option value="VT">Vermont</option>
-        <option value="WA">Washington</option>
-        <option value="WI">Wisconsin</option>
-        <option value="WV">West Virginia</option>
-        <option value="WY">Wyoming</option>
-      </select>
-    </div>
-    <div class="col-sm-3"> --}}
       <!-- SUBMIT BUTTON -->
       <input type="submit" id="submitSearch" class="btn btn-primary">
     </div>

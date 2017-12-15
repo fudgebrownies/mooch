@@ -1,16 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">MOOCH</a>
+  <a class="navbar-brand" href="#">MOOCH</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto">
+    </ul>
 
-        </ul>
-
-        {{#if signedIn}}
+    {{#if signedIn}}
     <p id={{emai}}> {{!-- Navbar drop downs --}}
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown">{{email}}
@@ -22,6 +21,9 @@
           </li>
           <li>
             <a href="#">Transactions</a>
+          </li>
+          <li>
+            <a href='/user/products'>My Products</a>
           </li>
           <li>
             <p>
@@ -36,12 +38,41 @@
       Sign-in
     </button>
  
-     <button class='newUserReg'  value="Register">Register</button>
+     <button class="newUserReg btn btn-secondary" value="Register">Register</button>
   
     {{/if}}
-    </div>
+  </div>
 
 </nav>
+
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign-In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="usr">E-mail:</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button id='signInButton' data-dismiss="modal" type="button" class="btn btn-primary">Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
     <div class="row">
