@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">MOOCH</a>
+  <a class="navbar-brand" href="/">MOOCH</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
     aria-expanded="false" aria-label="Toggle navigation">
@@ -10,14 +10,14 @@
     </ul>
 
     {{#if signedIn}}
-    <p id={{emai}}> {{!-- Navbar drop downs --}}
+    <p   id={{emai}}> {{!-- Navbar drop downs --}}
       <li class="dropdown">
         <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" style="list-style: none">
           <li>
-            <a href="/user/profile">Profile</a>
+            <a href='/user/profile' >Profile</a>
           </li>
           <li>
             <a href="#">Transactions</a>
@@ -44,6 +44,9 @@
   </div>
 
 </nav>
+
+<!-- Button trigger modal -->
+
 
 <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -75,22 +78,9 @@
 </div>
 
 <div class="container">
-    <div class="row class=" text-center "">
-        <div class="col-12-sm">
-            <h1>USER Profile Settings</h1>
-        </div>
-    </div>
-
     <div class="row">
-        <div class="col-12-sm">
-            <p>Profile Picture : {{profilePic}}</p>
-            <p>Email : {{email}}</p>
-            <p>Phone number : {{phoneNumber}}</p>
-            <p>Address : {{address}}</p>
-            <p>
-                <a class="btn btn-primary" href="/edit/profile">EDIT</a>
-            </p>
+        <div class="col-sm-12">
+           <p>You have been verified !!!! Congratulations {{firstName}} {{lastName}}</p>
         </div>
     </div>
-
 </div>
