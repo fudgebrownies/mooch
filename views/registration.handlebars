@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<<<<<<< HEAD
   <a class="navbar-brand" href="#">MOOCH</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -38,6 +39,50 @@
 
     {{/if}}
   </div>
+=======
+    <a class="navbar-brand" href="#">MOOCH</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+
+
+        {{#if signedIn}}
+        <p id=userId> {{!-- Navbar drop downs --}}
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="list-style: none">
+                    <li>
+                        <a href="#">Profile</a>
+                    </li>
+                    <li>
+                        <a href="#">Transactions</a>
+                    </li>
+                    <li>
+                        <p>
+                            <a class="btn btn-primary" id='signOutUser' href="#">Sign Out</a>
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </p>
+        {{else}}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+            Sign-in
+        </button>
+        <form action="/registration">
+            <input type="submit" class="btn" value="Register" />
+        </form>
+        {{/if}}
+    </div>
+>>>>>>> master
 
 
 </nav>
@@ -67,7 +112,6 @@
                     <span class="req">* </span> Last name: </label>
 
                 <input class="form-control" type="text" name="lastname" id="lastName" onkeyup="Validate(this)" placeholder="hyphen or single quote OK"
-
                     required />
                 <div id="errLast"></div>
             </div>
@@ -92,7 +136,7 @@
                 </label>
 
                 <input class="form-control" type="text" name="homeAddress" id="address" onkeyup="Validate(this)" placeholder="minimum 6 letters"
-      required />
+                    required />
                 <div id="errLast"></div>
             </div>
 
@@ -102,7 +146,6 @@
                 </label>
 
                 <input class="form-control" type="text" name="homeState" id="state" onkeyup="Validate(this)" placeholder="minimum 6 letters"
-
                     required />
                 <div id="errLast"></div>
             </div>
@@ -111,8 +154,7 @@
                 <label for="zipCode">
                     <span class="req">* </span> Zipcode:
                 </label>
-                <input class="form-control" type="number" name="zipCode" id="zip"  placeholder="minimum 6 letters"
-                    required />
+                <input class="form-control" type="number" name="zipCode" id="zip" placeholder="minimum 6 letters" required />
                 <div id="errLast"></div>
             </div>
 
@@ -127,11 +169,11 @@
                     id="pass2" onkeyup="checkPass(); return false;" />
                 <span id="confirmMessage" class="confirmMessage"></span>
             </div>
-<div class="form-group">
-     <label for="profilePic">
+            <div class="form-group">
+                <label for="profilePic">
                     <span class="req">* </span> Please Upload A Profile Picture </label>
-                    <input required id='profilePic' type="file">
-</div>
+                <input required id='profilePic' type="file">
+            </div>
             <div class="form-group">
 
                 {{!--
@@ -200,9 +242,9 @@
         phone.focus;
     }
     // validates text only
-  //  function Validate(txt) {
-  //      txt.value = txt.value.replace(/[^a-zA-Z-'\n\r.]+/g, '');
-  //  }
+    //  function Validate(txt) {
+    //      txt.value = txt.value.replace(/[^a-zA-Z-'\n\r.]+/g, '');
+    //  }
     // validate email
     function email_validate(email) {
         var regMail = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
@@ -215,16 +257,19 @@
         }
     }
     // validate date of birth
-    {{!-- function dob_validate(dob) {
-        var regDOB = /^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/;
+    {
+        {
+            !-- function dob_validate(dob) {
+                var regDOB = /^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/;
 
-        if (regDOB.test(dob) == false) {
-            document.getElementById("statusDOB").innerHTML = "<span class='warning'>DOB is only used to verify your age.</span>";
-        }
-        else {
-            document.getElementById("statusDOB").innerHTML = "<span class='valid'>Thanks, you have entered a valid DOB!</span>";
-        }
-    } --}}
+                if (regDOB.test(dob) == false) {
+                    document.getElementById("statusDOB").innerHTML = "<span class='warning'>DOB is only used to verify your age.</span>";
+                }
+                else {
+                    document.getElementById("statusDOB").innerHTML = "<span class='valid'>Thanks, you have entered a valid DOB!</span>";
+                }
+            } --}
+    }
     // validate address
     function add_validate(address) {
         var regAdd = /^(?=.*\d)[a-zA-Z\s\d\/]+$/;
