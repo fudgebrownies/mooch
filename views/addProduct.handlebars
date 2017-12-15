@@ -10,35 +10,35 @@
 
         </ul>
 
-        {{#if signedIn}}
-        <p id=userId> {{!-- Navbar drop downs --}}
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" style="list-style: none">
-                    <li>
-                        <a href="#">Profile</a>
-                    </li>
-                    <li>
-                        <a href="#">Transactions</a>
-                    </li>
-                    <li>
-                        <p>
-                            <a class="btn btn-primary" id='signOutUser' href="#">Sign Out</a>
-                        </p>
-                    </li>
-                </ul>
-            </li>
-        </p>
-        {{else}}
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-            Sign-in
-        </button>
-        <form action="/registration">
-            <input type="submit" class="btn" value="Register" />
-        </form>
-        {{/if}}
+       {{#if signedIn}}
+    <p id={{emai}}> {{!-- Navbar drop downs --}}
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">{{email}}
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" style="list-style: none">
+          <li>
+            <a href="#">Profile</a>
+          </li>
+          <li>
+            <a href="#">Transactions</a>
+          </li>
+          <li>
+            <p>
+              <a class="btn btn-primary" id='signOutUser' email={{email}}>Sign Out</a>
+            </p>
+          </li>
+        </ul>
+      </li>
+    </p>
+    {{else}}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+      Sign-in
+    </button>
+ 
+     <button class='newUserReg'  value="Register">Register</button>
+  
+    {{/if}}
     </div>
 
 </nav>
@@ -270,7 +270,7 @@
     <br>
     <div>
         <a href="/items/list">Back</a>
-        <input type="submit" name="commit" value="Next (to preview)" class="button btn-lg btn-warning" />
+        <input type="submit" id='preview' name="commit" value="Next (to preview)" class="button btn-lg btn-warning" />
     </div>
     </form>
 

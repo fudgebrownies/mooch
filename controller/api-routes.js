@@ -1,12 +1,26 @@
 var db = require("../models");
 
 module.exports = function (app) {
-var users=[]
+  var users=[];
+  userproducts=[];
+userNProductsArray=[];
+
     app.get("/", function (req, res) {
+      console.log('i ma here bfore your bitch')
+      // console.log(userproducts)
+      console.log('wrapers')
+      //console.log(userproducts)
+      console.log('end wrappepr')
+
+      userNProducts={
+        user: users[0],
+        userproducts:userproducts[1]
+      };
      
-     
-      // console.log(users);
-      
+    userNProductsArray.push(userNProducts)
+    // console.log(users);
+    console.log('i ma jfinfknkfnkerknrknk')
+    console.log(userNProductsArray)
       res.render("index", users[0]);
 
       // });
@@ -18,10 +32,16 @@ var users=[]
 
       res.render('addProduct')
     })
-    app.get('/new/user', function (req, res) {
+    app.get('/new/users', function (req, res) {
 
 
-      res.render('registration')
+      res.render('registration',users[0])
+    })
+
+    app.get('/user/products',function(req,res){
+
+
+      res.render('userProductList',users[0])
     })
 
 
@@ -88,8 +108,45 @@ var users=[]
 
             })
           })
+          .then(function(){
+            db.products.findAll({
+              where:{
+                email:req.body.email
+              }
+            }).then(function(db){
+
+            
+              // console.log(db[2])
+              for(var i=0;i<db.length;i++){
+                userproducts.push(db[i].dataValues)
+
+              }
+            })
+          })
         })
 
+        app.post("/api/new/users", function (req, res) {
+          
+           console.log(req.body)
+           // var a = req.body.email
+           // console.log(JSON.parse(a));
+           db.users.create({
+
+               email: req.body.email,
+               password: req.body.password,
+               firstName:req.body.firstName,
+               lastName:req.body.lastName,
+               profilePic: req.body.profilePic,
+               phoneNumber: req.body.phoneNumber,
+               address: req.body.address,
+               agreeTerms:req.body.agreeTerms
+
+             })
+             .then(function (dbPost) {
+              
+               res.redirect('/')
+             })
+         })
         app.put('/signOut',function(req,res){
           console.log('i am bfore you whore')
           console.log(req.body)
@@ -105,7 +162,11 @@ var users=[]
             console.log(users)
           })
         })
-
+        app.get('/add/products',function(req,res){
+          
+          
+                res.render('addProduct',users[0])
+              })
           app.post("/api/item", function (req, res) {
           
             // console.log(req.body)
@@ -129,25 +190,5 @@ var users=[]
             })
 
 
-            app.post("/api/new/users", function (req, res) {
-             
-              console.log(req.body)
-              // var a = req.body.email
-              // console.log(JSON.parse(a));
-              db.users.create({
-
-                  email: req.body.email,
-                  password: req.body.password,
-                  firstName:req.body.firstName,
-                  lastName:req.body.lastName,
-                  profilePic: req.body.profilePic,
-                  phoneNumber: req.body.phoneNumber,
-                  address: req.body.address,
-
-
-                })
-                .then(function (dbPost) {
-                  res.json(dbPost);
-                })
-            })
+          
           }
