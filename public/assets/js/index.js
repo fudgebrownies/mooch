@@ -85,9 +85,12 @@ $(function () {
     event.preventDefault();
 
     var newPost = {
-      name: $("#email").val().trim(),
+      email: $("#email").val().trim(),
       description: $("#email").val().trim(),
       category: $("#email").val().trim(),
+      product_description:$('#pDes').val().trim(),
+      userUploadImage1:('#pic1').val().trim(),
+      userUploadImage1:('#pic2').val().trim(),
       daily: $("#daily").val().trim(),
       weekly: $("#weekly").val().trim(),
       monthly: $("#monthly").val().trim(),

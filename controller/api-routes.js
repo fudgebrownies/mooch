@@ -162,7 +162,11 @@ userNProductsArray=[];
             console.log(users)
           })
         })
-
+        app.get('/add/products',function(req,res){
+          
+          
+                res.render('addProduct',users[0])
+              })
           app.post("/api/item", function (req, res) {
           
             // console.log(req.body)
