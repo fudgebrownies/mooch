@@ -18,10 +18,10 @@ var users=[]
 
       res.render('addProduct')
     })
-    app.get('/new/user', function (req, res) {
+    app.get('/new/users', function (req, res) {
 
 
-      res.render('registration')
+      res.render('registration',users[0])
     })
 
 
@@ -90,6 +90,28 @@ var users=[]
           })
         })
 
+        app.post("/api/new/users", function (req, res) {
+          
+           console.log(req.body)
+           // var a = req.body.email
+           // console.log(JSON.parse(a));
+           db.users.create({
+
+               email: req.body.email,
+               password: req.body.password,
+               firstName:req.body.firstName,
+               lastName:req.body.lastName,
+               profilePic: req.body.profilePic,
+               phoneNumber: req.body.phoneNumber,
+               address: req.body.address,
+               agreeTerms:req.body.agreeTerms
+
+             })
+             .then(function (dbPost) {
+              
+               res.redirect('/')
+             })
+         })
         app.put('/signOut',function(req,res){
           console.log('i am bfore you whore')
           console.log(req.body)
@@ -129,25 +151,5 @@ var users=[]
             })
 
 
-            app.post("/api/new/users", function (req, res) {
-             
-              console.log(req.body)
-              // var a = req.body.email
-              // console.log(JSON.parse(a));
-              db.users.create({
-
-                  email: req.body.email,
-                  password: req.body.password,
-                  firstName:req.body.firstName,
-                  lastName:req.body.lastName,
-                  profilePic: req.body.profilePic,
-                  phoneNumber: req.body.phoneNumber,
-                  address: req.body.address,
-
-
-                })
-                .then(function (dbPost) {
-                  res.json(dbPost);
-                })
-            })
+          
           }

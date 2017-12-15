@@ -1,5 +1,9 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function () {
+
+  $('.newUserReg').on('click',function(){
+    document.location.href="/new/users";
+  })
   var emailAddress;
   // Create user ajax call
   $('#signInButton').on('click', function (event) {
@@ -27,7 +31,7 @@ $(function () {
     signingOut = {
       email: $('#signOutUser').attr('email')
     }
-    console.log(signingOut)
+    // console.log(signingOut)
     $.ajax("/signOut", {
       type: 'PUT',
       data: signingOut
@@ -41,27 +45,26 @@ $(function () {
 
   })
 
-  $("#submitUser").on("submit", function (event) {
+  $("#createUser").on("click", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
    
   var userNewAddress=$("#address").val().trim() +' '+ $('#state').val().trim() + ' '+ $('#zip').val().trim();
-  
+  console.log('i am here you cutn ass whole btich')
+  console.log($("#field_terms").val().trim())
     var newUser = {
 
       firstName:$('#firstName').val().trim(),
-      lastName:$('# lastName').val().trim(),
+      lastName:$('#lastName').val().trim(),
       email: $("#email").val().trim(),
       password: $("#pass1").val().trim(),
-      phonenumber: $("#phone").val().trim(),
-      address: userNewAddress
-     
+      phonenumber: $("#phonenumber").val().trim(),
+      profilePic:$('#profilePic').val().trim(),
+      address: userNewAddress,
+      agreeTerms:$("#field_terms").val().trim()
 
-      
-
-
-    };
-console.log(newUser)
+    }
+// console.log(newUser)
     // Send the POST request.
     $.ajax("/api/new/users", {
       type: "POST",
@@ -70,7 +73,7 @@ console.log(newUser)
       function () {
         console.log("Welcome!");
         // Reload the page to get the updated list
-        location.reload();
+        document.location.href="/";
       }
     );
   });
