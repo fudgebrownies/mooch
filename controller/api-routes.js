@@ -1,16 +1,30 @@
 var db = require("../models");
 
 module.exports = function (app) {
+  var userNewEmail;
+  var mailgun = require("mailgun-js");
+  var api_key = '**********253ce';
+  var DOMAIN = 'https://mooch-sell.herokuapp.com/';
+  var mailgun = require('mailgun-js')({apiKey:'**********253ce', domain: 'https://mooch-sell.herokuapp.com/'});
+  
+  var data = {
+    from: 'Excited User <moochsell@gmail.com>',
+    to: userNewEmail + ', https://mooch-sell.herokuapp.com',
+    subject: 'Hello',
+    text: 'Testing some Mailgun awesomness!'
+  };
+  
+  
   var users=[];
   userproducts=[];
 userNProductsArray=[];
 
     app.get("/", function (req, res) {
-      console.log('i ma here bfore your bitch')
-      // console.log(userproducts)
-      console.log('wrapers')
-      //console.log(userproducts)
-      console.log('end wrappepr')
+      // console.log('i ma here bfore your bitch')
+      // // console.log(userproducts)
+      // console.log('wrapers')
+      // //console.log(userproducts)
+      // console.log('end wrappepr')
 
       userNProducts={
         user: users[0],
@@ -19,8 +33,8 @@ userNProductsArray=[];
      
     userNProductsArray.push(userNProducts)
     // console.log(users);
-    console.log('i ma jfinfknkfnkerknrknk')
-    console.log(userNProductsArray)
+    // console.log('i ma jfinfknkfnkerknrknk')
+    // console.log(userNProductsArray)
       res.render("index", users[0]);
 
       // });
@@ -68,7 +82,10 @@ userNProductsArray=[];
         res.json({
           currentUser
         })
-
+        mailgun.messages().send(data, function (error, body) {
+          console.log('kk')
+          console.log(body);
+        });
       });
     });
 
@@ -126,8 +143,8 @@ userNProductsArray=[];
         })
 
         app.post("/api/new/users", function (req, res) {
-          
-           console.log(req.body)
+          userNewEmail=req.body.email
+           console.log(userNewEmail)
            // var a = req.body.email
            // console.log(JSON.parse(a));
            db.users.create({
