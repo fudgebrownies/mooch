@@ -162,6 +162,14 @@ userNProductsArray=[];
             console.log(users)
           })
         })
+
+        app.get('/user/profile',function(req,res){
+          res.render('userProfile',users[0])
+        })
+
+        app.get('/edit/profile',function(req,res){
+res.render('editProfile',users[0])
+        })
         app.get('/add/products',function(req,res){
           
           

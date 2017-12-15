@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">MOOCH</a>
+    <a class="navbar-brand" href="/">MOOCH</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -11,9 +11,9 @@
         </ul>
 
        {{#if signedIn}}
-    <p id={{emai}}> {{!-- Navbar drop downs --}}
+    <p  id={{emai}}> {{!-- Navbar drop downs --}}
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown">{{email}}
+        <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" style="list-style: none">
@@ -45,13 +45,14 @@
 
 <div class="container">
     <div class="row">
+        
         <div class="col-sm-6" id="uploadPhoto">
             <img src="assets/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
             <div class="form-group file optional item_photo_1">
                 <label class="file optional control-label" for="item_photo_1"></label>
                 <input class="file optional" type="file" name="item[photo_1]" id="item_photo_1" />
             </div>
-            <input type="hidden" name="item[photo_1_cache]" id="item_photo_1_cache" />
+            <input type="hidden" name="item[photo_1_cache]" id="item_photo_2" />
             <div class="drop-here">
                 <p>
                     <label>
@@ -270,7 +271,7 @@
     <br>
     <div>
         <a href="/items/list">Back</a>
-        <input type="submit" id='preview' name="commit" value="Next (to preview)" class="button btn-lg btn-warning" />
+        <input type="submit" id='preview-FU' email={{email}} name="commit" value="Next (to preview)" class="button btn-lg btn-warning" />
     </div>
     </form>
 
