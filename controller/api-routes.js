@@ -1,20 +1,14 @@
 var db = require("../models");
 
 module.exports = function (app) {
-  var userNewEmail;
+  
   var mailgun = require("mailgun-js");
-  var api_key = '**********253ce';
-  var DOMAIN = 'https://mooch-sell.herokuapp.com/';
-  var mailgun = require('mailgun-js')({apiKey:'**********253ce', domain: 'https://mooch-sell.herokuapp.com/'});
+  var api_key = 'key-cce08607c320bd02568ae8c219c253ce';
+  var DOMAIN = 'sandbox7845473ee7c7402089cdf5c8490126c7.mailgun.org';
+  var mailgun = require('mailgun-js')({apiKey:'key-cce08607c320bd02568ae8c219c253ce', domain: 'sandbox7845473ee7c7402089cdf5c8490126c7.mailgun.org'});
   
-  var data = {
-    from: 'Excited User <moochsell@gmail.com>',
-    to: userNewEmail + ', https://mooch-sell.herokuapp.com',
-    subject: 'Hello',
-    text: 'Testing some Mailgun awesomness!'
-  };
-  
-  
+ 
+ 
   var users=[];
   userproducts=[];
 userNProductsArray=[];
@@ -141,10 +135,46 @@ userNProductsArray=[];
             })
           })
         })
+        app.get('/email/verification/:email?',function(req,res){
+          db.users.findOne({
+            where: {
+              email: req.params.email
+            }
+          })
+          var currentUser = {
+            id: db.dataValues.id,
+            email: db.dataValues.email,
+          
+            firstName: db.dataValues.firstName,
+            lastName: db.dataValues.lastName,
+            profilePic: db.dataValues.profilePic,
+            phoneNumber: db.dataValues.phoneNumber,
+            address: db.dataValues.address,
+            signedIn: db.dataValues.signedIn
+    }
+data={
+  email:req.params.email,
+  name:
+}
+          res.render('verification',)
+          db.users.update({
+            verified: true
+          }, {
+            where: {
+              email: req.params.email
+            }
+          }).then(function(){
+
+            alert('Your Account has Been Verified')
+          })
+          
+        })
 
         app.post("/api/new/users", function (req, res) {
-          userNewEmail=req.body.email
-           console.log(userNewEmail)
+       var   name=req.body.firstName+' '+req.body.lastName
+         
+          
+          
            // var a = req.body.email
            // console.log(JSON.parse(a));
            db.users.create({
@@ -160,12 +190,23 @@ userNProductsArray=[];
 
              })
              .then(function (dbPost) {
-              
+              const sgMail = require('@sendgrid/mail');
+              sgMail.setApiKey('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');
+              const msg = {
+                to: req.body.email,
+                from: 'moochsell@donotreply.com',
+                subject: 'Reqister Your Email You Mooch Sell ',
+                text: name+' '+ 'Please Click The Link to Register Your Email <br> http://localhost:8000/email/verification/'+req.body.email,
+                html: '<strong>'+name+' '+'Please Click The Link to Register Your Email <br> localhost:8000/email/verification/'+req.body.email+'</strong>',
+              };
+              sgMail.send(msg);
+              console.log('done')
+            
                res.redirect('/')
              })
          })
         app.put('/signOut',function(req,res){
-          console.log('i am bfore you whore')
+      
           console.log(req.body)
           db.users.update({
             signedIn: false

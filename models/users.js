@@ -43,6 +43,10 @@ module.exports = function(sequelize, DataTypes) {
           type:DataTypes.BOOLEAN,
           defaultValue:false
       },
+      verified:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:false
+      },
       active:{
           type:DataTypes.BOOLEAN,
           defaultValue:true
