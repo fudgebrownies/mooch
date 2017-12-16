@@ -268,5 +268,48 @@ module.exports = function (app) {
   })
 
 
+          app.post("/api/item", function (req, res) {
+          
+            // console.log(req.body)
+            // var a = req.body.email
+            // console.log(JSON.parse(a));
+            db.product.create({
+                email: req.body.email,
+                category: req.body.category,
+                product_name: req.body.product_name,
+                product_description: req.body.product_description,
+                userUploadImage1: req.body.userUploadImage1,
+                userUploadImage2: req.body.userUploadImage2,
+                daily: req.body.daily,
+                weekly: req.body.weekly,
+                monthly: req.body.monthly,
+                security_deposit: req.body.security_deposit
+              })
+              .then(function (dbPost) {
+                res.json(dbPost);
+              })
+            })
 
-}
+
+            app.post("/api/new/users", function (req, res) {
+             
+              console.log(req.body)
+              // var a = req.body.email
+              // console.log(JSON.parse(a));
+              db.users.create({
+
+                  email: req.body.email,
+                  password: req.body.password,
+                  firstName:req.body.firstName,
+                  lastName:req.body.lastName,
+                  profilePic: req.body.profilePic,
+                  phoneNumber: req.body.phoneNumber,
+                  address: req.body.address,
+
+
+                })
+                .then(function (dbPost) {
+                  res.json(dbPost);
+                })
+            })
+          }
