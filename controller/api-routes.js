@@ -28,6 +28,24 @@ module.exports = function (app) {
     // res.render(path.join(__dirname, "index.html"));
     // res.render("index");
   });
+  app.get('/search',function(req,res){
+    db.products.findOne({
+      where:{
+        product_name:"%'+req.query.key+'%"
+      }
+    }).then(function (items){
+    // connection.query('SELECT first_name from TABLE_NAME where first_name like "%'+req.query.key+'%"',
+    // function(err, rows, fields) {
+      console.log(items)
+    // if (err) throw err;
+    var data=[];
+    // for(i=0;i<rows.length;i++)
+    // {
+    // data.push(rows[i].product_name);
+    // }
+    // res.end(JSON.stringify(data));
+    });
+    });
   app.get('/add', function (req, res) {
 
 
@@ -158,7 +176,7 @@ module.exports = function (app) {
     })
   })
 
-  app.post("/api/new/users", function (req, res) {
+  app.post("/api/new/users", function (req, doIt) {
     var name = req.body.firstName + ' ' + req.body.lastName
 
 
@@ -181,18 +199,22 @@ module.exports = function (app) {
         const sgMail = require('@sendgrid/mail');
         sgMail.setApiKey(fileKey);
 
-        href='href="localhost:8000.com/email/verification/' + req.body.email
+        href="<a href='localhost:8000.com/email/verification/"
+        email=req.body.email+ "'"+"> Click Here To Register <a/>"
+        var fullEmail = href.concat(email);
+    console.log(fullEmail)
         const msg = {
           to: req.body.email,
           from: 'moochsell@donotreply.com',
-          subject: 'Reqister Your Email You Mooch Sell ',
-          text: name + ' ' + 'Please Click The Link to Register Your Email <br> <a>http://localhost:8000/email/verification/' + req.body.email+'</a>',
-          html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> <a href=localhost:8000.com/email/verification/' + req.body.email+'>' +'localhost:8000.com/email/verification/' + req.body.email  +'</a>' + '</strong>',
+          subject: 'Reqister Your Email With Mooch Sell ',
+          text: name + ' ' + "Please Click The Link to Register Your Email https://mooch-sell.herokuapp.com//email/verification/"+req.body.email,
+          // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
         };
-        sgMail.send(msg);
+         sgMail.send(msg);
         console.log('done')
 
-        res.redirect('/')
+        doIt.redirect(303, '/')
+        
       })
   })
   app.put('/signOut', function (req, res) {
