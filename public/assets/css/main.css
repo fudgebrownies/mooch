@@ -27,6 +27,23 @@ padding : 250px;
 
 }
 
+#verificationPage{
+  border: 1px dashed #ddd;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+  padding: 25px;
+  margin-top: 50px;
+  background-color: rgba(221, 220, 220, 0.323);
+}
+
+#individualProductDetails{
+  border: 1px dashed #ddd;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+  padding: 25px;
+  margin-top: 50px;
+  background-color: rgba(221, 220, 220, 0.323);
+}
+
+
 #productDetails{
   border: 1px dashed #ddd;
   box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
