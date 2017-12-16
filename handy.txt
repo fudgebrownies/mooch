@@ -1,0 +1,29 @@
+email:me@.com,
+category:'sports',
+  product_name:'football',
+  product_description:'balls',
+ userUploadImage1:'k.jpg',
+ userUploadImage2:'l.jpg',
+ daily:6,
+   weekly:10,
+    monthly:91,
+    security_deposit:100}
+$('#signIn').on('click',function(event){
+  event.preventDefault();
+  var signingIn={
+    email:$('#usr').val().trim(),
+    password:$('#pwd').val().trim()
+  };
+  $.ajax("/signIn",{
+    type:'PUT',
+    data:signingIn
+  }).then(
+    function(){
+      console.log('done')
+    }
+  )
+})
+
+jquery@1.9.1
+
+popper.js@1.12.3

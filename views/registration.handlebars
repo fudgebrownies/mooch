@@ -1,54 +1,77 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">MOOCH</a>
+  <a class="navbar-brand" href="/">MOOCH</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+
+    {{#if signedIn}}
+   <p  id={{emai}}>  {{!-- Navbar drop downs --}}
+                    <li class="dropdown">
+                        <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="list-style: none">
+                            <li>
+                                <a href="#">Profile</a>
+                            </li>
+                            <li>
+                                <a href="#">Transactions</a>
+                            </li>
+                            <li>
+                               <p><a class="btn btn-primary" id='signOutUser' href="#">Sign Out</a></p>
+                            </li>
+                        </ul>
+                    </li>
+                </p>
+    {{else}}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+      Sign-in
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
-
-        </ul>
-
-
-        {{#if signedIn}}
-        <p id=userId> {{!-- Navbar drop downs --}}
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" style="list-style: none">
-                    <li>
-                        <a href="#">Profile</a>
-                    </li>
-                    <li>
-                        <a href="#">Transactions</a>
-                    </li>
-                    <li>
-                        <p>
-                            <a class="btn btn-primary" id='signOutUser' href="#">Sign Out</a>
-                        </p>
-                    </li>
-                </ul>
-            </li>
-        </p>
-        {{else}}
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-            Sign-in
-        </button>
-        <form action="/registration">
-            <input type="submit" class="btn" value="Register" />
-        </form>
-        {{/if}}
-    </div>
-
+ 
+     <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+  
+    {{/if}}
+  </div>
 
 </nav>
 
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign-In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="usr">E-mail:</label>
+            <input type="text" class="form-control" id="usr">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button id='signInButton' data-dismiss="modal" type="button" class="btn btn-primary">Sign In</button>
+      </div>
+    </div>
+  </div>
+</div>
 {{!-- REGISTRATION FORM --}}
 
 <div class="container">
-    <form action="" method="post" id="fileForm" role="form">
+    
         <fieldset>
             <legend class="text-center">Valid information is required to register.
                 <span class="req">
@@ -140,7 +163,7 @@
                 <input type="hidden" value="0" name="activate" />
                 <hr>
 
-                <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');"
+                <input type="checkbox" value='true'required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');"
                     id="field_terms">
                 <label for="terms">I agree with the
                     <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
@@ -148,14 +171,14 @@
             </div>
 
             <div class="form-group">
-                <input class="btn btn-success" id='submitUser' type="submit" name="submit_reg" value="Register">
+                <input class="btn btn-success"  id='createUser' type="submit image" name="submit_reg" value="Register">
             </div>
             <h5>You will receive an email to complete the registration and validation process. </h5>
             <h5>Be sure to check your spam folders. </h5>
 
 
         </fieldset>
-    </form>
+    
     <!-- ends register form -->
 </div>
 
