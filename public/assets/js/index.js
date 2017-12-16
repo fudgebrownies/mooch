@@ -4,7 +4,12 @@ $(function () {
   $('.newUserReg').on('click',function(){
     document.location.href="/new/users";
   })
-  
+
+  $('input.typeahead').typeahead({
+    name: 'typeahead',
+    remote: 'http://localhost:8000/search?key=%QUERY',
+    limit: 10
+    });
   // Create user ajax call
   $('#signInButton').on('click', function (event) {
     event.preventDefault();
@@ -58,7 +63,7 @@ console.log(emailAddress)
       lastName:$('#lastName').val().trim(),
       email: $("#email").val().trim(),
       password: $("#pass1").val().trim(),
-      phonenumber: $("#phonenumber").val().trim(),
+      phonenumber: $("#phone").val().trim(),
       profilePic:$('#profilePic').val().trim(),
       address: userNewAddress,
       agreeTerms:$("#field_terms").val().trim()

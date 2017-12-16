@@ -1,10 +1,50 @@
 var db = require("../models");
-fileKey=require("./sendfile key")
+//fileKey=require("./sendfile key")
+aws = require('aws-sdk'),
+bodyParser = require('body-parser'),
+multer = require('multer'),
+multerS3 = require('multer-s3');
+
+aws.config.update({
+  secretAccessKey: 'YYJuKJAiNALjpDYWmr+vb32VO5Og9Gn1dVdl5klV',
+  accessKeyId: 'AKIAIWBUJA6Q4AU6FSBA',
+  region: 'us-west-1'
+});
+
+s3 = new aws.S3();
+
+
+
+
 module.exports = function (app) {
+
+  var image 
+  var upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'moochify',
+        key: function (req, file, cb) {
+            //console.log(file);
+            cb(null, file.originalname); //use Date.now() for unique file keys
+            var image = file.originalname
+        }
+    })
+  });
+  
+
+  app.use(bodyParser.json());
 
   var users = [];
   userproducts = [];
   userNProductsArray = [];
+
+  app.post('/upload', upload.array('upl',1), function (req, res, next) {
+    res.send("Uploaded!");
+    //console.log(req.files.key)
+    
+    //var image = file.originalname
+    
+});
 
   app.get("/", function (req, res) {
     // console.log('i ma here bfore your bitch')
@@ -28,6 +68,24 @@ module.exports = function (app) {
     // res.render(path.join(__dirname, "index.html"));
     // res.render("index");
   });
+  app.get('/search',function(req,res){
+    db.products.findOne({
+      where:{
+        product_name:"%'+req.query.key+'%"
+      }
+    }).then(function (items){
+    // connection.query('SELECT first_name from TABLE_NAME where first_name like "%'+req.query.key+'%"',
+    // function(err, rows, fields) {
+      console.log(items)
+    // if (err) throw err;
+    var data=[];
+    // for(i=0;i<rows.length;i++)
+    // {
+    // data.push(rows[i].product_name);
+    // }
+    // res.end(JSON.stringify(data));
+    });
+    });
   app.get('/add', function (req, res) {
 
 
@@ -158,7 +216,7 @@ module.exports = function (app) {
     })
   })
 
-  app.post("/api/new/users", function (req, res) {
+  app.post("/api/new/users", function (req, doIt) {
     var name = req.body.firstName + ' ' + req.body.lastName
 
 
@@ -181,18 +239,22 @@ module.exports = function (app) {
         const sgMail = require('@sendgrid/mail');
         sgMail.setApiKey(fileKey);
 
-        href='href="localhost:8000.com/email/verification/' + req.body.email
+        href="<a href='localhost:8000.com/email/verification/"
+        email=req.body.email+ "'"+"> Click Here To Register <a/>"
+        var fullEmail = href.concat(email);
+    console.log(fullEmail)
         const msg = {
           to: req.body.email,
           from: 'moochsell@donotreply.com',
-          subject: 'Reqister Your Email You Mooch Sell ',
-          text: name + ' ' + 'Please Click The Link to Register Your Email <br> <a>http://localhost:8000/email/verification/' + req.body.email+'</a>',
-          html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> <a href=localhost:8000.com/email/verification/' + req.body.email+'>' +'localhost:8000.com/email/verification/' + req.body.email  +'</a>' + '</strong>',
+          subject: 'Reqister Your Email With Mooch Sell ',
+          text: name + ' ' + "Please Click The Link to Register Your Email https://mooch-sell.herokuapp.com//email/verification/"+req.body.email,
+          // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
         };
-        sgMail.send(msg);
+         sgMail.send(msg);
         console.log('done')
 
-        res.redirect('/')
+        doIt.redirect(303, '/')
+        
       })
   })
   app.put('/signOut', function (req, res) {
@@ -246,5 +308,48 @@ module.exports = function (app) {
   })
 
 
+          app.post("/api/item", function (req, res) {
+          
+            // console.log(req.body)
+            // var a = req.body.email
+            // console.log(JSON.parse(a));
+            db.product.create({
+                email: req.body.email,
+                category: req.body.category,
+                product_name: req.body.product_name,
+                product_description: req.body.product_description,
+                userUploadImage1: req.body.userUploadImage1,
+                userUploadImage2: req.body.userUploadImage2,
+                daily: req.body.daily,
+                weekly: req.body.weekly,
+                monthly: req.body.monthly,
+                security_deposit: req.body.security_deposit
+              })
+              .then(function (dbPost) {
+                res.json(dbPost);
+              })
+            })
 
-}
+
+            app.post("/api/new/users", function (req, res) {
+             
+              console.log(req.body)
+              // var a = req.body.email
+              // console.log(JSON.parse(a));
+              db.users.create({
+
+                  email: req.body.email,
+                  password: req.body.password,
+                  firstName:req.body.firstName,
+                  lastName:req.body.lastName,
+                  profilePic: req.body.profilePic,
+                  phoneNumber: req.body.phoneNumber,
+                  address: req.body.address,
+
+
+                })
+                .then(function (dbPost) {
+                  res.json(dbPost);
+                })
+            })
+          }
