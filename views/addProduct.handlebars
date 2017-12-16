@@ -1,87 +1,93 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">MOOCH</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">MOOCH</a>
+      
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav mr-auto">
+          </ul>
+      
+          {{#if signedIn}}
+          <p   id={{emai}}>
+            <li class="dropdown">
+              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" style="list-style: none">
+                <li>
+                  <a href='/user/profile' >Profile</a>
+                </li>
+                <li>
+                  <a href="#">Transactions</a>
+                </li>
+                <li>
+                  <a href='/user/products'>My Products</a>
+                </li>
+                <li>
+                  <p>
+                    <a class="btn btn-primary" id='signOutUser' email={{email}}>Sign Out</a>
+                  </p>
+                </li>
+              </ul>
+            </li>
+          </p>
+          {{else}}
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+            Sign-in
+          </button>
+       
+           <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+        
+          {{/if}}
+        </div>
+      
+      </nav>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
-    
-    </ul>
-
-    {{#if signedIn}}
-   <p id=userId>  {{!-- Navbar drop downs --}}
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{email}}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" style="list-style: none">
-                            <li>
-                                <a href="#">Profile</a>
-                            </li>
-                            <li>
-                                <a href="#">Transactions</a>
-                            </li>
-                            <li>
-                               <p><a class="btn btn-primary" id='signOutUser' href="#">Sign Out</a></p>
-                            </li>
-                        </ul>
-                    </li>
-                </p>
-    {{else}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-      Sign-in
-    </button>
-    <form action="/registration">
-      <input type="submit" class="btn" value="Register" />
-    </form>
-    {{/if}}
-  </div>
-
-</nav>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6" id="uploadPhoto">
-                <img src="assets/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
-                <div class="form-group file optional item_photo_1">
-                    <label class="file optional control-label" for="item_photo_1"></label>
-                    <input class="file optional" type="file" name="item[photo_1]" id="item_photo_1" />
-                </div>
-                <input type="hidden" name="item[photo_1_cache]" id="item_photo_1_cache" />
-                <div class="drop-here">
-                    <p>
-                        <label>
-                            <input name="item[remove_photo_1]" type="hidden" value="0" />
-                            <input type="checkbox" value="1" name="item[remove_photo_1]" id="item_remove_photo_1" /> Remove photo
-                        </label>
-                    </p>
-                </div>
+<div class="container" id="postProductContainer">
+    <div class="row">
+        <div class="col-sm-6 text-center" id="uploadPhoto">
+            <img src="../public/assets/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
+            <div class="form-group file optional item_photo_1">
+                <label class="file optional control-label" for="item_photo_1"></label>
+                <input class="file optional" type="file" name="item[photo_1]" id="item_photo_1" />
             </div>
-            <div class="col-sm-6" id="uploadPhoto">
-
-                <img src="assets/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
-                <div class="form-group file optional item_photo_1">
-                    <label class="file optional control-label" for="item_photo_1"></label>
-                    <input class="file optional" type="file" name="item[photo_1]" id="item_photo_1" />
-                </div>
-                <input type="hidden" name="item[photo_1_cache]" id="item_photo_1_cache" />
-                <div class="drop-here">
-                    <p>
-                        <label>
-                            <input name="item[remove_photo_1]" type="hidden" value="0" />
-                            <input type="checkbox" value="1" name="item[remove_photo_1]" id="item_remove_photo_1" /> Remove photo
-                        </label>
-                    </p>
-                </div>
+            <input type="hidden" name="item[photo_1_cache]" id="item_photo_1_cache" />
+            <div class="drop-here">
+                <p>
+                    <label>
+                        <input name="item[remove_photo_1]" type="hidden" value="0" />
+                        <input type="checkbox" value="1" name="item[remove_photo_1]" id="item_remove_photo_1" /> Remove photo
+                    </label>
+                </p>
             </div>
         </div>
-        <br>
-        <br>
+        <div class="col-sm-6 text-center" id="uploadPhoto">
 
-        <h2>Choose a category related to item being posted!</h2>
+            <img src="images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
+            <div class="form-group file optional item_photo_1">
+                <label class="file optional control-label" for="item_photo_1"></label>
+                <input class="file optional" type="file" name="item[photo_1]" id="item_photo_2" />
+            </div>
+            <input type="hidden" name="item[photo_1_cache]" id="item_photo_2_cache" />
+            <div class="drop-here">
+                <p>
+                    <label>
+                        <input name="item[remove_photo_1]" type="hidden" value="0" />
+                        <input type="checkbox" value="1" name="item[remove_photo_1]" id="item_remove_photo_1" /> Remove photo
+                    </label>
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
 
+    <h2 class="text-center">Choose a category related to item being posted!</h2>
+    <br>
+    <br>
+    <form>
         <div class="form-group select required item_category_id">
             <select class="select required form-control" name="item[category_id]" id="item_category_id">
                 <option value="">Choose Category</option>
@@ -199,7 +205,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-12">
                 <div class="form-group string optional item_name">
                     <label class="string optional control-label" for="item_name">Item Name</label>
                     <input class="string optional form-control" type="text" name="item[name]" id="item_name" />
@@ -209,80 +215,135 @@
                     <textarea rows="5" class="text optional form-control" name="item[description]" id="item_description">
               </textarea>
                 </div>
-                <!-- <p>
-                        <h3 class="blue-text">Groups</h3>
-                        <div class="form-group boolean optional item_publicly_visible">
-                            <div class="checkbox">
-                                <input value="0" type="hidden" name="item[publicly_visible]" />
-                                <label class="boolean optional" for="item_publicly_visible">
-                                    <input class="boolean optional" type="checkbox" value="1" checked="checked" name="item[publicly_visible]"
-                                        id="item_publicly_visible" />Publicly visible</label>
-                            </div>
-                        </div>
-                    </p> -->
             </div>
         </div>
         <br>
         <br>
         <div class="row">
-            <div class="col-sm-12 bordered">
+            <div class="col-sm-12 text-center">
                 <h3>Rental Rate</h3>
                 <p>
-                    <a data-target="#priceListModal" href="" data-toggle="modal">
+                    <a data-target="#priceListModal" href="../public/assets/documents/rentalPrices.pdf" data-toggle="modal">
                         What should I charge?
                     </a>
                 </p>
+            </div>
 
-                <div>
-                    <label class="string optional" for="item_Daily">Daily</label>
-                    <div class="form-group decimal optional item_price_per_day">
-                        <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_day]" id="item_price_per_day"/>
-                        <span class="dollar">&#36;</span>
+
+        </div>
+        <div class="container" id="#rentalRate">
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <div>
+                        <label class="string optional" for="item_Daily">Daily</label>
+                        <div class="form-group decimal optional item_price_per_day">
+                            <span class="dollar">&#36;</span>
+                            <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_day]" id="item_price_per_day"
+                            />
+                        </div>
+                        <label class="string optional" for="item_Weekly">Weekly</label>
+                        <div class="form-group decimal optional item_price_per_week">
+                            <span class="dollar">&#36;</span>
+                            <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_week]" id="item_price_per_week"
+                            />
+                        </div>
+
                     </div>
-                    <label class="string optional" for="item_Weekly">Weekly</label>
-                    <div class="form-group decimal optional item_price_per_week">
-                        <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_week]" id="item_price_per_week"/>
-                        <span class="dollar">&#36;</span>
-                    </div>
+                </div>
+                <div class="col-sm-6 text-center">
                     <label class="string optional" for="item_Monthly">Monthly</label>
                     <div class="form-group decimal optional item_price_per_month">
+                        <span class="dollar">&#36;</span>
                         <input label="false" hint="false" class="numeric decimal optional" type="number" step="any" name="item[price_per_month]"
                             id="item_price_per_month" />
+                    </div>
+                    <label class="string optional" for="item_Security Deposit">Security deposit</label>
+                    <div class="form-group decimal optional item_security_deposit">
                         <span class="dollar">&#36;</span>
+                        <input label="false" hint="Leave blank if you do not require a deposit" class="numeric decimal optional" type="number" step="any"
+                            name="item[security_deposit]" id="item_security_deposit" />
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12 bordered">
-                <label class="string optional" for="item_Security Deposit">Security deposit</label>
-                <div class="form-group decimal optional item_security_deposit">
-                    <input label="false" hint="Leave blank if you do not require a deposit" class="numeric decimal optional" type="number" step="any"
-                        name="item[security_deposit]" id="item_security_deposit" />
-                    <span class="dollar">&#36;</span>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div>
-            <a href="/items/list">Back</a>
-            <input type="submit" name="commit" value="Next (to preview)" class="button btn-lg btn-warning" />
-        </div>
-        </form>
-    
 
-    <div class="modal fade" id="priceListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <IFRAME src="/misc/priceList.html" width="100%" height="500px"></IFRAME>
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button class="btn btn-lg" width="100">Back
+                    <a href="/items/list"></a>
+                </button>
+                <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Preview Post
+                </button>
+                <!-- <input type="submit" name="commit" /> -->
             </div>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
+
+</div>
+</form>
+
+
+<!-- ==============================================Rental Pricing Modal=============================================================================================== -->
+
+<div class="modal fade" id="priceListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <IFRAME src="../public/assets/documents/rentalPrices.pdf" width="100%" height="500px"></IFRAME>
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
 </div>
 
 
+<!-- =================================================================Post CONFIRMATION MODAL ============================================================================================================================ -->
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            {{userUploadImage1}}
+                        </div>
+                        <div class="col-sm-3">
+                            {{userUploadImage2}}
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{category}}</p>
+                            <p>{{product_description}}</p>
+                            <p>${{daily}}/day</p>
+                            <p>${{weekly}}/day</p>
+                            <p>${{monthly}}/day</p>
+                            <p>Security Deposit: ${{security_deposit}}</p>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>
+                <button id="finalPostConfirmation" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<br>
+<br>
+<br>
 
+<footer class="footer text-center">
+    <div class="container">
+        <small>© Copyright 2017 MOOCH</small>
+    </div>
+</footer>

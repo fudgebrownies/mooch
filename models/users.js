@@ -28,8 +28,8 @@ module.exports = function(sequelize, DataTypes) {
         type:DataTypes.STRING
       },
       agreeTerms:{
-        type:DataTypes.BOOLEAN,
-        defaultValue:false
+        type:DataTypes.BOOLEAN
+        
     },
       ratingRenter:{
         type:DataTypes.INTEGER,
@@ -42,6 +42,10 @@ module.exports = function(sequelize, DataTypes) {
       signedIn:{
           type:DataTypes.BOOLEAN,
           defaultValue:false
+      },
+      verified:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:false
       },
       active:{
           type:DataTypes.BOOLEAN,
