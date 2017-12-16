@@ -1,10 +1,50 @@
 var db = require("../models");
-fileKey=require("./sendfile key")
+//fileKey=require("./sendfile key")
+aws = require('aws-sdk'),
+bodyParser = require('body-parser'),
+multer = require('multer'),
+multerS3 = require('multer-s3');
+
+aws.config.update({
+  secretAccessKey: 'YYJuKJAiNALjpDYWmr+vb32VO5Og9Gn1dVdl5klV',
+  accessKeyId: 'AKIAIWBUJA6Q4AU6FSBA',
+  region: 'us-west-1'
+});
+
+s3 = new aws.S3();
+
+
+
+
 module.exports = function (app) {
+
+  var image 
+  var upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'moochify',
+        key: function (req, file, cb) {
+            //console.log(file);
+            cb(null, file.originalname); //use Date.now() for unique file keys
+            var image = file.originalname
+        }
+    })
+  });
+  
+
+  app.use(bodyParser.json());
 
   var users = [];
   userproducts = [];
   userNProductsArray = [];
+
+  app.post('/upload', upload.array('upl',1), function (req, res, next) {
+    res.send("Uploaded!");
+    //console.log(req.files.key)
+    
+    //var image = file.originalname
+    
+});
 
   app.get("/", function (req, res) {
     // console.log('i ma here bfore your bitch')
