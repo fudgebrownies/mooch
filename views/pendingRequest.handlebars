@@ -1,103 +1,81 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">MOOCH</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">MOOCH</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
-    </ul>
-
-    {{#if signedIn}}
-    <p id={{emai}}> {{!-- Navbar drop downs --}}
-      <li class="dropdown">
-        <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" style="list-style: none">
-          <li>
-            <a href="/user/profile">Profile</a>
-          </li>
-          <li>
-            <a href="#">Transactions</a>
-          </li>
-          <li>
-            <a href='/user/products'>My Products</a>
-          </li>
-          <li>
-            <p>
-              <a class="btn btn-primary" id='signOutUser' email={{email}}>Sign Out</a>
-            </p>
-          </li>
-        </ul>
-      </li>
-    </p>
-    {{else}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-      Sign-in
-    </button>
- 
-     <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-  
-    {{/if}}
-  </div>
-
-</nav>
-
-<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign-In</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="usr">E-mail:</label>
-            <input type="text" class="form-control" id="usr">
-          </div>
-          <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button id='signInButton' data-dismiss="modal" type="button" class="btn btn-primary">Sign In</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
 
-<div class="container">
-    <div class="row">
-        <div class="col-12-sm">
-            <h1 class="text-center">{{firstName}}'s Transactions</h1>
+            </ul>
+
+      {{#if users.signedIn}}
+          <p   id={{users.emai}}>
+            <li class="dropdown">
+              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" style="list-style: none">
+                <li>
+                  <a href='/user/profile' >Profile</a>
+                </li>
+                <li>
+                  <a href="#">Transactions</a>
+                </li>
+                <li>
+                  <a href='/user/products'>My Products</a>
+                </li>
+                <li>
+                  <p>
+                    <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
+                  </p>
+                </li>
+              </ul>
+            </li>
+          </p>
+          {{else}}
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+            Sign-in
+          </button>
+       
+           <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+        
+          {{/if}}
+  </div>
+
+
+    </nav>
+
+
+    <div class="container" id="productRequestContainer">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center">{{name}}'s Transactions</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center">Pending Rental Requests</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                {{#if pendingRequest}} {{#each product}}
+                <p>Category : {{category}}</p>
+                <br>
+                <p>Product : {{product_name}}</p>
+                <br>
+            </div>
+            <div class="col-sm-4 text-center">
+                <p>
+                    <a class="btn btn-primary" href="">Accept Rental Request</a>
+                </p>
+            </div>
+            {{else}}
+            <div class="col-sm-12">
+                <p class="text-center">You have no pending request</p>
+            </div>
+            {{/each}}
         </div>
     </div>
-    <div class="row">
-        <div class="col-12-sm">
-            <h1 class="text-center">Pending Rental Requests</h1>
-        </div>
-    </div>
-    <div class="row">
-        {{#if pendingRequest}}
-        <p>Category : {{category}}</p>
-        <br>
-        <p>Product : {{product_name}}</p>
-        <br>
-        <p>
-            <a class="btn btn-primary" href="">Accept Rental Request</a>
-        </p>
-        <br>
-        <p>You have pending requests</p>
-        <br> {{else}}
-        <p>YOu have no pending requests</p>
-        {{/if}}
-    </div>
-</div>

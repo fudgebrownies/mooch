@@ -11,6 +11,9 @@ module.exports = function(sequelize, DataTypes) {
             product_name:{type: DataTypes.STRING},
             
                 product_description:{type: DataTypes.STRING},
+                zipcode:{
+type:DataTypes.STRING
+                },
                 userUploadImage1:{ type: DataTypes.STRING},
                 userUploadImage2:{type: DataTypes.STRING},
                 daily:{

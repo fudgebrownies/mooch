@@ -9,39 +9,38 @@
             <ul class="navbar-nav mr-auto">
             </ul>
 
-            {{#if signedIn}}
-            <p id={{emai}}> {{!-- Navbar drop downs --}}
-                <li class="dropdown" style="list-style: none">
-                    <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" style="list-style: none">
-                        <li>
-                            <a href='/user/profile'>Profile</a>
-                        </li>
-                        <li>
-                            <a href="#">Transactions</a>
-                        </li>
-                        <li>
-                            <a href='/user/products'>My Products</a>
-                        </li>
-                        <li>
-                            <p>
-                                <a class="btn btn-primary" id='signOutUser' email={{email}}>Sign Out</a>
-                            </p>
-                        </li>
-                    </ul>
+               {{#if users.signedIn}}
+          <p   id={{users.emai}}>
+            <li class="dropdown">
+              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" style="list-style: none">
+                <li>
+                  <a href='/user/profile' >Profile</a>
                 </li>
-            </p>
-            {{else}}
-            
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-                Sign-in
-            </button>
-
-            <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-
-            {{/if}}
+                <li>
+                  <a href="#">Transactions</a>
+                </li>
+                <li>
+                  <a href='/user/products'>My Products</a>
+                </li>
+                <li>
+                  <p>
+                    <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
+                  </p>
+                </li>
+              </ul>
+            </li>
+          </p>
+          {{else}}
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+            Sign-in
+          </button>
+       
+           <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+        
+          {{/if}}
         </div>
 
     </nav>
@@ -55,17 +54,18 @@
 
     <div class="container" id="userProfileSettigs">
         <div class="row text-center">
-            <div class="col-12-sm">
+            <div class="col-sm-12">
                 <h1>USER Profile Settings</h1>
             </div>
         </div>
 
         <div class="row">
             <div class="col-sm-10">
-                <p>Profile Picture : {{profilePic}}</p>
-                <p>Email : {{email}}</p>
-                <p>Phone number : {{phoneNumber}}</p>
-                <p>Address : {{address}}</p>
+                <img id ='profilePicProfile' src='http://www.apimages.com/Images/Ap_Creative_Stock_Header.jpg'
+                <p>Profile Picture : {{users.profilePic}}</p>
+                <p>Email : {{users.email}}</p>
+                <p>Phone number : {{users.phoneNumber}}</p>
+                <p>Address : {{users.address}} {{users.city}},{{users.state}} {{users.zipCode}}</p>
             </div>
             <div class="col-sm-2">
                 <p>
