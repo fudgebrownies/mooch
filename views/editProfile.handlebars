@@ -9,38 +9,38 @@
         <ul class="navbar-nav mr-auto">
         </ul>
 
-        {{#if signedIn}}
-        <p id={{emai}}> {{!-- Navbar drop downs --}}
+          {{#if users.signedIn}}
+          <p   id={{users.emai}}>
             <li class="dropdown">
-                <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" style="list-style: none">
-                    <li>
-                        <a href='/user/profile'>Profile</a>
-                    </li>
-                    <li>
-                        <a href="#">Transactions</a>
-                    </li>
-                    <li>
-                        <a href='/user/products'>My Products</a>
-                    </li>
-                    <li>
-                        <p>
-                            <a class="btn btn-primary" id='signOutUser' email={{email}}>Sign Out</a>
-                        </p>
-                    </li>
-                </ul>
+              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" style="list-style: none">
+                <li>
+                  <a href='/user/profile' >Profile</a>
+                </li>
+                <li>
+                  <a href="#">Transactions</a>
+                </li>
+                <li>
+                  <a href='/user/products'>My Products</a>
+                </li>
+                <li>
+                  <p>
+                    <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
+                  </p>
+                </li>
+              </ul>
             </li>
-        </p>
-        {{else}}
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+          </p>
+          {{else}}
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
             Sign-in
-        </button>
-
-        <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-
-        {{/if}}
+          </button>
+       
+           <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+        
+          {{/if}}
     </div>
 
 </nav>
@@ -122,7 +122,7 @@
                 <input type="checkbox" required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');"
                     id="field_terms">
                 <label for="terms">I agree with the
-                    <a href="../public/assets/documents/registrationTerms.pdf" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
+                    <a href="/documents/registrationTerms.pdf" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
                 <span class="req">* </span>
             </div>
             <div class="row">
