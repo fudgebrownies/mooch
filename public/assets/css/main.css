@@ -94,6 +94,19 @@ margin-top: 50px;
 background-color: rgba(221, 220, 220, 0.323);
 }
 
+/* nav bar serach bar  */
+
+#nav-search-wrapper {
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+  margin-left: 200px;
+}
+
+#nav-search-wrapper form input{
+  padding: 10px 10px 10px 52px;
+  width:100%;
+}
 
 
 

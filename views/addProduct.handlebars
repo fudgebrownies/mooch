@@ -1,49 +1,53 @@
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">MOOCH</a>
-      
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav mr-auto">
-          </ul>
-      
-           {{#if users.signedIn}}
-          <p   id={{users.emai}}>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">MOOCH</a>
+    <div id="nav-search-wrapper">
+        <form action="" method="GET">
+            <input type="text" name="search" id="nav-search" placeholder="Search" />
+        </form>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+
+        {{#if users.signedIn}}
+        <p id={{users.emai}}>
             <li class="dropdown">
-              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu" style="list-style: none">
-                <li>
-                  <a href='/user/profile' >Profile</a>
-                </li>
-                <li>
-                  <a href="#">Transactions</a>
-                </li>
-                <li>
-                  <a href='/user/products'>My Products</a>
-                </li>
-                <li>
-                  <p>
-                    <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
-                  </p>
-                </li>
-              </ul>
+                <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="list-style: none">
+                    <li>
+                        <a href='/user/profile'>Profile</a>
+                    </li>
+                    <li>
+                        <a href="#">Transactions</a>
+                    </li>
+                    <li>
+                        <a href='/user/products'>My Products</a>
+                    </li>
+                    <li>
+                        <p>
+                            <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
+                        </p>
+                    </li>
+                </ul>
             </li>
-          </p>
-          {{else}}
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+        </p>
+        {{else}}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
             Sign-in
-          </button>
-       
-           <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-        
-          {{/if}}
-        </div>
-      
-      </nav>
+        </button>
+
+        <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+
+        {{/if}}
+    </div>
+
+</nav>
 
 <div class="container" id="postProductContainer">
     <div class="row">
@@ -313,22 +317,23 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
-                    
-                            
+
+
                         <div class="col-sm-6">
-                       <img id='previewPic1'>
-                           
-                    <img href='' id='previewPic2' >
-                        <br>
-                       
+                            <img id='previewPic1'>
+
+                            <img href='' id='previewPic2'>
+                            <br>
+
                             <Label>Item Name:
-                            <p id='previewItemName'></p>
-                            </Label><br>
+                                <p id='previewItemName'></p>
+                            </Label>
+                            <br>
                             <label for="">Category
-                            <p id='previewCategory'></p>
+                                <p id='previewCategory'></p>
                             </label>
                             <label>Product Description:
-                            <p id='productDescription'></p>
+                                <p id='productDescription'></p>
                             </label>
                             <p id='previewDaily'></p>
                             <p id='previewWeek'></p>
