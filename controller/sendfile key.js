@@ -1,4 +1,0 @@
-
-sendFileKey='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'
-
-module.exports=sendFileKey;
