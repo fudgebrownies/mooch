@@ -1,7 +1,7 @@
 var db = require("../models");
 
 fileKey=require("./sendfile key")
-zipcodeKeys=require("./zipcodekey")
+// zipcodeKeys=require("./zipcodekey")
 
 //fileKey=require("./sendfile key")
 aws = require('aws-sdk'),
