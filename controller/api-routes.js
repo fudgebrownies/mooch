@@ -177,6 +177,7 @@ module.exports = function (app) {
   })
 
   app.post("/api/new/users", function (req, doIt) {
+    console.log('hi')
     var name = req.body.firstName + ' ' + req.body.lastName
 
 
