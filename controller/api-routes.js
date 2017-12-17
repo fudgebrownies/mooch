@@ -260,6 +260,7 @@ res.redirect('/find/all/products')
   })
 
   app.post("/api/new/users", function (req, doIt) {
+    console.log('hi')
     var name = req.body.firstName + ' ' + req.body.lastName
 
 
