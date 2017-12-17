@@ -2,7 +2,7 @@
 
 var db = require("../models");
 
-fileKey=require("./.gitsecret/sendfile key.js")
+fileKey=require("./sendfile key.js")
 zipcodeKeys=require("./zipcodekey")
 
 //fileKey=require("./sendfile key")
