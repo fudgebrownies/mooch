@@ -2,8 +2,8 @@
 
 var db = require("../models");
 
-fileKey=require("./sendfile key.js")
-zipcodeKeys=require("./zipcodekey")
+// fileKey=require("./sendfile key.js")
+// zipcodeKeys=require("./zipcodekey")
 
 //fileKey=require("./sendfile key")
 aws = require('aws-sdk'),
@@ -16,7 +16,7 @@ aws.config.update({
   accessKeyId: 'AKIAIWBUJA6Q4AU6FSBA',
   region: 'us-west-1'
 });
-
+console.log('lol')
 s3 = new aws.S3();
 
 
@@ -280,7 +280,7 @@ res.redirect('/find/all/products')
       })
       .then(function (dbPost) {
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(fileKey);
+        sgMail.setApiKey(storage => ENV['key']);
 
         href="<a href='localhost:8000.com/email/verification/"
         email=req.body.email+ "'"+"> Click Here To Register <a/>"
