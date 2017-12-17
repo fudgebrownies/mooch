@@ -3,7 +3,7 @@
 var db = require("../models");
 
 // fileKey=require("./sendfile key.js")
-// zipcodeKeys=require("./zipcodekey")
+
 
 //fileKey=require("./sendfile key")
 aws = require('aws-sdk'),
@@ -16,7 +16,7 @@ aws.config.update({
   accessKeyId: 'AKIAIWBUJA6Q4AU6FSBA',
   region: 'us-west-1'
 });
-console.log('lol')
+
 s3 = new aws.S3();
 
 
