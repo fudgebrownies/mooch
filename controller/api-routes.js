@@ -102,10 +102,13 @@ findAllProductsArray=[];
 
   app.get('/find/all/products',function(req,res){
 res.render('allproducts',{users:users[0],allProd:findAllProductsArray})
+// findAllProductsArray.splice(findAllProductsArray.le)
+// console.log('klefnkansjkfnkjanfkjwenkfrekjgnkjnkjnkjnk')
+// console.log(findAllProductsArray)
   })
 
 app.post('/find/all',function(req,res){
-console.log(req.body)
+// console.log(req.body)
 
 db.products.findAll({
  
@@ -117,7 +120,7 @@ for (var i = 0; i < findAllProducts.length; i++) {
   findAllProductsArray.push(findAllProducts[i].dataValues)
 
 }
-console.log(findAllProductsArray)
+// console.log(findAllProductsArray)
 res.redirect('/find/all/products')
 })
 
