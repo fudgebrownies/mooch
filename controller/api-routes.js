@@ -1,7 +1,9 @@
+
+
 var db = require("../models");
 
-fileKey=require("./sendfile key")
-// zipcodeKeys=require("./zipcodekey")
+fileKey=require("./sendfile key.js")
+
 
 //fileKey=require("./sendfile key")
 aws = require('aws-sdk'),
@@ -42,7 +44,7 @@ module.exports = function (app) {
   var users = [];
   userproducts = [];
   userNProductsArray = [];
-
+findAllProductsArray=[];
   app.post('/upload', upload.array('upl',1), function (req, res, next) {
     res.send("Uploaded!");
     //console.log(req.files.key)
@@ -96,8 +98,33 @@ module.exports = function (app) {
 
     res.render('userProductList', {users:users[0],userProducts:userproducts})
   })
+  
+
+  app.get('/find/all/products',function(req,res){
+res.render('allproducts',{users:users[0],allProd:findAllProductsArray})
+  })
+
+app.post('/find/all',function(req,res){
+console.log(req.body)
+
+db.products.findAll({
+ 
+
+  
+}).then(function(findAllProducts){
+// console.log(findAllProducts);
+for (var i = 0; i < findAllProducts.length; i++) {
+  findAllProductsArray.push(findAllProducts[i].dataValues)
+
+}
+console.log(findAllProductsArray)
+res.redirect('/find/all/products')
+})
 
 
+
+  // res.render('allproducts')
+})
   app.get("/index/:user", function (req, res) {
     // db.users.findOne
     // console.log(req.params.user.users)
@@ -233,6 +260,7 @@ module.exports = function (app) {
   })
 
   app.post("/api/new/users", function (req, doIt) {
+    console.log('hi')
     var name = req.body.firstName + ' ' + req.body.lastName
 
 

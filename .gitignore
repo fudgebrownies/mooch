@@ -3,5 +3,8 @@ jawsdb.txt
 yarn.lock
 handy.txt"sendgrid.env" 
 "sendgrid.env" 
+git filter-branch --force --index-filter \
+'git rm --cached --ignore-unmatch sendfile key.js' \
+--prune-empty --tag-name-filter cat -- --all
+
 /controller/sendfile key.js
-/controller/zipcodekey.js

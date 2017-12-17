@@ -63,12 +63,19 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-10">
-            <p>Profile Picture : {{profilePic}}</p>
-            <p>Email : {{email}}</p>
-            <p>Phone number : {{phoneNumber}}</p>
-            <p>Address : {{address}}</p>
+        <div class="row">
+            <div class="col-sm-10">
+                <img id ='profilePicProfile' src='http://www.apimages.com/Images/Ap_Creative_Stock_Header.jpg'
+                <p>Profile Picture : {{users.profilePic}}</p>
+                <p>Email : {{users.email}}</p>
+                <p>Phone number : {{users.phoneNumber}}</p>
+                <p>Address : {{users.address}} {{users.city}},{{users.state}} {{users.zipCode}}</p>
+            </div>
+            <div class="col-sm-2">
+                <p>
+                    <a class="btn btn-primary" href="/editProfile">EDIT</a>
+                </p>
+            </div>
         </div>
         <div class="col-sm-2">
             <p>
