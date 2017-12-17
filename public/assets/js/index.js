@@ -184,8 +184,8 @@ console.log(pic1.split("/[\/\\]/"))
 
     };
     
- $('#previewPic1').append(newPost.userUploadImage1);
- $('#previewPic2').append(newPost.userUploadImage2);
+//  $('#previewPic1').append(newPost.userUploadImage1);
+//  $('#previewPic2').append(newPost.userUploadImage2);
  $('#previewCategory').append(newPost.category);
  $('#previewItemName').append(newPost.product_name);
  $('#productDescription').append(newPost.product_description);
