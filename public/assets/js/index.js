@@ -5,20 +5,20 @@ $(function () {
   $('.newUserReg').on('click',function(){
     document.location.href="/new/users";
   })
-$('#submitSearch').on('click',function(event){
+$('.submitSearch').on('click',function(event){
   event.preventDefault();
  var search={
    product:$('#userSearch').val().trim(),
    zipcode:$('#zipCode').val()
  }
 console.log(search)
- $.ajax("/product/find", {
+ $.ajax("/find/all", {
   type: 'POST',
   data: search
 }).then(
   function () {
     console.log('done')
-
+    document.location.href="/find/all/products";
     // window.location.reload(true);
   }
 )
@@ -167,8 +167,8 @@ console.log(emailAddress)
   $("#previewPost").on("click", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
-var pic1=  $('#item_photo_1').val()
-console.log(pic1.split("/[\/\\]/"))
+var pic1=  $('#item_photo_1').val().split("/[\/\\]/")
+console.log(pic1)
 
     var newPost = {
       email: $('#getEmail').attr('email'),
@@ -219,7 +219,7 @@ console.log(newPost)
       function () {
         console.log("New Listing Created");
         // Reload the page to get the updated list
-        location.reload();
+        document.location.href="/user/products";
       }
     );
   })
