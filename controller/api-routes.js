@@ -1,4 +1,8 @@
 var db = require("../models");
+
+fileKey=require("./sendfile key")
+zipcodeKeys=require("./zipcodekey")
+
 //fileKey=require("./sendfile key")
 aws = require('aws-sdk'),
 bodyParser = require('body-parser'),
@@ -12,6 +16,7 @@ aws.config.update({
 });
 
 s3 = new aws.S3();
+
 
 
 
@@ -47,31 +52,20 @@ module.exports = function (app) {
 });
 
   app.get("/", function (req, res) {
-    // console.log('i ma here bfore your bitch')
-    // // console.log(userproducts)
-    // console.log('wrapers')
-    // //console.log(userproducts)
-    // console.log('end wrappepr')
+  //  console.log({zipcodeKeys})
+  // console.log(users[0])
+  console.log(userproducts)
+    res.render("index", {users:users[0],userProducts:userproducts});
+    
 
-    userNProducts = {
-      user: users[0],
-      userproducts: userproducts[1]
-    };
-
-    userNProductsArray.push(userNProducts)
-    // console.log(users);
-    // console.log('i ma jfinfknkfnkerknrknk')
-    // console.log(userNProductsArray)
-    res.render("index", users[0]);
-
-    // });
-    // res.render(path.join(__dirname, "index.html"));
-    // res.render("index");
+  
   });
-  app.get('/search',function(req,res){
+  app.post('/product/find',function(req,res){
+    https://www.zipcodeapi.com/rest/<api_key>/distance.<format>/<zip_code1>/<zip_code2>/<units>
+    console.log(req.body)
     db.products.findOne({
       where:{
-        product_name:"%'+req.query.key+'%"
+        product_name:sc
       }
     }).then(function (items){
     // connection.query('SELECT first_name from TABLE_NAME where first_name like "%'+req.query.key+'%"',
@@ -94,13 +88,13 @@ module.exports = function (app) {
   app.get('/new/users', function (req, res) {
 
 
-    res.render('registration', users[0])
+    res.render('registration', {users:users[0],userProducts:userproducts})
   })
 
   app.get('/user/products', function (req, res) {
 
 
-    res.render('userProductList', users[0])
+    res.render('userProductList', {users:users[0],userProducts:userproducts})
   })
 
 
@@ -112,6 +106,8 @@ module.exports = function (app) {
         email: req.params.user
       }
     }).then(function (db) {
+  address=    db.dataValues.address.split(' ')
+   console.log(address)
       var currentUser = {
         id: db.dataValues.id,
         email: db.dataValues.email,
@@ -120,7 +116,7 @@ module.exports = function (app) {
         lastName: db.dataValues.lastName,
         profilePic: db.dataValues.profilePic,
         phoneNumber: db.dataValues.phoneNumber,
-        address: db.dataValues.address,
+       
         signedInStatus: db.dataValues.signedIn
       }
       // console.log(currentUser);
@@ -147,6 +143,13 @@ module.exports = function (app) {
             email: req.body.email
           }
         }).then(function (db) {
+         splitAddy=    db.dataValues.address.split(' ');
+          homeAdress=splitAddy[0]+' '+ splitAddy[1];
+          homeCity=splitAddy[2];
+          homeState=splitAddy[3];
+          homeZipCode=splitAddy[4]
+          
+          
           var currentUser = {
             id: db.dataValues.id,
             email: db.dataValues.email,
@@ -155,7 +158,10 @@ module.exports = function (app) {
             lastName: db.dataValues.lastName,
             profilePic: db.dataValues.profilePic,
             phoneNumber: db.dataValues.phoneNumber,
-            address: db.dataValues.address,
+            address: homeAdress,
+            city:homeCity,
+            state:homeState,
+            zipCode:homeZipCode,
             signedIn: db.dataValues.signedIn
           }
 
@@ -163,7 +169,7 @@ module.exports = function (app) {
           // console.log(currentUser)
           // console.log(users)
 
-          res.redirect(303, '/')
+       
 
 
         })
@@ -173,14 +179,24 @@ module.exports = function (app) {
           where: {
             email: req.body.email
           }
-        }).then(function (db) {
-
+        }).then(function (prod) {
 
           // console.log(db[2])
-          for (var i = 0; i < db.length; i++) {
-            userproducts.push(db[i].dataValues)
+          for (var i = 0; i < prod.length; i++) {
+            userproducts.push(prod[i].dataValues)
 
           }
+          
+          userNProducts = {
+            user: users[0],
+            userproducts: userproducts
+          };
+          console.log('jksfnk')
+          console.log(userproducts)
+          userNProductsArray.push(userNProducts)
+          console.log('fuck you')
+          console.log(userNProductsArray.userproducts)
+          res.redirect(303, '/')
         })
       })
   })
@@ -210,7 +226,7 @@ module.exports = function (app) {
         }
       }).then(function () {
 
-        res.render('verification', user)
+        res.render('verification', {users:users[0],userProducts:userproducts})
 
       })
     })
@@ -274,16 +290,16 @@ module.exports = function (app) {
   })
 
   app.get('/user/profile', function (req, res) {
-    res.render('userProfile', users[0])
+    res.render('userProfile', {users:users[0],userProducts:userproducts})
   })
 
   app.get('/edit/profile', function (req, res) {
-    res.render('editProfile', users[0])
+    res.render('editProfile', {users:users[0],userProducts:userproducts})
   })
   app.get('/add/products', function (req, res) {
 
 
-    res.render('addProduct', users[0])
+    res.render('addProduct', {users:users[0],userProducts:userproducts})
   })
   app.post("/api/item", function (req, res) {
 
@@ -310,7 +326,10 @@ module.exports = function (app) {
 
           app.post("/api/item", function (req, res) {
           
-            // console.log(req.body)
+
+            console.log(req.body)
+ // console.log(req.body)
+
             // var a = req.body.email
             // console.log(JSON.parse(a));
             db.product.create({

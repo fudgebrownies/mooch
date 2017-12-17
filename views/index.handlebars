@@ -8,11 +8,11 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav mr-auto">
           </ul>
-      
-          {{#if signedIn}}
-          <p   id={{emai}}>
+      {{!-- {{#with users}}  --}}
+          {{#if users.signedIn}}
+          <p   id={{users.emai}}>
             <li class="dropdown">
-              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
+              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" style="list-style: none">
@@ -27,7 +27,7 @@
                 </li>
                 <li>
                   <p>
-                    <a class="btn btn-primary" id='signOutUser' email={{email}}>Sign Out</a>
+                    <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
                   </p>
                 </li>
               </ul>
@@ -41,6 +41,7 @@
            <button class="newUserReg btn btn-secondary" value="Register">Register</button>
         
           {{/if}}
+          {{!-- {{/with}}  --}}
         </div>
       
       </nav>
@@ -92,31 +93,48 @@
           </div>
         </div>
       </div>
+
+
+
+
+
+
+<form id="searchBar">
+  <div class="row">
+    <!-- <div class="form-group"> -->
+    <div class="col-sm-5">
+      <!-- USER INPUT AREA -->
+      <input type="text"   class="form-control " placeholder="Search for things to RENT" id="userSearch">
+    </div>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" placeholder="Zipcode" id="zipCode">
+      <span id="error"></span>
+    </div>
+      <!-- SUBMIT BUTTON -->
+      <input type="submit" id="submitSearch" class="btn btn-primary">
+    </div>
+  </div>
+  <!-- noSearch Results Section -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="noSearchResults"></div>
+    </div>
+  </div>
+</form>
+
+<br>
+<br>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="text-center"> Categories </h1>
+
+  </div>
+</div>
+
       
       
-      
-      <form id="searchBar">
-        <div class="row">
-          <!-- <div class="form-group"> -->
-          <div class="col-sm-5">
-            <!-- USER INPUT AREA -->
-            <input type="text" class="form-control" placeholder="Search for things to RENT" id="userSearch">
-          </div>
-          <div class="col-sm-5">
-            <input type="text" class="form-control" placeholder="Zipcode" id="zipCode">
-            <span id="error"></span>
-          </div>
-            <!-- SUBMIT BUTTON -->
-            <input type="submit" id="submitSearch" class="btn btn-primary">
-          </div>
-        </div>
-        <!-- noSearch Results Section -->
-        <div class="row">
-          <div class="col-lg-12">
-            <div id="noSearchResults"></div>
-          </div>
-        </div>
-      </form>
+
 
 
 

@@ -9,10 +9,10 @@
           <ul class="navbar-nav mr-auto">
           </ul>
       
-          {{#if signedIn}}
-          <p   id={{emai}}>
+           {{#if users.signedIn}}
+          <p   id={{users.emai}}>
             <li class="dropdown">
-              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
+              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" style="list-style: none">
@@ -27,7 +27,7 @@
                 </li>
                 <li>
                   <p>
-                    <a class="btn btn-primary" id='signOutUser' email={{email}}>Sign Out</a>
+                    <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
                   </p>
                 </li>
               </ul>
@@ -47,6 +47,7 @@
 
 <div class="container" id="postProductContainer">
     <div class="row">
+        <h1 id='getEmail' email={{users.email}}></h1>
         <div class="col-sm-6 text-center" id="uploadPhoto">
             <img src="images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
             <div class="form-group file optional item_photo_1">
@@ -275,7 +276,7 @@
                 <button class="btn btn-lg" width="100">Back
                     <a href="/items/list"></a>
                 </button>
-                <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" id='previewPost' class="btn btn-lg btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Preview Post
                 </button>
                 <!-- <input type="submit" name="commit" /> -->
@@ -312,19 +313,27 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-3">
-                            {{userUploadImage1}}
+                        <div id='previewPic1'class="col-sm-3">
+                            
                         </div>
-                        <div class="col-sm-3">
-                            {{userUploadImage2}}
+                        <div  id='previewPic2' class="col-sm-3">
+                           
                         </div>
+                        <br>
                         <div class="col-sm-6">
-                            <p>{{category}}</p>
-                            <p>{{product_description}}</p>
-                            <p>${{daily}}/day</p>
-                            <p>${{weekly}}/day</p>
-                            <p>${{monthly}}/day</p>
-                            <p>Security Deposit: ${{security_deposit}}</p>
+                            <Label>Item Name:
+                            <p id='previewItemName'></p>
+                            </Label><br>
+                            <label for="">Category
+                            <p id='previewCategory'></p>
+                            </label>
+                            <label>Product Description:
+                            <p id='productDescription'></p>
+                            </label>
+                            <p id='previewDaily'></p>
+                            <p id='previewWeek'></p>
+                            <p id='previewMonth'></p>
+                            <p id='previewSecrity'>Security Deposit: </p>
 
                         </div>
                     </div>
@@ -332,7 +341,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Edit</button>
-                <button id="finalPostConfirmation" type="button" class="btn btn-primary">Save changes</button>
+                <button id="finalPostConfirmation" type="button" class="btn btn-primary">Upload Product</button>
             </div>
         </div>
     </div>
