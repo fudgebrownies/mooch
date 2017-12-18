@@ -12,8 +12,8 @@
         </ul>
 
 
-        {{#if users.signedIn}}
-        <p id={{users.emai}}>
+          {{#if users.signedIn}}
+          <p  id='usersEmail' usersEmailAddress={{users.email}}>
             <li class="dropdown">
                 <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
                     <span class="caret"></span>
@@ -106,6 +106,7 @@
 
             <a class="btn btn-primary emailOwner" href="">Ask owner questions</a>
             <a class="btn btn-primary equestRent" href="">Request/Schedule Rent</a>
+
 
         </div>
         {{/each}}
