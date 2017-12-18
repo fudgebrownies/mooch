@@ -114,6 +114,8 @@ li {
 
 #findAllButton {
   width: 50%;
+  padding: 20px;
+  margin: 50px;
 }
 
 /* List Grid view  */
