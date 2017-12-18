@@ -66,9 +66,27 @@ console.log(emailAddress)
     )
 
   })
+var formData = new FormData();
+  $('#profilePic').on('change', function(){ 
+    var files = $(this).get(0).files; 
+    if (files.length > 0){
+      // var formData = new FormData();
+      
+          // loop through all the selected files
+          for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            
+            // add the files to formData object for the data payload
+            formData.append('upl', file, file.name);
+          }
+      
+      // One or more files selected, process the file upload
+    }
+  
+  });
 
   $("#createUser").on("click", function (event) {
-    // Make sure to preventDefault on a submit event.
+    //Make sure to preventDefault on a submit event.
     event.preventDefault();
    
   var userNewAddress=$("#address").val().trim() +' '+ $('#state').val().trim() + ' '+ $('#zip').val().trim();
@@ -81,13 +99,13 @@ console.log(emailAddress)
       email: $("#email").val().trim(),
       password: $("#pass1").val().trim(),
       phonenumber: $("#phone").val().trim(),
-      profilePic:$('#profilePic').val().trim(),
+      profilePic:$('#profilePic').val().split('\\').pop(),
       address: userNewAddress,
       agreeTerms:$("#field_terms").val().trim()
 
     }
-// console.log(newUser)
-    // Send the POST request.
+console.log(newUser)
+    //Send the POST request.
     $.ajax("/api/new/users", {
       type: "POST",
       data: newUser
@@ -97,7 +115,23 @@ console.log(emailAddress)
         // Reload the page to get the updated list
         document.location.href="/";
       }
-    );
+      
+    ).then(
+      function(){
+    $.ajax("/upload", {
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(data){
+          alert(data);
+      }
+    
+    })
+      
+  })
+
+
   });
 
 
