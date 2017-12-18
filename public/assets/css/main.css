@@ -108,6 +108,9 @@ background-color: rgba(221, 220, 220, 0.323);
   width:100%;
 }
 
+li {
+  list-style: none;
+}
 
 
 /* List Grid view  */
