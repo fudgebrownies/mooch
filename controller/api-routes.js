@@ -52,7 +52,18 @@ findAllProductsArray=[];
     //var image = file.originalname
     
 });
-
+app.delete('/post/delete',function(req,res){
+  console.log("im hungry")
+  console.log(req.body)
+ db.products.destroy({
+  where:{
+    id:req.body.number
+  }
+}).then(function(deleteItem){
+  console.log(deleteItem)
+  res.redirect(303,'/user/products')
+})
+})
   app.get("/", function (req, res) {
   //  console.log({zipcodeKeys})
   // console.log(users[0])
@@ -63,8 +74,7 @@ findAllProductsArray=[];
   
   });
   app.post('/product/find',function(req,res){
-    https://www.zipcodeapi.com/rest/<api_key>/distance.<format>/<zip_code1>/<zip_code2>/<units>
-    console.log(req.body)
+ 
     db.products.findOne({
       where:{
         product_name:sc
@@ -129,15 +139,11 @@ db.products.findAll({
   
 }).then(function(findAllProducts){
 
-  i
 // console.log(findAllProducts);
 
 // console.log(findAllProductsArray)
 res.redirect('/find/all/products')
 })
-
-
-
   // res.render('allproducts')
 })
   app.get("/index/:user", function (req, res) {
