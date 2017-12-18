@@ -1,7 +1,31 @@
+
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 
 $(function () {
   var emailAddress;
+
+
+  $('.requestRent').on('click',function(){
+   var productId=$(this).attr('productId');
+  var emailRequest=$('#usersEmail').attr('usersEmailAddress');
+console.log(emailRequest)
+requestInfo={
+requestId:productId,
+requestEmail:emailRequest
+  
+}
+
+$.ajax("/new/request", {
+  type: 'POST',
+  data: requestInfo
+}).then(
+  function () {
+    console.log('done')
+
+    // window.location.reload(true);
+  }
+)
+  })
   $('.newUserReg').on('click',function(){
     document.location.href="/new/users";
   })

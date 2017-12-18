@@ -14,7 +14,7 @@
         </ul>
 
         {{#if users.signedIn}}
-        <p id={{users.emai}}>
+        <p  usersEmailAddress={{users.email}} id={{users.emai}}>
             <li class="dropdown">
                 <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
                     <span class="caret"></span>
@@ -90,28 +90,32 @@
          
 
 <div class="container">
-  {{#each userProducts}}
+  
     <div class="row">
-        <div class="col-sm-3">
+        {{#each userProducts}}
+        <div class="col-sm-4">
           
-           <img id='userproductpic1' src='https://ak0.picdn.net/shutterstock/videos/4267610/thumb/8.jpg?i10c=img.resize(height:160)'> {{userUploadImage1}}
-        </div>
-        <div class="col-sm-3">
-          <img id='userproductpic2'src='https://thumb9.shutterstock.com/display_pic_with_logo/540784/187296956/stock-photo-sport-psychology-concept-as-a-group-of-sports-equipment-shaped-as-a-human-brain-as-a-mental-health-187296956.jpg'>
-            {{userUploadImage2}}
-        </div>
-        <div class="col-sm-6">
-          <p>Product Name: {{ product_name}}</p>
-            <p>Category: {{category}}</p>
-            <p>Description: {{product_description}}</p>
-            <p>${{daily}}/day</p>
-            <p>${{weekly}}/day</p>
-            <p>${{monthly}}/day</p>
-            <p>Security Deposit: ${{security_deposit}}</p>
-
+           <img id='userproductpic1' src='https://ak0.picdn.net/shutterstock/videos/4267610/thumb/8.jpg?i10c=img.resize(height:160)' {{userUploadImage1}}> 
+    
+       
+          <img  {{userUploadImage2}} id='userproductpic2'src='https://thumb9.shutterstock.com/display_pic_with_logo/540784/187296956/stock-photo-sport-psychology-concept-as-a-group-of-sports-equipment-shaped-as-a-human-brain-as-a-mental-health-187296956.jpg'>
+           
+        
+        
+            <ol>
+                <li>Product Id: {{id}}</li>
+          <li>Product Name: {{ product_name}}</li>
+            <li>Category: {{category}}</li>
+            <li>Description: {{product_description}}</li>
+            <li>${{daily}}/day</li>
+            <li>${{weekly}}/day</li>
+            <li>${{monthly}}/day</li>
+            <li>Security Deposit: ${{security_deposit}}</li>
+</ol>
                     </div>
+                    {{/each}}
                 </div>
-                {{/each}}
+                
 
             </div>
         </div>
