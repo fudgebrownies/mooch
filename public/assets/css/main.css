@@ -112,6 +112,9 @@ li {
   list-style: none;
 }
 
+#findAllButton {
+  width: 50%;
+}
 
 /* List Grid view  */
 
@@ -128,11 +131,11 @@ li {
 {
   float: none;
   width: 5%;
-  backgrou5d-color: #fff;
+  background-color: #fff;
   margin-bottom: 10px;
 }
 .item.lis50group-item:nth-of-type(odd):hover,.item.list-group-item:hover
-5
+{
   background: #428bca;
 }
 
