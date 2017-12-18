@@ -5,7 +5,7 @@ $(function () {
   $('.newUserReg').on('click',function(){
     document.location.href="/new/users";
   })
-$('.submitSearch').on('click',function(event){
+$('#findAllButton').on('click',function(event){
   event.preventDefault();
  var search={
    product:$('#userSearch').val().trim(),
