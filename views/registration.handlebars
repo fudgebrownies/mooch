@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">MOOCH</a>
-
+    <div id="nav-search-wrapper">
+        <form action="" method="GET">
+            <input type="text" name="search" id="nav-search" placeholder="Search" />
+        </form>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,38 +13,38 @@
         <ul class="navbar-nav mr-auto">
         </ul>
 
-          {{#if users.signedIn}}
-          <p   id={{users.emai}}>
+        {{#if users.signedIn}}
+        <p id={{users.emai}}>
             <li class="dropdown">
-              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu" style="list-style: none">
-                <li>
-                  <a href='/user/profile' >Profile</a>
-                </li>
-                <li>
-                  <a href="#">Transactions</a>
-                </li>
-                <li>
-                  <a href='/user/products'>My Products</a>
-                </li>
-                <li>
-                  <p>
-                    <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
-                  </p>
-                </li>
-              </ul>
+                <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="list-style: none">
+                    <li>
+                        <a href='/user/profile'>Profile</a>
+                    </li>
+                    <li>
+                        <a href="#">Transactions</a>
+                    </li>
+                    <li>
+                        <a href='/user/products'>My Products</a>
+                    </li>
+                    <li>
+                        <p>
+                            <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
+                        </p>
+                    </li>
+                </ul>
             </li>
-          </p>
-          {{else}}
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+        </p>
+        {{else}}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
             Sign-in
-          </button>
-       
-           <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-        
-          {{/if}}
+        </button>
+
+        <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+
+        {{/if}}
     </div>
 
 </nav>
@@ -130,8 +134,7 @@
                 <span class="req">* </span> City:
             </label>
 
-            <input class="form-control" type="text" name="city" id="city" onkeyup="Validatetxt(this)" 
-                required />
+            <input class="form-control" type="text" name="city" id="city" onkeyup="Validatetxt(this)" required />
             <div id="errLast"></div>
         </div>
 
@@ -164,12 +167,12 @@
                 id="pass2" onkeyup="checkPass(); return false;" />
             <span id="confirmMessage" class="confirmMessage"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group text-center">
             <label for="profilePic">
                 <span class="req">* </span> Please Upload A Profile Picture </label>
             <input required id='profilePic' type="file">
         </div>
-        <div class="form-group">
+        <div class="form-group text-center">
 
             {{!--
             <?php //$date_entered = date('m/d/Y H:i:s'); ?> --}}
@@ -180,15 +183,17 @@
             <input type="checkbox" value='true' required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');"
                 id="field_terms">
             <label for="terms">I agree with the
-                <a href="terms.php" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
+                <a href="/documents/registrationTerms.pdf" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
             <span class="req">* </span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group text-center">
             <input class="btn btn-success" id='createUser' type="submit image" name="submit_reg" value="Register">
         </div>
-        <h5>You will receive an email to complete the registration and validation process. </h5>
-        <h5>Be sure to check your spam folders. </h5>
+        <h5 class="text-center">You will receive an email to complete the registration and validation process. Be sure to check your spam folders.
+            </h5>
+        </form>
+        <!-- ends register form -->
 
 
     </fieldset>
@@ -196,48 +201,42 @@
     <!-- ends register form -->
 </div>
 
-            </fieldset>
-            </form><!-- ends register form -->
-        </div>
 <!--================================================================================================== REGISTRATION VALIDATION SCRIPT================================================================================ -->
 <script>
-    function checkPass()
-{
-    //Store the password field objects into variables ...
-    var pass1 = document.getElementById('pass1');
-    var pass2 = document.getElementById('pass2');
-    //Store the Confimation Message Object ...
-    var message = document.getElementById('confirmMessage');
-    //Set the colors we will be using ...
-    var goodColor = "#66cc66";
-    var badColor = "#ff6666";
-    //Compare the values in the password field 
-    //and the confirmation field
-    if(pass1.value == pass2.value){
-        //The passwords match. 
-        //Set the color to the good color and inform
-        //the user that they have entered the correct password 
-        pass2.style.backgroundColor = goodColor;
-        message.style.color = goodColor;
-        message.innerHTML = "Passwords Match"
-    }else{
-        //The passwords do not match.
-        //Set the color to the bad color and
-        //notify the user.
-        pass2.style.backgroundColor = badColor;
-        message.style.color = badColor;
-        message.innerHTML = "Passwords Do Not Match!"
+    function checkPass() {
+        //Store the password field objects into variables ...
+        var pass1 = document.getElementById('pass1');
+        var pass2 = document.getElementById('pass2');
+        //Store the Confimation Message Object ...
+        var message = document.getElementById('confirmMessage');
+        //Set the colors we will be using ...
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+        //Compare the values in the password field 
+        //and the confirmation field
+        if (pass1.value == pass2.value) {
+            //The passwords match. 
+            //Set the color to the good color and inform
+            //the user that they have entered the correct password 
+            pass2.style.backgroundColor = goodColor;
+            message.style.color = goodColor;
+            message.innerHTML = "Passwords Match"
+        } else {
+            //The passwords do not match.
+            //Set the color to the bad color and
+            //notify the user.
+            pass2.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = "Passwords Do Not Match!"
+        }
     }
-} 
-function validatephone(phone) 
-{
-    var maintainplus = '';
-    var numval = phone.value
-    if ( numval.charAt(0)=='+' )
-    {
+    function validatephone(phone) {
         var maintainplus = '';
+        var numval = phone.value
+        if (numval.charAt(0) == '+') {
+            var maintainplus = '';
+        }
     }
-}
     //validates text only
     function Validatetxt(txt) {
         txt.value = txt.value.replace(/[^a-zA-Z-'\n\r.]+/g, '');
@@ -254,65 +253,43 @@ function validatephone(phone)
         }
     }
     // validate date of birth
-    
-        {
-            function dob_validate(dob) {
-                var regDOB = /^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/;
 
-                if (regDOB.test(dob) == false) {
-                    document.getElementById("statusDOB").innerHTML = "<span class='warning'>DOB is only used to verify your age.</span>";
-                }
-                else {
-                    document.getElementById("statusDOB").innerHTML = "<span class='valid'>Thanks, you have entered a valid DOB!</span>";
-                }
-            }
-        }
-        // validate address
-        function add_validate(address) {
-            var regAdd = /^(?=.*\d)[a-zA-Z\s\d\/]+$/;
+    {
+        function dob_validate(dob) {
+            var regDOB = /^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/;
 
-            if (regAdd.test(address) == false) {
-                document.getElementById("statusAdd").innerHTML = "<span class='warning'>Address is not valid yet.</span>";
+            if (regDOB.test(dob) == false) {
+                document.getElementById("statusDOB").innerHTML = "<span class='warning'>DOB is only used to verify your age.</span>";
             }
             else {
-                document.getElementById("statusAdd").innerHTML = "<span class='valid'>Thanks, Address looks valid!</span>";
+                document.getElementById("statusDOB").innerHTML = "<span class='valid'>Thanks, you have entered a valid DOB!</span>";
             }
         }
+    }
+    // validate address
+    function add_validate(address) {
+        var regAdd = /^(?=.*\d)[a-zA-Z\s\d\/]+$/;
+
+        if (regAdd.test(address) == false) {
+            document.getElementById("statusAdd").innerHTML = "<span class='warning'>Address is not valid yet.</span>";
+        }
+        else {
+            document.getElementById("statusAdd").innerHTML = "<span class='valid'>Thanks, Address looks valid!</span>";
+        }
+    }
 
 </script>
 <!-- ================================================================================================SCRIPT ENDS ============================================================================================== -->
 
 
 
+<br>
+<hr>
+<br>
 
 
-
-{{!-- <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Sign-In</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="usr">E-mail:</label>
-                  <input type="text" class="form-control" id="usr">
-                </div>
-                <div class="form-group">
-                  <label for="pwd">Password:</label>
-                  <input type="password" class="form-control" id="pwd">
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-              <button type="button" class="btn btn-primary">Confirm</button>
-            </div>
-          </div>
-        </div>
+<footer class="footer text-center">
+    <div class="container">
+        <small>© Copyright 2017 MOOCH</small>
     </div>
-</div> --}}
+</footer>

@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">MOOCH</a>
-
+    <div id="nav-search-wrapper">
+        <form action="" method="GET">
+            <input type="text" name="search" id="nav-search" placeholder="Search" />
+        </form>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,41 +16,41 @@
         </ul>
 
 
-          {{#if users.signedIn}}
-          <p   id={{users.emai}}>
+        {{#if users.signedIn}}
+        <p id={{users.emai}}>
             <li class="dropdown">
-              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu" style="list-style: none">
-                <li>
-                  <a href='/user/profile' >Profile</a>
-                </li>
-                <li>
-                  <a href="#">Transactions</a>
-                </li>
-                <li>
-                  <a href='/user/products'>My Products</a>
-                </li>
-                <li>
-                  <p>
-                    <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
-                  </p>
-                </li>
-              </ul>
+                <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="list-style: none">
+                    <li>
+                        <a href='/user/profile'>Profile</a>
+                    </li>
+                    <li>
+                        <a href="#">Transactions</a>
+                    </li>
+                    <li>
+                        <a href='/user/products'>My Products</a>
+                    </li>
+                    <li>
+                        <p>
+                            <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
+                        </p>
+                    </li>
+                </ul>
             </li>
-          </p>
-          {{else}}
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+        </p>
+        {{else}}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
             Sign-in
-          </button>
-       
-           <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-        
-          {{/if}}
-  </div>
+        </button>
 
-               
+        <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+
+        {{/if}}
+    </div>
+
+
 
 </nav>
 
