@@ -274,9 +274,9 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
           }
         }
         console.log('showrenters')
-        console.log(arrayOfPeopleRent)
+        console.log(arrayOfPeopleRent[0].theId)
          for(var i=0;i<arrayOfPeopleRent.length;i++){
-      chaingingArray.push(arrayOfPeopleRent[i].ShowRenters)
+      chaingingArray.push(arrayOfPeopleRent[i])
          }
          console.log('chaning array')
      console.log(chaingingArray)
@@ -457,7 +457,7 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
           text: name + ' ' + "Please Click The Link to Register Your Email https://mooch-sell.herokuapp.com//email/verification/" + req.body.email,
           // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
         };
-        sgMail.send(msg);
+        // sgMail.send(msg);
         console.log('done')
 
         doIt.redirect(303, '/')
