@@ -114,6 +114,15 @@ li {
 
 #findAllButton {
   width: 50%;
+  padding: 20px;
+  margin: 50px;
+  color: white;
+}
+
+#productList{
+  border: 1px solid grey;
+  margin: 5px;
+  padding: 5px;
 }
 
 /* List Grid view  */

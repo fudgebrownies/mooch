@@ -15,38 +15,38 @@
           {{#if users.signedIn}}
           <p  id='usersEmail' usersEmailAddress={{users.email}}>
             <li class="dropdown">
-              <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu" style="list-style: none">
-                <li>
-                  <a href='/user/profile' >Profile</a>
-                </li>
-                <li>
-                  <a href="#">Transactions</a>
-                </li>
-                <li>
-                  <a href='/user/products'>My Products</a>
-                </li>
-                <li>
-                  <p>
-                    <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
-                  </p>
-                </li>
-              </ul>
+                <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" style="list-style: none">
+                    <li>
+                        <a href='/user/profile'>Profile</a>
+                    </li>
+                    <li>
+                         <a href="/users/requests/{{users.email}}">Transactions</a> 
+                    </li>
+                    <li>
+                        <a href='/user/products'>My Products</a>
+                    </li>
+                    <li>
+                        <p>
+                            <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
+                        </p>
+                    </li>
+                </ul>
             </li>
-          </p>
-          {{else}}
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
+        </p>
+        {{else}}
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
             Sign-in
-          </button>
-       
-           <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-        
-          {{/if}}
-  </div>
+        </button>
 
-               
+        <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+
+        {{/if}}
+    </div>
+
+
 
 </nav>
 
@@ -82,42 +82,49 @@
 <div class="container" id="individualProductDetails">
     <div class="row">
         <div class="col-sm-12">
-           
+
         </div>
     </div>
 
     <div class="row">
         {{#each allProd}}
         <div class="col-sm-4">
-<br>
-<img id ='photosForAll' src='https://static.pexels.com/photos/5342/sea-beach-footprint-steps.jpg'upload={{userUploadImage1}}>
-<img id ='photosForAll2' src='http://coldoutdoorsman.com/wp-content/uploads/2016/03/camping-gear-sales.jpg'upload={{userUploadImage2}}>
+            <img id='photosForAll' src='https://static.pexels.com/photos/5342/sea-beach-footprint-steps.jpg' upload={{userUploadImage1}}>
+            <img id='photosForAll2' src='http://coldoutdoorsman.com/wp-content/uploads/2016/03/camping-gear-sales.jpg' upload={{userUploadImage2}}>
             <ul>
- <li >Product Id: {{id}} </li>
-<li class='allProductName'>Product: {{product_name}}</li>
-<li class='allProductCategory' >Category: {{category}}</li>
-<li class='allProductDescrition'>Description : {{product_description}}</li>
-<li></li>
-<li></li>
- </ul>
-
-
-  
-  <ol>Rental Costs : 
-            <li>${{daily}}/day</li>
-            <li>${{weekly}}/week</li>
-            <li>${{monthly}}/month</li>
-            <li>Security Deposit : ${{security_deposit}}</li>
-            </ol>
+                <li>Product: {{product_name}}</li>
+                <li>Category: {{category}}</li>
+                <li>Description : {{product_description}}</li>
+            </ul>
+            <ul>Rental Costs :
+                <li>${{daily}}/day</li>
+                <li>${{weekly}}/week</li>
+                <li>${{monthly}}/month</li>
+                <li>Security Deposit : ${{security_deposit}}</li>
+            </ul>
             <h6 id='sellersEmail'>Sellers Email: {{email}}</h6>
 
-            <a class="btn btn-primary emailOwner" href="" >Ask owner questions</a>
-            <a class="btn btn-primary requestRent" productId={{id}} style="color:aliceblue" >Request/Schedule Rent</a>
-            
+            <a class="btn btn-primary emailOwner" href="">Ask owner questions</a>
+            <a class="btn btn-primary equestRent" href="">Request/Schedule Rent</a>
+
+
         </div>
-        <br>
-         {{/each}}
-     
+        {{/each}}
+
     </div>
 
 </div>
+
+
+<br>
+<hr>
+<br>
+
+
+<!-- FOOTER -->
+<footer class="footer text-center">
+    <div class="container">
+        <small>© Copyright 2017 MOOCH</small>
+    </div>
+</footer>
+
