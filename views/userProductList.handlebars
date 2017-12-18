@@ -53,7 +53,6 @@
 
 <div class="container">
     <div class="row">
-        <a class='btn btn-primary' id='addProducts' href='/add/products'>Add A New Product</a>
         <div class="col-sm-12">
             <h1>{{users.firstName}}'s Listings:</h1>
 
@@ -87,29 +86,34 @@
                 </div>
             </div>
 
-         
 
-<div class="container">
-  {{#each userProducts}}
-    <div class="row">
-        <div class="col-sm-3">
-          
-           <img id='userproductpic1' src='https://ak0.picdn.net/shutterstock/videos/4267610/thumb/8.jpg?i10c=img.resize(height:160)'> {{userUploadImage1}}
-        </div>
-        <div class="col-sm-3">
-          <img id='userproductpic2'src='https://thumb9.shutterstock.com/display_pic_with_logo/540784/187296956/stock-photo-sport-psychology-concept-as-a-group-of-sports-equipment-shaped-as-a-human-brain-as-a-mental-health-187296956.jpg'>
-            {{userUploadImage2}}
-        </div>
-        <div class="col-sm-6">
-          <p>Product Name: {{ product_name}}</p>
-            <p>Category: {{category}}</p>
-            <p>Description: {{product_description}}</p>
-            <p>${{daily}}/day</p>
-            <p>${{weekly}}/day</p>
-            <p>${{monthly}}/day</p>
-            <p>Security Deposit: ${{security_deposit}}</p>
+
+            <div class="container">
+                {{#each userProducts}}
+                <div class="row" id="productList">
+                    <div class="col-sm-3">
+
+                        <img id='userproductpic1' src='https://ak0.picdn.net/shutterstock/videos/4267610/thumb/8.jpg?i10c=img.resize(height:160)'> {{userUploadImage1}}
+                    </div>
+                    <div class="col-sm-3">
+                        <img id='userproductpic2' src='https://thumb9.shutterstock.com/display_pic_with_logo/540784/187296956/stock-photo-sport-psychology-concept-as-a-group-of-sports-equipment-shaped-as-a-human-brain-as-a-mental-health-187296956.jpg'> {{userUploadImage2}}
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Product Name: {{ product_name}}</p>
+                        <p>Category: {{category}}</p>
+                        <p>Description: {{product_description}}</p>
+                        <p>${{daily}}/day</p>
+                        <p>${{weekly}}/day</p>
+                        <p>${{monthly}}/day</p>
+                        <p>Security Deposit: ${{security_deposit}}</p>
 
                     </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button class="btn btn-lg destroyButton" product={{id}}>Delete item</button>
+                        </div>
+                    </div>
+
                 </div>
                 {{/each}}
 
@@ -118,6 +122,13 @@
 
 
     </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <a class='btn btn-primary' id='addProducts' href='/add/products'>Add A New Product</a>
+        </div>
+    </div>
+
 
 </div>
 <br>

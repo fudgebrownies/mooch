@@ -19,12 +19,7 @@ console.log(search)
 //   function () {
 //     console.log('done')
     document.location.href="/find/all/products";
-    
-  
-
- 
-   
- })
+})
 
   
   // Create user ajax call
@@ -97,6 +92,7 @@ console.log(emailAddress)
         // Reload the page to get the updated list
         document.location.href="/";
       }
+      
     );
   });
 
@@ -135,7 +131,26 @@ console.log(newPost)
     // Send the POST request.
     
   });
+$('.destroyButton').on('click',function(){
+  var deleteing =$(this).attr('product');
+  var deleteMe = {
+    number:deleteing,
+  }
+  console.log(deleteing)
 
+  $.ajax("/post/delete", {
+    type: "DELETE",
+    data: deleteMe
+  }).then(
+  
+    function () {
+      console.log("New Listing Created");
+      // Reload the page to get the updated list
+      // document.location.href="/user/products";
+      window.location.reload(true);
+    }
+  );
+})
   $('#finalPostConfirmation').on('click',function(){
     var confirmedPost = {
       email: $('#getEmail').attr('email'),

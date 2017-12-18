@@ -119,6 +119,12 @@ li {
   color: white;
 }
 
+#productList{
+  border: 1px solid grey;
+  margin: 5px;
+  padding: 5px;
+}
+
 /* List Grid view  */
 
 .thumbnail
