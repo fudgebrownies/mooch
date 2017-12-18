@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">MOOCH</a>
-
+  <div id="nav-search-wrapper">
+    <form action="" method="GET">
+      <input type="text" name="search" id="nav-search" placeholder="Search" />
+    </form>
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -9,15 +13,16 @@
     <ul class="navbar-nav mr-auto">
     </ul>
 
-    {{#if signedIn}}
-    <p   id={{emai}}> {{!-- Navbar drop downs --}}
+
+    {{#if users.signedIn}}
+    <p id={{users.emai}}>
       <li class="dropdown">
-        <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{email}}
+        <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" style="list-style: none">
           <li>
-            <a href='/user/profile' >Profile</a>
+            <a href='/user/profile'>Profile</a>
           </li>
           <li>
             <a href="#">Transactions</a>
@@ -27,7 +32,7 @@
           </li>
           <li>
             <p>
-              <a class="btn btn-primary" id='signOutUser' email={{email}}>Sign Out</a>
+              <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
             </p>
           </li>
         </ul>
@@ -37,10 +42,11 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
       Sign-in
     </button>
- 
-     <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-  
+
+    <button class="newUserReg btn btn-secondary" value="Register">Register</button>
+
     {{/if}}
+
   </div>
 
 </nav>
@@ -77,10 +83,23 @@
   </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-           <p>Congratulations{{firstName}} Your email {{email}} has been verified!!!! You Can Now Post Or Mooch Items </p>
-        </div>
+<div class="container text-center" id="verificationPage">
+  <div class="row">
+    <div class="col-sm-12">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/418ncVs6ivL._SL1089_.jpg" alt="" height="150">
+      <h1>WELCOME TO MOOCH! {{firstName}} {{lastName}}</h1>
+      <h1>CONGRATULATIONS !!!</h1>
+      <hr>
+      <h3>Your email has been verified!! Please continue to sign-in and experience what MOOCH is all about!!!</h3>
     </div>
+  </div>
 </div>
+<br>
+<br>
+<hr>
+<!-- FOOTER -->
+<footer class="footer text-center">
+  <div class="container">
+    <small>© Copyright 2017 MOOCH</small>
+  </div>
+</footer>

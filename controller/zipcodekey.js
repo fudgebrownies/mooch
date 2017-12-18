@@ -1,0 +1,4 @@
+zipcode={ apiKey:'fxk4FXjPppaGcrMq6qeNgrqRY8mL5cLyPhzCLEvAGHgBBX9oS5BcG69vOkwBxqAm',
+clientKey:'s-GxSSU6MOIRvXCNGAoNNHy4ntNHwwlMoKfiMncFiiqCcCkSuP2t9eLat0fAZOfokn'
+}
+module.exports=zipcode;

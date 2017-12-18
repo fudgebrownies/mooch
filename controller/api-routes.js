@@ -1,4 +1,10 @@
+
+
 var db = require("../models");
+
+// fileKey=require("./sendfile key.js")
+
+
 //fileKey=require("./sendfile key")
 aws = require('aws-sdk'),
 bodyParser = require('body-parser'),
@@ -12,6 +18,7 @@ aws.config.update({
 });
 
 s3 = new aws.S3();
+
 
 
 
@@ -37,7 +44,7 @@ module.exports = function (app) {
   var users = [];
   userproducts = [];
   userNProductsArray = [];
-
+findAllProductsArray=[];
   app.post('/upload', upload.array('upl',1), function (req, res, next) {
     res.send("Uploaded!");
     //console.log(req.files.key)
@@ -47,27 +54,34 @@ module.exports = function (app) {
 });
 
   app.get("/", function (req, res) {
-    // console.log('i ma here bfore your bitch')
-    // // console.log(userproducts)
-    // console.log('wrapers')
-    // //console.log(userproducts)
-    // console.log('end wrappepr')
+  //  console.log({zipcodeKeys})
+  // console.log(users[0])
+  console.log(userproducts)
+    res.render("index", {users:users[0],userProducts:userproducts});
+    
 
-    userNProducts = {
-      user: users[0],
-      userproducts: userproducts[1]
-    };
-
-    userNProductsArray.push(userNProducts)
-    // console.log(users);
-    // console.log('i ma jfinfknkfnkerknrknk')
-    // console.log(userNProductsArray)
-    res.render("index", users[0]);
-
-    // });
-    // res.render(path.join(__dirname, "index.html"));
-    // res.render("index");
+  
   });
+  app.post('/product/find',function(req,res){
+    https://www.zipcodeapi.com/rest/<api_key>/distance.<format>/<zip_code1>/<zip_code2>/<units>
+    console.log(req.body)
+    db.products.findOne({
+      where:{
+        product_name:sc
+      }
+    }).then(function (items){
+    // connection.query('SELECT first_name from TABLE_NAME where first_name like "%'+req.query.key+'%"',
+    // function(err, rows, fields) {
+      console.log(items)
+    // if (err) throw err;
+    var data=[];
+    // for(i=0;i<rows.length;i++)
+    // {
+    // data.push(rows[i].product_name);
+    // }
+    // res.end(JSON.stringify(data));
+    });
+    });
   app.get('/add', function (req, res) {
 
 
@@ -76,16 +90,56 @@ module.exports = function (app) {
   app.get('/new/users', function (req, res) {
 
 
-    res.render('registration', users[0])
+    res.render('registration', {users:users[0],userProducts:userproducts})
   })
 
   app.get('/user/products', function (req, res) {
 
 
-    res.render('userProductList', users[0])
+    res.render('userProductList', {users:users[0],userProducts:userproducts})
+  })
+  
+
+  app.get('/find/all/products',function(req,res){
+
+
+    if(findAllProductsArray>1){
+      for (var i = 0; i < findAllProducts.length; i++) {
+        findAllProductsArray.push(findAllProducts[i].dataValues)
+      
+      }
+
+    }
+res.render('allproducts',{users:users[0],allProd:findAllProductsArray})
+var myInt = setTimeout(function () {
+  findAllProductsArray=[]
+}, 5000);
+
+// findAllProductsArray.splice(findAllProductsArray.le)
+// console.log('klefnkansjkfnkjanfkjwenkfrekjgnkjnkjnkjnk')
+// console.log(findAllProductsArray)
   })
 
+app.post('/find/all',function(req,res){
+// console.log(req.body)
 
+db.products.findAll({
+ 
+
+  
+}).then(function(findAllProducts){
+
+  i
+// console.log(findAllProducts);
+
+// console.log(findAllProductsArray)
+res.redirect('/find/all/products')
+})
+
+
+
+  // res.render('allproducts')
+})
   app.get("/index/:user", function (req, res) {
     // db.users.findOne
     // console.log(req.params.user.users)
@@ -94,6 +148,8 @@ module.exports = function (app) {
         email: req.params.user
       }
     }).then(function (db) {
+  address=    db.dataValues.address.split(' ')
+   console.log(address)
       var currentUser = {
         id: db.dataValues.id,
         email: db.dataValues.email,
@@ -102,7 +158,7 @@ module.exports = function (app) {
         lastName: db.dataValues.lastName,
         profilePic: db.dataValues.profilePic,
         phoneNumber: db.dataValues.phoneNumber,
-        address: db.dataValues.address,
+       
         signedInStatus: db.dataValues.signedIn
       }
       // console.log(currentUser);
@@ -129,6 +185,13 @@ module.exports = function (app) {
             email: req.body.email
           }
         }).then(function (db) {
+         splitAddy=    db.dataValues.address.split(' ');
+          homeAdress=splitAddy[0]+' '+ splitAddy[1];
+          homeCity=splitAddy[2];
+          homeState=splitAddy[3];
+          homeZipCode=splitAddy[4]
+          
+          
           var currentUser = {
             id: db.dataValues.id,
             email: db.dataValues.email,
@@ -137,7 +200,10 @@ module.exports = function (app) {
             lastName: db.dataValues.lastName,
             profilePic: db.dataValues.profilePic,
             phoneNumber: db.dataValues.phoneNumber,
-            address: db.dataValues.address,
+            address: homeAdress,
+            city:homeCity,
+            state:homeState,
+            zipCode:homeZipCode,
             signedIn: db.dataValues.signedIn
           }
 
@@ -145,7 +211,7 @@ module.exports = function (app) {
           // console.log(currentUser)
           // console.log(users)
 
-          res.redirect(303, '/')
+       
 
 
         })
@@ -155,14 +221,24 @@ module.exports = function (app) {
           where: {
             email: req.body.email
           }
-        }).then(function (db) {
-
+        }).then(function (prod) {
 
           // console.log(db[2])
-          for (var i = 0; i < db.length; i++) {
-            userproducts.push(db[i].dataValues)
+          for (var i = 0; i < prod.length; i++) {
+            userproducts.push(prod[i].dataValues)
 
           }
+          
+          userNProducts = {
+            user: users[0],
+            userproducts: userproducts
+          };
+          console.log('jksfnk')
+          console.log(userproducts)
+          userNProductsArray.push(userNProducts)
+          console.log('fuck you')
+          console.log(userNProductsArray.userproducts)
+          res.redirect(303, '/')
         })
       })
   })
@@ -192,13 +268,14 @@ module.exports = function (app) {
         }
       }).then(function () {
 
-        res.render('verification', user)
+        res.render('verification', {users:users[0],userProducts:userproducts})
 
       })
     })
   })
 
-  app.post("/api/new/users", function (req, res) {
+  app.post("/api/new/users", function (req, doIt) {
+    console.log('hi')
     var name = req.body.firstName + ' ' + req.body.lastName
 
 
@@ -219,20 +296,24 @@ module.exports = function (app) {
       })
       .then(function (dbPost) {
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(fileKey);
+        sgMail.setApiKey(storage => ENV['key']);
 
-        href='href="localhost:8000.com/email/verification/' + req.body.email
+        href="<a href='localhost:8000.com/email/verification/"
+        email=req.body.email+ "'"+"> Click Here To Register <a/>"
+        var fullEmail = href.concat(email);
+    console.log(fullEmail)
         const msg = {
           to: req.body.email,
           from: 'moochsell@donotreply.com',
-          subject: 'Reqister Your Email You Mooch Sell ',
-          text: name + ' ' + 'Please Click The Link to Register Your Email <br> <a>http://localhost:8000/email/verification/' + req.body.email+'</a>',
-          html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> <a href=localhost:8000.com/email/verification/' + req.body.email+'>' +'localhost:8000.com/email/verification/' + req.body.email  +'</a>' + '</strong>',
+          subject: 'Reqister Your Email With Mooch Sell ',
+          text: name + ' ' + "Please Click The Link to Register Your Email https://mooch-sell.herokuapp.com//email/verification/"+req.body.email,
+          // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
         };
-        sgMail.send(msg);
+         sgMail.send(msg);
         console.log('done')
 
-        res.redirect('/')
+        doIt.redirect(303, '/')
+        
       })
   })
   app.put('/signOut', function (req, res) {
@@ -252,16 +333,16 @@ module.exports = function (app) {
   })
 
   app.get('/user/profile', function (req, res) {
-    res.render('userProfile', users[0])
+    res.render('userProfile', {users:users[0],userProducts:userproducts})
   })
 
   app.get('/edit/profile', function (req, res) {
-    res.render('editProfile', users[0])
+    res.render('editProfile', {users:users[0],userProducts:userproducts})
   })
   app.get('/add/products', function (req, res) {
 
 
-    res.render('addProduct', users[0])
+    res.render('addProduct', {users:users[0],userProducts:userproducts})
   })
   app.post("/api/item", function (req, res) {
 
@@ -286,5 +367,51 @@ module.exports = function (app) {
   })
 
 
+          app.post("/api/item", function (req, res) {
+          
 
-}
+            console.log(req.body)
+ // console.log(req.body)
+
+            // var a = req.body.email
+            // console.log(JSON.parse(a));
+            db.product.create({
+                email: req.body.email,
+                category: req.body.category,
+                product_name: req.body.product_name,
+                product_description: req.body.product_description,
+                userUploadImage1: req.body.userUploadImage1,
+                userUploadImage2: req.body.userUploadImage2,
+                daily: req.body.daily,
+                weekly: req.body.weekly,
+                monthly: req.body.monthly,
+                security_deposit: req.body.security_deposit
+              })
+              .then(function (dbPost) {
+                res.json(dbPost);
+              })
+            })
+
+
+            app.post("/api/new/users", function (req, res) {
+             
+              console.log(req.body)
+              // var a = req.body.email
+              // console.log(JSON.parse(a));
+              db.users.create({
+
+                  email: req.body.email,
+                  password: req.body.password,
+                  firstName:req.body.firstName,
+                  lastName:req.body.lastName,
+                  profilePic: req.body.profilePic,
+                  phoneNumber: req.body.phoneNumber,
+                  address: req.body.address,
+
+
+                })
+                .then(function (dbPost) {
+                  res.json(dbPost);
+                })
+            })
+          }
