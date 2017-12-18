@@ -43,12 +43,7 @@ console.log(search)
 //   function () {
 //     console.log('done')
     document.location.href="/find/all/products";
-    
-  
-
- 
-   
- })
+})
 
   
   // Create user ajax call
@@ -90,8 +85,10 @@ console.log(emailAddress)
     )
 
   })
+
   var formData = new FormData();
   $('#item_photo_1').on('change', function(){ 
+
     var files = $(this).get(0).files; 
     if (files.length > 0){
       // var formData = new FormData();
@@ -106,9 +103,11 @@ console.log(emailAddress)
       
       // One or more files selected, process the file upload
     }
+
   });  
+
   $("#createUser").on("click", function (event) {
-    // Make sure to preventDefault on a submit event.
+    //Make sure to preventDefault on a submit event.
     event.preventDefault();
    
   var userNewAddress=$("#address").val().trim() +' '+ $('#state').val().trim() + ' '+ $('#zip').val().trim();
@@ -121,13 +120,13 @@ console.log(emailAddress)
       email: $("#email").val().trim(),
       password: $("#pass1").val().trim(),
       phonenumber: $("#phone").val().trim(),
-      profilePic:$('#profilePic').val().trim(),
+      profilePic:$('#profilePic').val().split('\\').pop(),
       address: userNewAddress,
       agreeTerms:$("#field_terms").val().trim()
 
     }
-// console.log(newUser)
-    // Send the POST request.
+console.log(newUser)
+    //Send the POST request.
     $.ajax("/api/new/users", {
       type: "POST",
       data: newUser
@@ -137,7 +136,25 @@ console.log(emailAddress)
         // Reload the page to get the updated list
         document.location.href="/";
       }
-    );
+      
+
+    ).then(
+      function(){
+    $.ajax("/upload", {
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(data){
+          alert(data);
+      }
+    
+    })
+      
+  })
+
+
+
   });
 
 $('.checkProfile').on('click',function(){
@@ -177,7 +194,26 @@ console.log(newPost)
     // Send the POST request.
     
   });
+$('.destroyButton').on('click',function(){
+  var deleteing =$(this).attr('product');
+  var deleteMe = {
+    number:deleteing,
+  }
+  console.log(deleteing)
 
+  $.ajax("/post/delete", {
+    type: "DELETE",
+    data: deleteMe
+  }).then(
+  
+    function () {
+      console.log("New Listing Created");
+      // Reload the page to get the updated list
+      // document.location.href="/user/products";
+      window.location.reload(true);
+    }
+  );
+})
   $('#finalPostConfirmation').on('click',function(){
     var confirmedPost = {
       email: $('#getEmail').attr('email'),
