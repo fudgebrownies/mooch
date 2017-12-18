@@ -114,6 +114,15 @@ li {
 
 #findAllButton {
   width: 50%;
+  padding: 20px;
+  margin: 50px;
+  color: white;
+}
+
+#productList{
+  border: 1px solid grey;
+  margin: 5px;
+  padding: 5px;
 }
 
 /* List Grid view  */
@@ -273,11 +282,11 @@ a.navbar-brand {
   height: 150px;
 }
 #userproductpic2{
-  width: 200px;
+  width: 150px;
   height: 200px;
 }
 #userproductpic1{
-  width: 200px;
+  width: 150px;
   height: 200px;
 }
 #profilePicProfile{
