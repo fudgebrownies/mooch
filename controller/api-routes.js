@@ -48,8 +48,20 @@ module.exports = function (app) {
     //console.log(req.files.key)
 
     //var image = file.originalname
-
-  });
+    
+});
+app.delete('/post/delete',function(req,res){
+  console.log("im hungry")
+  console.log(req.body)
+ db.products.destroy({
+  where:{
+    id:req.body.number
+  }
+}).then(function(deleteItem){
+  console.log(deleteItem)
+  res.redirect(303,'/user/products')
+})
+})
 
   app.get("/", function (req, res) {
     //  console.log({zipcodeKeys})
@@ -63,9 +75,11 @@ module.exports = function (app) {
 
 
   });
-  app.post('/product/find', function (req, res) {
-    https: //www.zipcodeapi.com/rest/<api_key>/distance.<format>/<zip_code1>/<zip_code2>/<units>
-      console.log(req.body)
+
+  app.post('/product/find',function(req,res){
+ 
+
+
     db.products.findOne({
       where: {
         product_name: sc
@@ -119,6 +133,7 @@ module.exports = function (app) {
       }).then(function (findAllProducts) {
 
 
+
         // console.log(findAllProducts);
 
         // console.log(findAllProductsArray)
@@ -142,6 +157,7 @@ module.exports = function (app) {
     // console.log('klefnkansjkfnkjanfkjwenkfrekjgnkjnkjnkjnk')
     // console.log(findAllProductsArray)
   })
+
 
 
   app.get("/index/:user", function (req, res) {
