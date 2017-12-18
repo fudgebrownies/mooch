@@ -13,7 +13,7 @@
 
 
           {{#if users.signedIn}}
-          <p   id={{users.emai}}>
+          <p  id='usersEmail' usersEmailAddress={{users.email}}>
             <li class="dropdown">
               <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
                 <span class="caret"></span>
@@ -93,9 +93,10 @@
 <img id ='photosForAll' src='https://static.pexels.com/photos/5342/sea-beach-footprint-steps.jpg'upload={{userUploadImage1}}>
 <img id ='photosForAll2' src='http://coldoutdoorsman.com/wp-content/uploads/2016/03/camping-gear-sales.jpg'upload={{userUploadImage2}}>
             <ul>
-<li>Product: {{product_name}}</li>
-<li>Category: {{category}}</li>
-<li>Description : {{product_description}}</li>
+ <li >Product Id: {{id}} </li>
+<li class='allProductName'>Product: {{product_name}}</li>
+<li class='allProductCategory' >Category: {{category}}</li>
+<li class='allProductDescrition'>Description : {{product_description}}</li>
 <li></li>
 <li></li>
  </ul>
@@ -111,7 +112,7 @@
             <h6 id='sellersEmail'>Sellers Email: {{email}}</h6>
 
             <a class="btn btn-primary emailOwner" href="" >Ask owner questions</a>
-            <a class="btn btn-primary equestRent" href="" >Request/Schedule Rent</a>
+            <a class="btn btn-primary requestRent" productId={{id}} style="color:aliceblue" >Request/Schedule Rent</a>
             
         </div>
         <br>
