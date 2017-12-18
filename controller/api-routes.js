@@ -1,3 +1,5 @@
+
+
 var db = require("../models");
 
 // fileKey=require("./sendfile key.js")
@@ -111,7 +113,7 @@ module.exports = function (app) {
 
 
     if (findAllProductsArray < 1) {
-
+     
       db.products.findAll({
 
 
@@ -136,7 +138,7 @@ module.exports = function (app) {
     })
     var myInt = setTimeout(function () {
       findAllProductsArray = []
-    }, 50000);
+    }, 500000);
 
     // findAllProductsArray.splice(findAllProductsArray.le)
     // console.log('klefnkansjkfnkjanfkjwenkfrekjgnkjnkjnkjnk')
@@ -144,16 +146,24 @@ module.exports = function (app) {
   })
 
 
-  app.get("/index/:user", function (req, res) {
+  app.get("/users/profile/:user", function (req, res) {
     // db.users.findOne
     // console.log(req.params.user.users)
+console.log('iam here')
+console.log(req.params.user)
     db.users.findOne({
       where: {
         email: req.params.user
       }
     }).then(function (db) {
-      address = db.dataValues.address.split(' ')
-      console.log(address)
+      splitAddy = db.dataValues.address.split(' ');
+      homeAdress = splitAddy[0] + ' ' + splitAddy[1];
+      homeCity = splitAddy[2];
+      homeState = splitAddy[3];
+      homeZipCode = splitAddy[4]
+
+     
+      
       var currentUser = {
         id: db.dataValues.id,
         email: db.dataValues.email,
@@ -162,18 +172,20 @@ module.exports = function (app) {
         lastName: db.dataValues.lastName,
         profilePic: db.dataValues.profilePic,
         phoneNumber: db.dataValues.phoneNumber,
+        address: homeAdress,
+        city: homeCity,
+        state: homeState,
+        zipCode: homeZipCode,
 
-        signedInStatus: db.dataValues.signedIn
+        
       }
       // console.log(currentUser);
-      res.json({
-        currentUser
-      })
+      res.render('viewPeople',{users:users[0],currentUser:currentUser})
 
 
     });
   });
-  var chaingingArray=[];
+  var changeArray=[];
 
   app.get('/users/requests/:email?', function (req, res) {
     requestArray = [];
@@ -237,7 +249,7 @@ module.exports = function (app) {
           theItems.push(Moochables)
 
         }
-
+console.log(requestArray)
    
 function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, week, month, dep,rentEmail){
   this.theId = id;
@@ -267,7 +279,7 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
           theItems[b].pDescribtion,
           theItems[b].pZip,
           theItems[b].pPhoto1,
-          theItems[b].pPhoto2, theItems[b].pDaily, theItems[b].pWeekly, theItems[b].pMonthly, theItems[b].pDeposit,requestArray[i].theProduct)
+          theItems[b].pPhoto2, theItems[b].pDaily, theItems[b].pWeekly, theItems[b].pMonthly, theItems[b].pDeposit,requestArray[i].renterEmail)
           arrayOfPeopleRent.push(objectToRent)
           console.log(objectToRent)
             }
@@ -276,12 +288,31 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
         console.log('showrenters')
         console.log(arrayOfPeopleRent[0].theId)
          for(var i=0;i<arrayOfPeopleRent.length;i++){
-      chaingingArray.push(arrayOfPeopleRent[i])
+           var moochingobjects={
+     id:arrayOfPeopleRent[i].theId,
+    emaiil: arrayOfPeopleRent[i].pEmail,
+     category: arrayOfPeopleRent[i].pCat,
+     productName: arrayOfPeopleRent[i].pName,
+     productDescribtion: arrayOfPeopleRent[i].pDescribtion,
+     zipcode: arrayOfPeopleRent[i].pZip,
+     Photo1: arrayOfPeopleRent[i].pPhoto1,
+     Photo2:arrayOfPeopleRent[i].pPhoto1,
+     Daily:arrayOfPeopleRent[i].pDaily,
+     Weekly: arrayOfPeopleRent[i].pWeekly,
+     Monthly: arrayOfPeopleRent[i].pMonthly,
+     Deposit: arrayOfPeopleRent[i].pDeposit,
+     rentersEmail:arrayOfPeopleRent[i].rentersEmail
+
+}
+changeArray.push(moochingobjects)
          }
-         console.log('chaning array')
-     console.log(chaingingArray)
-         res.render('pendingRequest', {users:users[0],renterStuff:chaingingArray})
+         console.log(moochingobjects)
+         res.render('pendingRequest', {users:users[0],renterStuff:changeArray})
+   
+        
         // console.log(arrayOfPeopleRent)
+      }).then(function(){
+        
       })
 
 
@@ -378,11 +409,10 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
             user: users[0],
             userproducts: userproducts
           };
-          console.log('jksfnk')
-          console.log(userproducts)
+
           userNProductsArray.push(userNProducts)
-          console.log('fuck you')
-          console.log(userNProductsArray.userproducts)
+          console.log(users)
+         
           res.redirect(303, '/')
         })
       })

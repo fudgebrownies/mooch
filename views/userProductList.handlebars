@@ -13,6 +13,7 @@
         <ul class="navbar-nav mr-auto">
         </ul>
 
+
         {{#if users.signedIn}}
         <p  usersEmailAddress={{users.email}} id={{users.emai}}>
             <li class="dropdown">
@@ -95,10 +96,10 @@
         {{#each userProducts}}
         <div class="col-sm-4">
           
-           <img id='userproductpic1' src='https://ak0.picdn.net/shutterstock/videos/4267610/thumb/8.jpg?i10c=img.resize(height:160)' {{userUploadImage1}}> 
+           <img id='userproductpic1' src='https://s3-us-west-1.amazonaws.com/moochify/{{userUploadImage1}}' > 
     
        
-          <img  {{userUploadImage2}} id='userproductpic2'src='https://thumb9.shutterstock.com/display_pic_with_logo/540784/187296956/stock-photo-sport-psychology-concept-as-a-group-of-sports-equipment-shaped-as-a-human-brain-as-a-mental-health-187296956.jpg'>
+          
            
         
         
