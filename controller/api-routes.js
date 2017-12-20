@@ -3,7 +3,7 @@
 var db = require("../models");
 // var keys = require("./keys.js");
 // var facebook = process.env.FB || keys.facebook.password;
-var sengrido = process.env.sengrid 
+var sengrido = process.env.sendgrid 
 
 // fileKey=require("./sendfile key.js")
 
