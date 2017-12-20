@@ -183,6 +183,25 @@ $('#item_photo_1').on('change', function(){
 
 });
 
+var formData = new FormData();
+$('#item_photo_1').on('change', function(){ 
+  var files = $(this).get(0).files; 
+  if (files.length > 0){
+    // var formData = new FormData();
+    
+        // loop through all the selected files
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          
+          // add the files to formData object for the data payload
+          formData.append('upl', file, file.name);
+        }
+    
+    // One or more files selected, process the file upload
+  }
+
+});
+
   $("#previewPost").on("click", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
