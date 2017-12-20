@@ -1,0 +1,6 @@
+{
+    "secretAccessKey": "process.env.s3_secret",
+     "accessKeyId":"process.env.s3_key",
+     "region": "process.env.s3_region"
+  }
+
