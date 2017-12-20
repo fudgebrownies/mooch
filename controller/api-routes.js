@@ -1,4 +1,9 @@
+
+
 var db = require("../models");
+// var keys = require("./keys.js");
+// var facebook = process.env.FB || keys.facebook.password;
+var sengrido = process.env.sengrid 
 
 // fileKey=require("./sendfile key.js")
 
@@ -9,11 +14,7 @@ aws = require('aws-sdk'),
   multer = require('multer'),
   multerS3 = require('multer-s3');
 
-aws.config.update({
-  secretAccessKey: 'YYJuKJAiNALjpDYWmr+vb32VO5Og9Gn1dVdl5klV',
-  accessKeyId: 'AKIAIWBUJA6Q4AU6FSBA',
-  region: 'us-west-1'
-});
+aws.config.loadFromPath('./controller/s3.json'); 
 
 s3 = new aws.S3();
 
@@ -23,16 +24,20 @@ s3 = new aws.S3();
 
 module.exports = function (app) {
 
-  var image
+
+ 
   var upload = multer({
     storage: multerS3({
-      s3: s3,
-      bucket: 'moochify',
-      key: function (req, file, cb) {
-        //console.log(file);
-        cb(null, file.originalname); //use Date.now() for unique file keys
-        var image = file.originalname
-      }
+        s3: s3,
+        bucket: 'moochify',
+        acl: 'public-read',
+        key: function (req, file, cb) {
+            cb(null, file.originalname); //use Date.now() for unique file keys
+            //var imagePath = file.originalname
+            
+        }
+
+
     })
   });
 
@@ -42,8 +47,10 @@ module.exports = function (app) {
   var users = [];
   userproducts = [];
   userNProductsArray = [];
-  findAllProductsArray = [];
+
+
   app.post('/upload', upload.array('upl', 1), function (req, res, next) {
+
     res.send("Uploaded!");
     //console.log(req.files.key)
 
@@ -52,13 +59,13 @@ module.exports = function (app) {
 });
 app.delete('/post/delete',function(req,res){
   console.log("im hungry")
-  console.log(req.body)
+ // console.log(req.body)
  db.products.destroy({
   where:{
     id:req.body.number
   }
 }).then(function(deleteItem){
-  console.log(deleteItem)
+  //console.log(deleteItem)
   res.redirect(303,'/user/products')
 })
 })
@@ -66,7 +73,7 @@ app.delete('/post/delete',function(req,res){
   app.get("/", function (req, res) {
     //  console.log({zipcodeKeys})
     // console.log(users[0])
-    console.log(userproducts)
+   // console.log(userproducts)
     res.render("index", {
       users: users[0],
       userProducts: userproducts
@@ -77,17 +84,19 @@ app.delete('/post/delete',function(req,res){
   });
 
   app.post('/product/find',function(req,res){
- 
 
+    https://www.zipcodeapi.com/rest/<api_key>/distance.<format>/<zip_code1>/<zip_code2>/<units>
+    //console.log(req.body)
 
     db.products.findOne({
       where: {
         product_name: sc
       }
+
     }).then(function (items) {
       // connection.query('SELECT first_name from TABLE_NAME where first_name like "%'+req.query.key+'%"',
       // function(err, rows, fields) {
-      console.log(items)
+    //  console.log(items)
       // if (err) throw err;
       var data = [];
       // for(i=0;i<rows.length;i++)
@@ -95,6 +104,7 @@ app.delete('/post/delete',function(req,res){
       // data.push(rows[i].product_name);
       // }
       // res.end(JSON.stringify(data));
+
     });
   });
   app.get('/add', function (req, res) {
@@ -111,47 +121,70 @@ app.delete('/post/delete',function(req,res){
     })
   })
 
-  app.get('/user/products', function (req, res) {
+  app.get('/user/products/:email', function (req, res) {
+console.log(req.params.email)
+    userProductPageArray=[];
+   if (userProductPageArray< 1){
+     console.log('i am less than 1')
+    db.products.findAll({
+      where: {
+        email: req.params.email
+      }
+    }).then(function (prod) {
+      
+      console.log('beforeprojkanfkjnkjN')
+console.log(prod[0].dataValues)
+      // console.log(db[2])
+      for (var i = 0; i < prod.length; i++) {
+        userProductPageArray.push(prod[i].dataValues)
 
-
-    res.render('userProductList', {
-      users: users[0],
-      userProducts: userproducts
+      }
+    
+    }).then(function(){
+      res.render('userProductList', {
+        users: users[0],
+        userProducts: userProductPageArray
+      })
     })
+  
+   
+
+     
+  }
+      // var myInt = setTimeout(function () {
+      //   userproducts = []
+      // }, 500000);
+  
+   
+   
+
   })
-
-
   app.get('/find/all/products', function (req, res) {
-
+    findAllProductsArray = [];
 
     if (findAllProductsArray < 1) {
-
+     
       db.products.findAll({
 
 
 
       }).then(function (findAllProducts) {
 
-
-
-        // console.log(findAllProducts);
-
-        // console.log(findAllProductsArray)
-
-
         for (var i = 0; i < findAllProducts.length; i++) {
           findAllProductsArray.push(findAllProducts[i].dataValues)
 
         }
+      }).then(function(){
+        res.render('allproducts', {
+          users: users[0],
+          allProd: findAllProductsArray
+        })
+        var myInt = setTimeout(function () {
+          findAllProductsArray = []
+        }, 500000);
       })
     }
-    res.render('allproducts', {
-      users: users[0],
-      allProd: findAllProductsArray
-    })
-    var myInt = setTimeout(function () {
-      findAllProductsArray = []
-    }, 50000);
+ 
 
     // findAllProductsArray.splice(findAllProductsArray.le)
     // console.log('klefnkansjkfnkjanfkjwenkfrekjgnkjnkjnkjnk')
@@ -160,16 +193,27 @@ app.delete('/post/delete',function(req,res){
 
 
 
-  app.get("/index/:user", function (req, res) {
+  app.get("/users/profile/:user", function (req, res) {
+
     // db.users.findOne
     // console.log(req.params.user.users)
+console.log('iam here')
+console.log(req.params.user)
     db.users.findOne({
       where: {
         email: req.params.user
       }
     }).then(function (db) {
-      address = db.dataValues.address.split(' ')
-      console.log(address)
+
+      splitAddy = db.dataValues.address.split(' ');
+      homeAdress = splitAddy[0] + ' ' + splitAddy[1];
+      homeCity = splitAddy[2];
+      homeState = splitAddy[3];
+      homeZipCode = splitAddy[4]
+
+     
+      
+
       var currentUser = {
         id: db.dataValues.id,
         email: db.dataValues.email,
@@ -178,18 +222,20 @@ app.delete('/post/delete',function(req,res){
         lastName: db.dataValues.lastName,
         profilePic: db.dataValues.profilePic,
         phoneNumber: db.dataValues.phoneNumber,
+        address: homeAdress,
+        city: homeCity,
+        state: homeState,
+        zipCode: homeZipCode,
 
-        signedInStatus: db.dataValues.signedIn
+        
       }
       // console.log(currentUser);
-      res.json({
-        currentUser
-      })
+      res.render('viewPeople',{users:users[0],currentUser:currentUser})
 
 
     });
   });
-  var chaingingArray=[];
+  var changeArray=[];
 
   app.get('/users/requests/:email?', function (req, res) {
     requestArray = [];
@@ -253,7 +299,7 @@ app.delete('/post/delete',function(req,res){
           theItems.push(Moochables)
 
         }
-
+// console.log(requestArray)
    
 function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, week, month, dep,rentEmail){
   this.theId = id;
@@ -274,30 +320,53 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
         for (var i = 0; i < requestArray.length; i++) {
         
           for (var b = 0; b < theItems.length; b++) {
-            console.log("boo")
+            //console.log("boo")
             if (requestArray[i].theProduct == theItems[b].theId) {
-              console.log("hi")
+           //   console.log("hi")
          var objectToRent= new ShowRenters(theItems[b].theId,theItems[b].pEmail,
           theItems[b].pCat,
           theItems[b].pName,
           theItems[b].pDescribtion,
           theItems[b].pZip,
           theItems[b].pPhoto1,
-          theItems[b].pPhoto2, theItems[b].pDaily, theItems[b].pWeekly, theItems[b].pMonthly, theItems[b].pDeposit,requestArray[i].theProduct)
+          theItems[b].pPhoto2, theItems[b].pDaily, theItems[b].pWeekly, theItems[b].pMonthly, theItems[b].pDeposit,requestArray[i].renterEmail)
           arrayOfPeopleRent.push(objectToRent)
-          console.log(objectToRent)
+        //  console.log(objectToRent)
             }
           }
         }
-        console.log('showrenters')
-        console.log(arrayOfPeopleRent[0].theId)
+       // console.log('showrenters')
+       
          for(var i=0;i<arrayOfPeopleRent.length;i++){
-      chaingingArray.push(arrayOfPeopleRent[i])
+           var moochingobjects={
+     id:arrayOfPeopleRent[i].theId,
+    emaiil: arrayOfPeopleRent[i].pEmail,
+     category: arrayOfPeopleRent[i].pCat,
+     productName: arrayOfPeopleRent[i].pName,
+     productDescribtion: arrayOfPeopleRent[i].pDescribtion,
+     zipcode: arrayOfPeopleRent[i].pZip,
+     Photo1: arrayOfPeopleRent[i].pPhoto1,
+     
+     Daily:arrayOfPeopleRent[i].pDaily,
+     Weekly: arrayOfPeopleRent[i].pWeekly,
+     Monthly: arrayOfPeopleRent[i].pMonthly,
+     Deposit: arrayOfPeopleRent[i].pDeposit,
+     rentersEmail:arrayOfPeopleRent[i].rentersEmail
+
+}
+changeArray.push(moochingobjects)
          }
-         console.log('chaning array')
-     console.log(chaingingArray)
-         res.render('pendingRequest', {users:users[0],renterStuff:chaingingArray})
+       //  console.log(moochingobjects)
+         res.render('pendingRequest', {users:users[0],renterStuff:changeArray})
+   
+        
         // console.log(arrayOfPeopleRent)
+      }).then(function(){
+        var myInt = setTimeout(function () {
+          changeArray=[];
+          requestArray=[];
+          arrayOfPeopleRent=[];
+        }, 500);
       })
 
 
@@ -394,11 +463,12 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
             user: users[0],
             userproducts: userproducts
           };
-          console.log('jksfnk')
-          console.log(userproducts)
+
+
           userNProductsArray.push(userNProducts)
-          console.log('fuck you')
-          console.log(userNProductsArray.userproducts)
+         // console.log(users)
+         
+
           res.redirect(303, '/')
         })
       })
@@ -411,7 +481,7 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
       }
     }).then(function (data) {
 
-      console.log(data.dataValues.email)
+      //console.log(data.dataValues.email)
       var user = {
 
         email: data.dataValues.email,
@@ -439,7 +509,7 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
   })
 
   app.post("/api/new/users", function (req, doIt) {
-    console.log('hi')
+    //console.log('hi')
     var name = req.body.firstName + ' ' + req.body.lastName
 
 
@@ -460,20 +530,24 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
       })
       .then(function (dbPost) {
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(storage => ENV['key']);
+        sgMail.setApiKey( sengrido);
 
         href = "<a href='localhost:8000.com/email/verification/"
         email = req.body.email + "'" + "> Click Here To Register <a/>"
         var fullEmail = href.concat(email);
-        console.log(fullEmail)
+
+     //   console.log(fullEmail)
+
         const msg = {
           to: req.body.email,
           from: 'moochsell@donotreply.com',
           subject: 'Reqister Your Email With Mooch Sell ',
-          text: name + ' ' + "Please Click The Link to Register Your Email https://mooch-sell.herokuapp.com//email/verification/" + req.body.email,
+          text: name + ' ' + "Please Click The Link to Register Your Email localhost:8000/email/verification/" + req.body.email,
           // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
         };
-        // sgMail.send(msg);
+
+        sgMail.send(msg);
+
         console.log('done')
 
         doIt.redirect(303, '/')
@@ -481,8 +555,9 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
       })
   })
   app.put('/signOut', function (req, res) {
-
-    console.log(req.body)
+    users=[];
+    userProducts=[]
+  //  console.log(req.body)
     db.users.update({
       signedIn: false
     }, {
@@ -490,9 +565,11 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
         email: req.body.email
       }
     }).then(function () {
+     /// console.log(userProducts)
       res.redirect(303, '/')
-      users.splice('')
-      console.log(users)
+      users=[];
+      userproducts.splice(0,userproducts.length)
+     // console.log(users)
     })
   })
 
