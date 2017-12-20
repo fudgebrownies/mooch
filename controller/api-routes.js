@@ -542,7 +542,7 @@ changeArray.push(moochingobjects)
           to: req.body.email,
           from: 'moochsell@donotreply.com',
           subject: 'Reqister Your Email With Mooch Sell ',
-          text: name + ' ' + "Please Click The Link to Register Your Email" + "https://mooch-sell.herokuapp.com//email/verification/" + req.body.email,
+          text: name + ' ' + "Please Click The Link to Register Your Email" + "https://mooch-sell.herokuapp.com//email/verification/" + req.body.email
           // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
         };
 
