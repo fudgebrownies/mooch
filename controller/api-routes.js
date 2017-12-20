@@ -13,7 +13,7 @@ aws = require('aws-sdk'),
   bodyParser = require('body-parser'),
   multer = require('multer'),
   multerS3 = require('multer-s3');
-  AWS.config.update({
+  aws.config.update({
     accessKeyId: process.env.s3_secret,
     secretAccessKey: process.env.s3_key
  });
