@@ -8,3 +8,4 @@ git filter-branch --force --index-filter \
 --prune-empty --tag-name-filter cat -- --all
 
 /controller/sendfile key.js
+/controller/keys.json
