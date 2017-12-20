@@ -53,10 +53,10 @@
     <div class="row">
         <h1 id='getEmail' email={{users.email}}></h1>
         <div class="col-sm-6 text-center" id="uploadPhoto">
-            <img src="/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
-            <div class="form-group file optional item_photo_1">
+           
+            <div class="form-group file  item_photo_1">
                 <label class="file optional control-label" for="item_photo_1"></label>
-                <input class="file optional" type="file" name="item[photo_1]" id="item_photo_1" />
+                <input multiple class="file" type="file" name="item[photo_1]" id="item_photo_1" onchange="return" />
             </div>
             <input type="hidden" name="item[photo_1_cache]" id="item_photo_1_cache" />
             <div class="drop-here">
@@ -68,23 +68,7 @@
                 </p>
             </div>
         </div>
-        <div class="col-sm-6 text-center" id="uploadPhoto">
-
-            <img src="/images/placeholder.jpg" alt="placeholder" width="250" height="250" text-align="center">
-            <div class="form-group file optional item_photo_1">
-                <label class="file optional control-label" for="item_photo_1"></label>
-                <input class="file optional" type="file" name="item[photo_1]" id="item_photo_2" />
-            </div>
-            <input type="hidden" name="item[photo_1_cache]" id="item_photo_2_cache" />
-            <div class="drop-here">
-                <p>
-                    <label>
-                        <input name="item[remove_photo_1]" type="hidden" value="0" />
-                        <input type="checkbox" value="1" name="item[remove_photo_1]" id="item_remove_photo_1" /> Remove photo
-                    </label>
-                </p>
-            </div>
-        </div>
+       
     </div>
     <br>
     <br>
