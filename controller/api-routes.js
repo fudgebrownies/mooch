@@ -13,8 +13,11 @@ aws = require('aws-sdk'),
   bodyParser = require('body-parser'),
   multer = require('multer'),
   multerS3 = require('multer-s3');
+  AWS.config.update({
+    accessKeyId: process.env.s3_secret,
+    secretAccessKey: process.env.s3_key
+ });
 
-aws.config.loadFromPath('./controller/s3.json'); 
 
 s3 = new aws.S3();
 
