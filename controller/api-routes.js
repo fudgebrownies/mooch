@@ -133,7 +133,7 @@ console.log(req.params.email)
     }).then(function (prod) {
       
       
-console.log(prod[0].dataValues)
+console.log(prod[0])
       // console.log(db[2])
       for (var i = 0; i < prod.length; i++) {
         userProductPageArray.push(prod[i].dataValues)
