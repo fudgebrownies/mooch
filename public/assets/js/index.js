@@ -5,7 +5,9 @@ $(function () {
   var emailAddress;
 
 
-  $('.requestRent').on('click',function(){
+  $('.RequestRent').on('click',function(event){
+    event.preventDefault()
+    
    var productId=$(this).attr('productId');
   var emailRequest=$('#usersEmail').attr('usersEmailAddress');
 console.log(emailRequest)
@@ -87,7 +89,7 @@ console.log(emailAddress)
   })
 
   var formData = new FormData();
-  $('#item_photo_1').on('change', function(){ 
+  $('#profilePic').on('change', function(){ 
 
     var files = $(this).get(0).files; 
     if (files.length > 0){
@@ -161,6 +163,26 @@ $('.checkProfile').on('click',function(){
 
 })
 
+
+var formData = new FormData();
+$('#item_photo_1').on('change', function(){ 
+  var files = $(this).get(0).files; 
+  if (files.length > 0){
+    // var formData = new FormData();
+    
+        // loop through all the selected files
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          
+          // add the files to formData object for the data payload
+          formData.append('upl', file, file.name);
+        }
+    
+    // One or more files selected, process the file upload
+  }
+
+});
+
   $("#previewPost").on("click", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
@@ -173,7 +195,6 @@ console.log(pic1)
       product_name:$("#item_name").val().trim(),
       product_description:$('#item_description').val().trim(),
       userUploadImage1:$('#item_photo_1').val().trim(),
-      userUploadImage1:$('#item_photo_2').val().trim(),
       daily: '$'+$("#item_price_per_day").val().trim() +'/day',
       weekly:'$'+ $("#item_price_per_week").val().trim()+'/week',
       monthly:'$'+ $("#item_price_per_month").val().trim()+'/month',
@@ -204,13 +225,19 @@ $('.destroyButton').on('click',function(){
   $.ajax("/post/delete", {
     type: "DELETE",
     data: deleteMe
-  }).then(
+  })
+  window.location.reload(true)
+  
+  .then(
   
     function () {
       console.log("New Listing Created");
+      
+     setTimeout(function(){ ;
+    }, 5000);
       // Reload the page to get the updated list
       // document.location.href="/user/products";
-      window.location.reload(true);
+     
     }
   );
 })
@@ -220,11 +247,11 @@ $('.destroyButton').on('click',function(){
      category: $("#item_category_id").val().trim(),
       product_name:$("#item_name").val().trim(),
       product_description:$('#item_description').val().trim(),
-      userUploadImage1:$('#item_photo_1').val().trim(),
-      userUploadImage1:$('#item_photo_2').val().trim(),
-      daily: '$'+$("#item_price_per_day").val().trim() +'/day',
-      weekly:'$'+ $("#item_price_per_week").val().trim()+'/week',
-      monthly:'$'+ $("#item_price_per_month").val().trim()+'/month',
+      userUploadImage1:$('#item_photo_1').val().split('\\').pop(),
+      // userUploadImage1:$('#item_photo_2').val().trim(),
+      daily: '$'+$("#item_price_per_day").val() +'/day',
+      weekly:'$'+ $("#item_price_per_week").val()+'/week',
+      monthly:'$'+ $("#item_price_per_month").val()+'/month',
       security_deposit: '$'+$("#item_security_deposit").val(),
 
     };
@@ -235,7 +262,7 @@ $('.destroyButton').on('click',function(){
       function () {
         console.log("New Listing Created");
         // Reload the page to get the updated list
-        document.location.href="/user/products";
+        document.location.href="/user/products/"+$('#getEmail').attr('email');
       }).then(
         function(){
       $.ajax("/upload", {

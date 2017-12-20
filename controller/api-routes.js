@@ -1,6 +1,9 @@
 
 
 var db = require("../models");
+// var keys = require("./keys.js");
+// var facebook = process.env.FB || keys.facebook.password;
+var sengrido = process.env.sengrid 
 
 // fileKey=require("./sendfile key.js")
 
@@ -11,7 +14,7 @@ aws = require('aws-sdk'),
   multer = require('multer'),
   multerS3 = require('multer-s3');
 
-aws.config.loadFromPath('./controller/keys.json'); 
+aws.config.loadFromPath('./controller/s3.json'); 
 
 s3 = new aws.S3();
 
@@ -30,7 +33,7 @@ module.exports = function (app) {
         acl: 'public-read',
         key: function (req, file, cb) {
             cb(null, file.originalname); //use Date.now() for unique file keys
-            var imagePath = file.originalname
+            //var imagePath = file.originalname
             
         }
 
@@ -45,7 +48,7 @@ module.exports = function (app) {
   userproducts = [];
   userNProductsArray = [];
 
-  findAllProductsArray = [];
+
   app.post('/upload', upload.array('upl', 1), function (req, res, next) {
 
     res.send("Uploaded!");
@@ -56,13 +59,13 @@ module.exports = function (app) {
 });
 app.delete('/post/delete',function(req,res){
   console.log("im hungry")
-  console.log(req.body)
+ // console.log(req.body)
  db.products.destroy({
   where:{
     id:req.body.number
   }
 }).then(function(deleteItem){
-  console.log(deleteItem)
+  //console.log(deleteItem)
   res.redirect(303,'/user/products')
 })
 })
@@ -70,7 +73,7 @@ app.delete('/post/delete',function(req,res){
   app.get("/", function (req, res) {
     //  console.log({zipcodeKeys})
     // console.log(users[0])
-    console.log(userproducts)
+   // console.log(userproducts)
     res.render("index", {
       users: users[0],
       userProducts: userproducts
@@ -93,7 +96,7 @@ app.delete('/post/delete',function(req,res){
     }).then(function (items) {
       // connection.query('SELECT first_name from TABLE_NAME where first_name like "%'+req.query.key+'%"',
       // function(err, rows, fields) {
-      console.log(items)
+    //  console.log(items)
       // if (err) throw err;
       var data = [];
       // for(i=0;i<rows.length;i++)
@@ -118,18 +121,46 @@ app.delete('/post/delete',function(req,res){
     })
   })
 
-  app.get('/user/products', function (req, res) {
+  app.get('/user/products/:email', function (req, res) {
+console.log(req.params.email)
+    userProductPageArray=[];
+   if (userProductPageArray< 1){
+     console.log('i am less than 1')
+    db.products.findAll({
+      where: {
+        email: req.params.email
+      }
+    }).then(function (prod) {
+      
+      console.log('beforeprojkanfkjnkjN')
+console.log(prod[0].dataValues)
+      // console.log(db[2])
+      for (var i = 0; i < prod.length; i++) {
+        userProductPageArray.push(prod[i].dataValues)
 
-
-    res.render('userProductList', {
-      users: users[0],
-      userProducts: userproducts
+      }
+    
+    }).then(function(){
+      res.render('userProductList', {
+        users: users[0],
+        userProducts: userProductPageArray
+      })
     })
+  
+   
+
+     
+  }
+      // var myInt = setTimeout(function () {
+      //   userproducts = []
+      // }, 500000);
+  
+   
+   
+
   })
-
-
   app.get('/find/all/products', function (req, res) {
-
+    findAllProductsArray = [];
 
     if (findAllProductsArray < 1) {
      
@@ -139,26 +170,21 @@ app.delete('/post/delete',function(req,res){
 
       }).then(function (findAllProducts) {
 
-
-
-        // console.log(findAllProducts);
-
-        // console.log(findAllProductsArray)
-
-
         for (var i = 0; i < findAllProducts.length; i++) {
           findAllProductsArray.push(findAllProducts[i].dataValues)
 
         }
+      }).then(function(){
+        res.render('allproducts', {
+          users: users[0],
+          allProd: findAllProductsArray
+        })
+        var myInt = setTimeout(function () {
+          findAllProductsArray = []
+        }, 500000);
       })
     }
-    res.render('allproducts', {
-      users: users[0],
-      allProd: findAllProductsArray
-    })
-    var myInt = setTimeout(function () {
-      findAllProductsArray = []
-    }, 500000);
+ 
 
     // findAllProductsArray.splice(findAllProductsArray.le)
     // console.log('klefnkansjkfnkjanfkjwenkfrekjgnkjnkjnkjnk')
@@ -273,7 +299,7 @@ console.log(req.params.user)
           theItems.push(Moochables)
 
         }
-console.log(requestArray)
+// console.log(requestArray)
    
 function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, week, month, dep,rentEmail){
   this.theId = id;
@@ -294,9 +320,9 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
         for (var i = 0; i < requestArray.length; i++) {
         
           for (var b = 0; b < theItems.length; b++) {
-            console.log("boo")
+            //console.log("boo")
             if (requestArray[i].theProduct == theItems[b].theId) {
-              console.log("hi")
+           //   console.log("hi")
          var objectToRent= new ShowRenters(theItems[b].theId,theItems[b].pEmail,
           theItems[b].pCat,
           theItems[b].pName,
@@ -305,12 +331,12 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
           theItems[b].pPhoto1,
           theItems[b].pPhoto2, theItems[b].pDaily, theItems[b].pWeekly, theItems[b].pMonthly, theItems[b].pDeposit,requestArray[i].renterEmail)
           arrayOfPeopleRent.push(objectToRent)
-          console.log(objectToRent)
+        //  console.log(objectToRent)
             }
           }
         }
-        console.log('showrenters')
-        console.log(arrayOfPeopleRent[0].theId)
+       // console.log('showrenters')
+       
          for(var i=0;i<arrayOfPeopleRent.length;i++){
            var moochingobjects={
      id:arrayOfPeopleRent[i].theId,
@@ -320,7 +346,7 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
      productDescribtion: arrayOfPeopleRent[i].pDescribtion,
      zipcode: arrayOfPeopleRent[i].pZip,
      Photo1: arrayOfPeopleRent[i].pPhoto1,
-     Photo2:arrayOfPeopleRent[i].pPhoto1,
+     
      Daily:arrayOfPeopleRent[i].pDaily,
      Weekly: arrayOfPeopleRent[i].pWeekly,
      Monthly: arrayOfPeopleRent[i].pMonthly,
@@ -330,13 +356,17 @@ function ShowRenters(id, email, cat, name, describe, zip, photo1, photo2, day, w
 }
 changeArray.push(moochingobjects)
          }
-         console.log(moochingobjects)
+       //  console.log(moochingobjects)
          res.render('pendingRequest', {users:users[0],renterStuff:changeArray})
    
         
         // console.log(arrayOfPeopleRent)
       }).then(function(){
-        
+        var myInt = setTimeout(function () {
+          changeArray=[];
+          requestArray=[];
+          arrayOfPeopleRent=[];
+        }, 500);
       })
 
 
@@ -436,7 +466,7 @@ changeArray.push(moochingobjects)
 
 
           userNProductsArray.push(userNProducts)
-          console.log(users)
+         // console.log(users)
          
 
           res.redirect(303, '/')
@@ -500,23 +530,23 @@ changeArray.push(moochingobjects)
       })
       .then(function (dbPost) {
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(storage => ENV['key']);
+        sgMail.setApiKey( sengrido);
 
         href = "<a href='localhost:8000.com/email/verification/"
         email = req.body.email + "'" + "> Click Here To Register <a/>"
         var fullEmail = href.concat(email);
 
-        console.log(fullEmail)
+     //   console.log(fullEmail)
 
         const msg = {
           to: req.body.email,
           from: 'moochsell@donotreply.com',
           subject: 'Reqister Your Email With Mooch Sell ',
-          text: name + ' ' + "Please Click The Link to Register Your Email https://mooch-sell.herokuapp.com//email/verification/" + req.body.email,
+          text: name + ' ' + "Please Click The Link to Register Your Email localhost:8000/email/verification/" + req.body.email,
           // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
         };
 
-        // sgMail.send(msg);
+        sgMail.send(msg);
 
         console.log('done')
 
@@ -525,8 +555,9 @@ changeArray.push(moochingobjects)
       })
   })
   app.put('/signOut', function (req, res) {
-
-    console.log(req.body)
+    users=[];
+    userProducts=[]
+  //  console.log(req.body)
     db.users.update({
       signedIn: false
     }, {
@@ -534,9 +565,11 @@ changeArray.push(moochingobjects)
         email: req.body.email
       }
     }).then(function () {
+     /// console.log(userProducts)
       res.redirect(303, '/')
-      users.splice('')
-      console.log(users)
+      users=[];
+      userproducts.splice(0,userproducts.length)
+     // console.log(users)
     })
   })
 

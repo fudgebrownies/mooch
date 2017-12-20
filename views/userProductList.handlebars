@@ -25,11 +25,10 @@
                         <a href='/user/profile'>Profile</a>
                     </li>
                     <li>
-                        <a href="#">Transactions</a>
-                    </li>
-                    <li>
-                        <a href='/user/products'>My Products</a>
-                    </li>
+                     <a href="/users/requests/{{users.email}}">Transactions</a> 
+          </li>
+          <li>
+            <a href='/user/products/{{users.email}}'>My Products</a>
                     <li>
                         <p>
                             <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
@@ -113,6 +112,7 @@
             <li>${{monthly}}/day</li>
             <li>Security Deposit: ${{security_deposit}}</li>
 </ol>
+<button class='destroyButton' product={{id}}>Delete Product</button>
                     </div>
                     {{/each}}
                 </div>

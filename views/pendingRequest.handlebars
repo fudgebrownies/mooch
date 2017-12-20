@@ -22,14 +22,13 @@
                 </a>
                 <ul class="dropdown-menu" style="list-style: none">
                     <li>
-                        <a href='/user/profile'>Profile</a>
+                        <a href='/user/profile/{{users.email}}'>Profile</a>
                     </li>
                     <li>
-                        <a href="#">Transactions</a>
-                    </li>
-                    <li>
-                        <a href='/user/products'>My Products</a>
-                    </li>
+                        <a href="/users/requests/{{users.email}}">Transactions</a> 
+          </li>
+          <li>
+            <a href='/user/products/{{users.email}}'>My Products</a>
                     <li>
                         <p>
                             <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
@@ -67,7 +66,7 @@
         {{#each renterStuff}}
         <div class="col-sm-4">
          
-             <img src='https://s3-us-west-1.amazonaws.com/moochify/{{photo1}}'>
+             <img id='transctionPhoto' src='https://s3-us-west-1.amazonaws.com/moochify/{{Photo1}}'>
 
 <ol>
     <li>Product Id: {{id}}</li>
@@ -92,7 +91,7 @@
         </div>
         
         <div class="col-sm-12">
-            <p class="text-center">You have no pending request</p>
+     
         </div>
     
     </div>
