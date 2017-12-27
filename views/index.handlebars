@@ -8,7 +8,9 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto">
     </ul>
-    {{!-- {{#with users}} --}} {{#if users.token}}
+    
+ {{#if users}}
+
     <p id={{users.emai}}>
       <li class="dropdown">
         <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown" style="list-style: none">{{users.email}}
@@ -39,7 +41,7 @@
 
     <button class="newUserReg btn btn-secondary" value="Register">Register</button>
 
-    {{/if}} {{!-- {{/with}} --}}
+    {{/if }} {{!-- {{/with}} --}}
   </div>
 </nav>
 
@@ -58,6 +60,7 @@
       </div>
       <div class="modal-body">
         <form>
+          <div id='wrong'></div>
           <div class="form-group">
             <label for="usr">E-mail:</label>
             <input type="text" class="form-control" id="usr">
@@ -70,7 +73,7 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button id='signInButton' data-dismiss="modal" type="button" class="btn btn-primary">Sign In</button>
+        <button id='signInButton'   class="btn btn-primary">Sign In</button>
       </div>
     </div>
   </div>

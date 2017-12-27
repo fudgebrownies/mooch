@@ -8,7 +8,7 @@ var exphbs = require("express-handlebars");
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-var jwt = require('jsonwebtoken');
+//var jwt = require('jsonwebtoken');
 process.env.SECRET_KEY="myBadAss"
 //authenication  
 // var session = require('express-session')
