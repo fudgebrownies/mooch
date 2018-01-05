@@ -462,6 +462,7 @@ module.exports = function (app) {
 
 
           }
+          users.push(currentUser)
           //           var expires = moment().add('days', 7).valueOf();
           // var token = jwt.encode({
           //   iss:currentUser.id ,
