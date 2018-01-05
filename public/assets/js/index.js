@@ -156,6 +156,15 @@ else{
         console.log("Welcome!");
         // Reload the page to get the updated list
        
+       
+        document.location.href = "/";
+      }
+     
+      }
+
+
+    ).then(
+      function () {
         $.ajax("/upload", {
           type: "POST",
           data: formData,
@@ -166,15 +175,6 @@ else{
           }
 
         })
-        document.location.href = "/";
-      }
-     
-      }
-
-
-    ).then(
-      function () {
-        
 
       })
 
