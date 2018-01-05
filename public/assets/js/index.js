@@ -146,25 +146,35 @@ else{
       type: "POST",
       data: newUser
     }).then(
-      function () {
+      function (h) {
+        if(h=='already'){
+         alert('There Is An Account Already Registered With That Email. Please Enter A Diffrent Email Address');
+         $('#email').css("background-color", "red");
+        }else{
+
+       
         console.log("Welcome!");
         // Reload the page to get the updated list
-        document.location.href = "/";
-      }
-
-
-    ).then(
-      function () {
+       
         $.ajax("/upload", {
           type: "POST",
           data: formData,
           contentType: false,
           processData: false,
           success: function (data) {
-            alert(data);
+         
           }
 
         })
+        document.location.href = "/";
+      }
+     
+      }
+
+
+    ).then(
+      function () {
+        
 
       })
 

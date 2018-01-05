@@ -5,9 +5,10 @@ var db = require("../models");
 // var keys = require("./keys.js");
 // var facebook = process.env.FB || keys.facebook.password;
 var sengrido = process.env.sendgrid
-var jwt = require('jwt-simple');
+// var jwt = require('jwt-simple');
 // fileKey=require("./sendfile key.js")
-
+// var express = require("express");
+// var bodyParser = require("body-parser");
 // var passport = require('passport')
 // var session = require('express-session');
 //fileKey=require("./sendfile key")
@@ -16,13 +17,13 @@ aws = require('aws-sdk'),
   multer = require('multer'),
   multerS3 = require('multer-s3');
 aws.config.update({
-  accessKeyId: process.env.s3_secret,
-  secretAccessKey: process.env.s3_key
+  accessKeyId: process.env.s3_key,
+  secretAccessKey: process.env.s3_secret
 });
-var jwtauth = require('./jwtauth.js');
+// var jwtauth = require('./jwtauth.js');
 
-// var jwt = require('jsonwebtoken');
-// var secret = process.env.jwt_secret || 'kwefkjfknwdnmqklmnlk*((*('
+var jwt = require('jsonwebtoken');
+var secret = process.env.jwt_secret 
 
 s3 = new aws.S3();
 
@@ -33,11 +34,11 @@ s3 = new aws.S3();
 module.exports = function (app) {
 
 
-  app.set('jwtTokenSecret', process.env.jwt_secret||'kwefkjfknwdnmqklmnlk*((*(');
+  app.set('jwtTokenSecret', process.env.jwt_secret || 'kwefkjfknwdnmqklmnlk*((*(');
   var upload = multer({
     storage: multerS3({
       s3: s3,
-      bucket: 'moochify',
+      bucket: 'techcheckbucket',
       acl: 'public-read',
       key: function (req, file, cb) {
         cb(null, file.originalname); //use Date.now() for unique file keys
@@ -56,72 +57,7 @@ module.exports = function (app) {
   userproducts = [];
   userNProductsArray = [];
 
-  // function getToken(email) {
 
-
-  //   db.users.findOne({
-  //     where: {
-  //       email: email
-  //     }
-  //   }).then(function (checkUser) {
-  //     // console.log(checkUser)
-
-      // if (req.body.email)
-      //   bcrypt.compare(req.body.password, checkUser.password).then(function (pass) {
-      //     if (pass == true && req.body.email == checkUser.email) {
-      //       console.log('you got it write')
-
-
-      //       // console.log(token)
-      //       splitAddy = checkUser.dataValues.address.split(' ');
-      //       homeAdress = splitAddy[0] + ' ' + splitAddy[1];
-      //       homeCity = splitAddy[2];
-      //       homeState = splitAddy[3];
-      //       homeZipCode = splitAddy[4]
-
-      //       const currentUser = {
-      //         id: checkUser.dataValues.id,
-      //         email: checkUser.dataValues.email,
-      //         token: token,
-      //         firstName: checkUser.dataValues.firstName,
-      //         lastName: checkUser.dataValues.lastName,
-      //         profilePic: checkUser.dataValues.profilePic,
-      //         phoneNumber: checkUser.dataValues.phoneNumber,
-  //             address: homeAdress,
-  //             city: homeCity,
-  //             state: homeState,
-  //             zipCode: homeZipCode,
-
-  //           }
-  //           var token = jwt.encode({
-  //             auth: 'magic',
-  //             agent: req.headers['user-agent'],
-  //             currentUser: {
-  //               currentUser
-  //             },
-  //             exp: Math.floor(new Date().getTime() / 1000) + 7 * 24 * 60 * 60, // Note: in seconds!
-  //           }, secret);
-  //           // console.log(currentUser.token)
-  //           //  users.push(token)
-  //           //console.log(users)
-  //           console.log('fuck')
-  //           //console.log(token.currentUser)
-  //           console.log('hitler')
-  //           // console.log('here in yourmom')
-  //           // console.log(users[0].token)
-  //           // console.log('token done')
-  //           // console.log('p')
-
-  //           //  res.json(currentUser.token)
-  //         } else {
-  //           console.log('you got it wrong')
-  //         }
-
-
-  //       });
-
-  //   })
-  // }
 
   app.post('/upload', upload.array('upl', 1), function (req, res, next) {
 
@@ -143,12 +79,12 @@ module.exports = function (app) {
       res.redirect(303, '/user/products')
     })
   })
-
-  app.get("/",[ jwtauth], function (req, res) {
-   // console.log(users[0])
+  //[bodyParser.json(), jwtauth]
+  app.get("/", function (req, res) {
+    // console.log(users[0])
     //  console.log({zipcodeKeys})
     // console.log(users[0])
-   
+
     // console.log(userproducts)
     res.render("index", {
       users: users[0],
@@ -197,7 +133,7 @@ module.exports = function (app) {
       userProducts: userproducts
     })
   })
-
+  
   app.get('/user/products/:email', function (req, res) {
     console.log(req.params.email)
     userProductPageArray = [];
@@ -509,14 +445,14 @@ module.exports = function (app) {
           homeCity = splitAddy[2];
           homeState = splitAddy[3];
           homeZipCode = splitAddy[4]
-var fullName=checkUser.dataValues.firstName+' '+checkUser.dataValues.lastName;
+          var fullName = checkUser.dataValues.firstName + ' ' + checkUser.dataValues.lastName;
           const currentUser = {
             id: checkUser.dataValues.id,
             email: checkUser.dataValues.email,
             token: token,
             firstName: checkUser.dataValues.firstName,
             lastName: checkUser.dataValues.lastName,
-            fullName:fullName,
+            fullName: fullName,
             profilePic: checkUser.dataValues.profilePic,
             phoneNumber: checkUser.dataValues.phoneNumber,
             address: homeAdress,
@@ -526,27 +462,33 @@ var fullName=checkUser.dataValues.firstName+' '+checkUser.dataValues.lastName;
 
 
           }
-          var expires = moment().add('days', 7).valueOf();
-var token = jwt.encode({
-  iss:currentUser.id ,
-  exp: expires
-}, app.get('jwtTokenSecret'));
+          //           var expires = moment().add('days', 7).valueOf();
+          // var token = jwt.encode({
+          //   iss:currentUser.id ,
+          //   exp: expires
+          // }, app.get('jwtTokenSecret'));
+          // console.log('me')
+          // console.log(token)
+          // res.json({
+          //   token : token,
+          //   expires: expires,
+          //   user: currentUser
+          // });
+          // console.log(currentUser.token)
+          var token = jwt.sign({
+            auth: currentUser,
+            agent: req.headers['user-agent'],
+            currentUser: currentUser,
+            exp: Math.floor(new Date().getTime() / 1000) + 7 * 24 * 60 * 60, // Note: in seconds!
+          }, secret);
+          //console.log(token)
 
-         // console.log(currentUser.token)
-          // var token = jwt.sign({
-          //   auth: currentUser,
-          //  // agent: req.headers['user-agent'],
-          //  // currentUser: currentUser,
-          //   exp: Math.floor(new Date().getTime() / 1000) + 7 * 24 * 60 * 60, // Note: in seconds!
-          // }, secret);
-//console.log(token)
-users.push(currentUser)
           // console.log('here in yourmom')
           // console.log(users[0].token)
           // console.log('token done')
           // console.log('p')
           //users.push(currentUser)
-           res.redirect(303, '/')
+          res.redirect(303, '/')
           //  res.json(currentUser.token)
         } else {
           res.json('wrong')
@@ -565,7 +507,7 @@ users.push(currentUser)
     console.log('lol i am here in your mom')
     console.log(users[0])
     console.log('i after youmlm')
-   
+
     console.log('fnknfkjwenfkjnknfk')
     // console.log(req.body)
 
@@ -629,6 +571,23 @@ users.push(currentUser)
 
         console.log(err)
       }
+      db.users.findOne({
+        where: {
+          email: req.body.email
+        }
+      }).then(function (data) {
+        if (data != null) {
+
+          console.log('bitches fnjksafnakKn')
+          doIt.json('already')
+
+
+        }
+else{
+
+
+
+
       db.users.create({
 
           email: req.body.email,
@@ -642,7 +601,7 @@ users.push(currentUser)
 
         })
         .then(function (dbPost) {
-          console.log('dbpsostn FUCKYOU MOTHER FUCKING ')
+
 
 
           const sgMail = require('@sendgrid/mail');
@@ -662,7 +621,7 @@ users.push(currentUser)
             // html: '<strong>' + name + ' ' + 'Please Click The Link to Register Your Email <br> </strong>',
           };
 
-          // sgMail.send(msg);
+          sgMail.send(msg);
           var user_id = dbPost.dataValues.id
 
           console.log('done')
@@ -672,11 +631,15 @@ users.push(currentUser)
 
           doIt.redirect(303, '/')
 
-
-
-
-
         })
+
+
+
+      }
+
+
+    })
+
     });
   })
 
@@ -688,8 +651,8 @@ users.push(currentUser)
   //   done(null, user_id);
   // });
   app.put('/signOut', function (req, res) {
-    users.splice(0,users.length);
-   
+    users.splice(0, users.length);
+
     //  console.log(req.body)
     db.users.update({
       signedIn: false
@@ -700,7 +663,7 @@ users.push(currentUser)
     }).then(function () {
       /// console.log(userProducts)
       res.redirect(303, '/')
-     
+
       userproducts.splice(0, userproducts.length)
       // console.log(users)
     })
