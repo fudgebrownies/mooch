@@ -2,7 +2,54 @@
 
 $(function () {
   var emailAddress;
+  if (sessionStorage != null) {
+    // console.log(sessionStorage.getItem("JWT"))
 
+    // $.ajax('/', {
+    //   type: 'GET',
+    //   data: sessionStorage.getItem("JWT")
+    // })
+    // $.ajax('/add',{
+    //   type:'GET',
+    //   data:sessionStorage.getItem("JWT")
+    // })
+    // $.ajax('/new/users',{
+    //   type:'GET',
+    //   data:sessionStorage.getItem("JWT")
+    // })
+
+    // $.ajax('/user/products/:email',{
+    //   type:'GET',
+    //   data:sessionStorage.getItem("JWT")
+    //   })
+    //   $.ajax('/find/all/products',{
+    //   type:'GET',
+    //   data:sessionStorage.getItem("JWT")
+    // })
+    // $.ajax("/users/profile/:user",{
+    //   type:'GET',
+    //   data:sessionStorage.getItem("JWT")
+    // })
+    // $.ajax('/users/requests/:email?',{
+    //   type:'GET',
+    //   data:sessionStorage.getItem("JWT")
+    // })
+    // $.ajax('/edit/profile',{
+    //   type:'GET',
+    //   data:sessionStorage.getItem("JWT")
+    // })
+    
+
+
+
+
+  }
+  else {
+
+    console.log('no TOKEN')
+  }
+
+ 
 
   $('.RequestRent').on('click', function (event) {
     event.preventDefault()
@@ -25,7 +72,7 @@ $(function () {
 
         // window.location.reload(true);
       }
-    )
+      )
   })
   $('.newUserReg').on('click', function () {
     document.location.href = "/new/users";
@@ -62,24 +109,27 @@ $(function () {
 
     }).then(
       function (hit) {
-        console.log(hit)
+        // console.log(hit)
         if (hit == 'wrong') {
           $('#wrong').html('Wrong Email or Password')
           $('#signInModal').modal('show');
-        $('#wrong').css({'color':'red','font-size':'30px', 'text-align': 'center','font-family': 'Bungee, cursive'})
+          $('#wrong').css({ 'color': 'red', 'font-size': '30px', 'text-align': 'center', 'font-family': 'Bungee, cursive' })
           $("#pwd").css("background-color", "red");
           $("#usr").css("background-color", "red");
         }
-else{
-  $('#signInModal').modal('hide');
-   window.location.reload(true);
-}
+        else {
+
+         // sessionStorage.setItem('JWT', hit);
+          $('#signInModal').modal('hide');
+          window.location.reload(true);
+
+        }
         //
-   
+
         // sessionStorage.setItem('token', hit);
-        
+
       }
-    )
+      )
   })
   $('#signOutUser').on('click', function (event) {
     event.preventDefault();
@@ -94,10 +144,10 @@ else{
     }).then(
       function () {
         console.log('done')
-
+        sessionStorage.removeItem('JWT');
         window.location.reload(true);
       }
-    )
+      )
 
   })
 
@@ -147,34 +197,34 @@ else{
       data: newUser
     }).then(
       function (h) {
-        if(h=='already'){
-         alert('There Is An Account Already Registered With That Email. Please Enter A Diffrent Email Address');
-         $('#email').css("background-color", "red");
-        }else{
+        if (h == 'already') {
+          alert('There Is An Account Already Registered With That Email. Please Enter A Diffrent Email Address');
+          $('#email').css("background-color", "red");
+        } else {
 
-       
-        console.log("Welcome!");
-        // Reload the page to get the updated list
-       
-       
-        document.location.href = "/";
+
+          console.log("Welcome!");
+          // Reload the page to get the updated list
+
+          $.ajax("/upload", {
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+
+            }
+
+          })
+          document.location.href = "/";
+        }
+
       }
-     
-      }
 
 
-    ).then(
+      ).then(
       function () {
-        $.ajax("/upload", {
-          type: "POST",
-          data: formData,
-          contentType: false,
-          processData: false,
-          success: function (data) {
-         
-          }
 
-        })
 
       })
 
@@ -272,15 +322,16 @@ else{
 
       .then(
 
-        function () {
-          console.log("New Listing Created");
+      function () {
+        console.log("New Listing Created");
 
-          setTimeout(function () {;
-          }, 5000);
-          // Reload the page to get the updated list
-          // document.location.href="/user/products";
+        setTimeout(function () {
+          ;
+        }, 5000);
+        // Reload the page to get the updated list
+        // document.location.href="/user/products";
 
-        }
+      }
       );
   })
   $('#finalPostConfirmation').on('click', function () {

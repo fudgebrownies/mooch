@@ -23,7 +23,7 @@ aws.config.update({
 // var jwtauth = require('./jwtauth.js');
 
 var jwt = require('jsonwebtoken');
-var secret = process.env.jwt_secret 
+var secret = process.env.jwt_secret || 'gklengknekrgnklengka'
 
 s3 = new aws.S3();
 
@@ -81,14 +81,34 @@ module.exports = function (app) {
   })
   //[bodyParser.json(), jwtauth]
   app.get("/", function (req, res) {
-    // console.log(users[0])
+   // console.log(req._parsedOriginalUrl.query)
     //  console.log({zipcodeKeys})
     // console.log(users[0])
+    console.log(req._parsedOriginalUrl.query)
+    var user1;
+if(req._parsedOriginalUrl.query != null){
 
+
+    jwt.verify(req._parsedOriginalUrl.query, secret, function(err, decoded) {      
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });    
+      } else {
+
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;      
+        
+      // console.log(decoded.auth)
+        user1=decoded.auth
+        
+      }
+    });
+  }
+  console.log('JWT')
+  console.log(user1)
     // console.log(userproducts)
     res.render("index", {
       users: users[0],
-
+    
 
     });
 
@@ -96,9 +116,88 @@ module.exports = function (app) {
 
   });
 
+  app.post("/signIn", function (req, res) {
+    // function generateToken(done){
+    //   // secret is defined in the environment variable JWT_SECRET
+    //   return token
+    // }
+
+    db.users.findOne({
+      where: {
+        email: req.body.email
+      }
+    }).then(function (checkUser) {
+      // console.log(checkUser)
+
+
+      bcrypt.compare(req.body.password, checkUser.password).then(function (pass) {
+        if (pass == true && req.body.email == checkUser.email) {
+          // console.log('you got it write')
+
+          // console.log(token)
+          splitAddy = checkUser.dataValues.address.split(' ');
+          homeAdress = splitAddy[0] + ' ' + splitAddy[1];
+          homeCity = splitAddy[2];
+          homeState = splitAddy[3];
+          homeZipCode = splitAddy[4]
+          var fullName = checkUser.dataValues.firstName + ' ' + checkUser.dataValues.lastName;
+          const currentUser = {
+            id: checkUser.dataValues.id,
+            email: checkUser.dataValues.email,
+          
+            firstName: checkUser.dataValues.firstName,
+            lastName: checkUser.dataValues.lastName,
+            fullName: fullName,
+            profilePic: checkUser.dataValues.profilePic,
+            phoneNumber: checkUser.dataValues.phoneNumber,
+            address: homeAdress,
+            city: homeCity,
+            state: homeState,
+            zipCode: homeZipCode,
+            verified:checkUser.verified
+
+
+          }
+         users.push(currentUser)
+        // console.log(currentUser)
+          var token = jwt.sign({
+            auth: currentUser,
+            agent: req.headers['user-agent'],
+            currentUser:{ currentUser },
+            exp: Math.floor(new Date().getTime() / 1000) + 7 * 24 * 60 * 60, // Note: in seconds!
+          }, secret);
+
+          //console.log(token)
+          // res.render("index", {
+          //   users:currentUser,
+          //   token 
+      
+      
+          // });
+      
+          
+          res.redirect(303, '/')
+         
+        } else {
+          res.json('wrong')
+          console.log('you got it wrong')
+        }
+
+
+      });
+
+    })
+ 
+
+
+
+
+
+
+  })
   app.post('/product/find', function (req, res) {
 
-    https: //www.zipcodeapi.com/rest/<api_key>/distance.<format>/<zip_code1>/<zip_code2>/<units>
+   // https: //www.zipcodeapi.com/rest/<api_key>/distance.<format>/<zip_code1>/<zip_code2>/<units>
       //console.log(req.body)
 
       db.products.findOne({
@@ -217,7 +316,7 @@ module.exports = function (app) {
         email: req.params.user
       }
     }).then(function (db) {
-
+console.log(db)
       splitAddy = db.dataValues.address.split(' ');
       homeAdress = splitAddy[0] + ' ' + splitAddy[1];
       homeCity = splitAddy[2];
@@ -421,105 +520,6 @@ module.exports = function (app) {
   })
 
 
-  app.post("/signIn", function (req, res) {
-    // function generateToken(done){
-    //   // secret is defined in the environment variable JWT_SECRET
-    //   return token
-    // }
-
-    db.users.findOne({
-      where: {
-        email: req.body.email
-      }
-    }).then(function (checkUser) {
-      // console.log(checkUser)
-
-
-      bcrypt.compare(req.body.password, checkUser.password).then(function (pass) {
-        if (pass == true && req.body.email == checkUser.email) {
-          console.log('you got it write')
-
-          // console.log(token)
-          splitAddy = checkUser.dataValues.address.split(' ');
-          homeAdress = splitAddy[0] + ' ' + splitAddy[1];
-          homeCity = splitAddy[2];
-          homeState = splitAddy[3];
-          homeZipCode = splitAddy[4]
-          var fullName = checkUser.dataValues.firstName + ' ' + checkUser.dataValues.lastName;
-          const currentUser = {
-            id: checkUser.dataValues.id,
-            email: checkUser.dataValues.email,
-            token: token,
-            firstName: checkUser.dataValues.firstName,
-            lastName: checkUser.dataValues.lastName,
-            fullName: fullName,
-            profilePic: checkUser.dataValues.profilePic,
-            phoneNumber: checkUser.dataValues.phoneNumber,
-            address: homeAdress,
-            city: homeCity,
-            state: homeState,
-            zipCode: homeZipCode,
-
-
-          }
-          users.push(currentUser)
-          //           var expires = moment().add('days', 7).valueOf();
-          // var token = jwt.encode({
-          //   iss:currentUser.id ,
-          //   exp: expires
-          // }, app.get('jwtTokenSecret'));
-          // console.log('me')
-          // console.log(token)
-          // res.json({
-          //   token : token,
-          //   expires: expires,
-          //   user: currentUser
-          // });
-          // console.log(currentUser.token)
-          var token = jwt.sign({
-            auth: currentUser,
-            agent: req.headers['user-agent'],
-            currentUser: currentUser,
-            exp: Math.floor(new Date().getTime() / 1000) + 7 * 24 * 60 * 60, // Note: in seconds!
-          }, secret);
-          //console.log(token)
-
-          // console.log('here in yourmom')
-          // console.log(users[0].token)
-          // console.log('token done')
-          // console.log('p')
-          //users.push(currentUser)
-          res.redirect(303, '/')
-          //  res.json(currentUser.token)
-        } else {
-          res.json('wrong')
-          console.log('you got it wrong')
-        }
-
-
-      });
-
-    })
-    console.log(req.body)
-
-    console.log('lol i am here in ')
-    console.log(req.body)
-
-    console.log('lol i am here in your mom')
-    console.log(users[0])
-    console.log('i after youmlm')
-
-    console.log('fnknfkjwenfkjnknfk')
-    // console.log(req.body)
-
-
-
-
-
-
-
-
-  })
   app.get('/email/verification/:email?', function (req, res) {
 
     db.users.findOne({
