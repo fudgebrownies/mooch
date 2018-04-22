@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <a class="navbar-brand title" href="/">MOOCH</a>
+    {{!-- <form class="form-inline input-group w-50">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </div>
+    </form> --}}
+    <div class="btn-group ml-auto" role="group" aria-label="Basic example">
+        {{users.email}} {{#if users}}
+
+        <p id={{users.emai}}>
+            <li class="dropdown">
+                <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown" style="list-style: none">{{users.email}}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href='/user/profile/{{users.email}}'>Profile</a>
+                    </li>
+                    <li>
+                        <a href="/users/requests/{{users.email}}">Transactions</a>
+                    </li>
+                    <li>
+                        <a href='/user/products/{{users.email}}'>My Products</a>
+                    </li>
+                    <li>
+                        <p>
+                            <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </p>
+        {{else}}
+        <button class="btn btn btn-outline-primary" data-toggle="modal" data-target="#signInModal" id="signIn">Sign-in</button>
+        <a class="btn btn btn-outline-secondary newUserReg" value="Register" href="/new/users">Register</a>
+        {{/if }}
+    </div>
+</nav>
+
+<div class="categories">
+    {{!-- <div class="d-lg-flex">
+        <button class="btn btn-outline-dark btn-sm align-items-lg-stretch">Garage</button>
+        <button class="btn btn-outline-dark btn-sm align-items-lg-stretch">Sport</button>
+        <button class="btn btn-outline-dark btn-sm">Camping</button>
+        <button class="btn btn-outline-dark btn-sm">Kitchen</button>
+        <button class="btn btn-outline-dark btn-sm">Electronic</button>
+        <button class="btn btn-outline-dark btn-sm">Garden</button>
+        <button class="btn btn-outline-dark btn-sm">Vehicles</button>
+        <button class="btn btn-outline-dark btn-sm">Tools</button>
+    </div> --}}
+    <ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <a class="nav-link " href="#">Garage</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Sport</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Camping</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Kitchen</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Electronic</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Garden</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Vehicles</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Tools</a>
+  </li>
+</ul>
+</div>

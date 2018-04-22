@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+.head-bg-image {
+    width: 100%;
+    height: 80vh;
+    background-image: url('../images/ricky-kharawala-308072-unsplash.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    background-attachment: fixed;
+}
+
+
+.title{
+    font-family: 'Pacifico', cursive;
+    font-weight: 900;
+}
+
+
+hr{
+    border: 1px solid rgb(204, 204, 204);
+}

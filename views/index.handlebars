@@ -1,51 +1,3 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">MOOCH</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
-    </ul>
-
- {{users.email}}
- {{#if users}}
-
-    <p id={{users.emai}}>
-      <li class="dropdown">
-        <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown" style="list-style: none">{{users.email}}
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li>
-            <a href='/user/profile/{{users.email}}'>Profile</a>
-          </li>
-          <li>
-            <a href="/users/requests/{{users.email}}">Transactions</a> 
-          </li>
-          <li>
-            <a href='/user/products/{{users.email}}'>My Products</a>
-          </li>
-          <li>
-            <p>
-              <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
-            </p>
-          </li>
-        </ul>
-      </li>
-    </p>
-    {{else}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-      Sign-in
-    </button>
-
-    <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-
-    {{/if }} 
-  </div>
-</nav>
-
 <!-- Button trigger modal -->
 
 
@@ -74,66 +26,54 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button id='signInButton'   class="btn btn-primary">Sign In</button>
+        <button id='signInButton' class="btn btn-primary">Sign In</button>
       </div>
     </div>
   </div>
 </div>
 
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="http://i2.wp.com/boardsandpowder.com/wp-content/uploads/2017/10/DSC_0109.jpg" alt="First slide"
-        height="500">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="images/tools.jpg" alt="Second slide" height="500">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="http://sportsrec.kennesaw.edu/outdoor/images/EquipmentRental.jpg" alt="Third slide" height="500">
-    </div>
+<div class='head-bg-image'>
+  <div class="container">
+
   </div>
 </div>
 
 
 
-
-
-
-<form id="searchBar">
-  <div class="row">
-    <!-- <div class="form-group"> -->
-    <div class="col-sm-5">
-      <!-- USER INPUT AREA -->
-      <input type="text" class="form-control " placeholder="Search for things to RENT" id="userSearch">
+{{!--
+<div class="container">
+  <form class='flex-column ' id="searchBar">
+    <div class="row">
+      <!-- <div class="form-group"> -->
+      <div class="col-sm-12 w-auto">
+        <!-- USER INPUT AREA -->
+        <input type="text" class="form-control " placeholder="Search for things to RENT" id="userSearch">
+      </div>
+      <div class="col-sm-12 w-auto">
+        <input type="text" class="form-control my-2" placeholder="Zipcode" id="zipCode">
+        <span id="error"></span>
+      </div>
+      <!-- SUBMIT BUTTON -->
+      <div class="col-sm-12 w-auto">
+        <input type="submit" class="btn btn-primary w-100 submitSearch">
+      </div>
     </div>
-    <div class="col-sm-5">
-      <input type="text" class="form-control" placeholder="Zipcode" id="zipCode">
-      <span id="error"></span>
-    </div>
-    <!-- SUBMIT BUTTON -->
-    <input type="submit" class="btn btn-primary submitSearch">
-  </div>
-  </div>
-  <!-- noSearch Results Section -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div id="noSearchResults"></div>
-    </div>
-  </div>
-</form>
 
+    <!-- noSearch Results Section -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div id="noSearchResults"></div>
+      </div>
+    </div>
+  </form>
+</div> --}} {{!--
 <div class="row">
   <div class="col-sm-12 text-center">
     <a class="btn btn-primary" id="findAllButton">Find All</a>
   </div>
 </div>
-
-
-<br>
-<br>
-
+--}}
 
 
 
@@ -141,83 +81,135 @@
     ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
 <!-- 비부분은 웹사이트 소계  -->
-<div class="container marketing">
-
-  <!-- Three columns of text below the carousel -->
+<div class="container marketing text-center my-5">
+  <h1 class="mb-5">What is
+    <span class='title'>MOOCH?</span>
+  </h1>
   <div class="row">
-    <div class="col-lg-4">
-      <img class="rounded-circle" src="http://rentappease.com/wp-content/uploads/2017/06/rent.jpg" alt="Generic placeholder image"
-        width="140" height="140">
-      <h2>MOOCHEE</h2>
-      <p>A "MOOCHEE" is someone who own tools and other products where they spent alot of money to purchase but rarely use.
-        Why not make some side cash by renting it out??? Become a official MOOCHEE!!!
-      </p>
+    <div class="col-sm-4 step d-flex align-items-stretch">
+      <div class="card mx-auto my-3" style="width: 18rem;">
+        <img class="card-img-top" src="images/powertool.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">STEP 1: Find something you can rent out!</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
     </div>
-    <!-- /.col-lg-4 -->
-    <div class="col-lg-4">
-      <img class="rounded-circle" src="https://i.pinimg.com/736x/f2/83/65/f283658970fdecca443d01fa2faf1544--apartment-patio-decorating-small-apartment-patios.jpg"
-        alt="Generic placeholder image" width="140" height="140">
-      <h2>WTF is MOOCH??</h2>
-      <p>MOOCH is medium for people to find things that they need but don't need to purchase OR for people who have a lot of
-        things but rarely use them. </p>
+    <div class="col-sm-4 step d-flex align-items-stretch">
+      <div class="card mx-auto my-3" style="width: 18rem;">
+        <img class="card-img-top" src="images/post.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Post the item on
+            <span class='title'>MOOCH</span>!</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
     </div>
-    <!-- /.col-lg-4 -->
-    <div class="col-lg-4">
-      <img class="rounded-circle" src="https://uncw.edu/campusrec/adventures/images/RentalBoats.jpg" alt="Generic placeholder image"
-        width="140" height="140">
-      <h2>MOOCHER</h2>
-      <p>Need something really bad but don't want to pay big $$$ to purchase the product? Save some money and make a friend
-        around your neighborhood by renting through MOOCH.</p>
+    <div class="col-sm-4 step d-flex align-items-stretch">
+      <div class="card mx-auto my-3" style="width: 18rem;">
+        <img class="card-img-top" src="images/cash.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Make $$ when you rent it out!</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
     </div>
-    <!-- /.col-lg-4 -->
-  </div>
-  <!-- /.row -->
-
-  <hr>
-
-
-  <!-- START THE FEATURETTES -->
-  <!-- 이부분에는 카타고리 삽입 사진과 함께 use cards?? -->
-  <div class="conatiner">
+    <!-- Three columns of text below the carousel -->
+    {{!--
     <div class="row">
-      <div class="col-sm-12">
-        <h1 class="text-center"> Categories </h1>
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="http://rentappease.com/wp-content/uploads/2017/06/rent.jpg" alt="Generic placeholder image"
+          width="140" height="140">
+        <h2>MOOCHEE</h2>
+        <p>A "MOOCHEE" is someone who own tools and other products where they spent alot of money to purchase but rarely use.
+          Why not make some side cash by renting it out??? Become a official MOOCHEE!!!
+        </p>
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="https://i.pinimg.com/736x/f2/83/65/f283658970fdecca443d01fa2faf1544--apartment-patio-decorating-small-apartment-patios.jpg"
+          alt="Generic placeholder image" width="140" height="140">
+        <h2>WTF is MOOCH??</h2>
+        <p>MOOCH is medium for people to find things that they need but don't need to purchase OR for people who have a lot
+          of things but rarely use them. </p>
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="rounded-circle" src="https://uncw.edu/campusrec/adventures/images/RentalBoats.jpg" alt="Generic placeholder image"
+          width="140" height="140">
+        <h2>MOOCHER</h2>
+        <p>Need something really bad but don't want to pay big $$$ to purchase the product? Save some money and make a friend
+          around your neighborhood by renting through MOOCH.</p>
+      </div>
+      <!-- /.col-lg-4 -->--}}
+    </div>
+    <!-- /.row -->
 
+    <hr>
+
+
+    <!-- START THE FEATURETTES -->
+    <!-- 이부분에는 카타고리 삽입 사진과 함께 use cards?? -->
+    <div class="container recent-listing my-5">
+      <h4 class='text-left'>Recent Listings: </h4>
+      <div class="row">
+        <div class="col-sm-4 d-flex align-items-stretch ">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="images/motorcycle.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 d-flex align-items-stretch">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="images/skiis.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 d-flex align-items-stretch">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="images/weights.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="row text-center">
-      <div class="col-sm-4">
-        <img src="http://calhan.co/sites/default/files/styles/content_detail_banner/public/photos/2014/04/full/allrental2.jpg" alt=""
-          class="center-block" width="300" height="300" />
-        <h2>Machinery</h2>
+    <hr>
+    <!-- /END THE FEATURETTES -->
+    <div class="container recent-rentals my-5">
+      <h4 class='text-left'>Recent Rentals: </h4>
+      <div class="row">
+        <div class="col-sm-4 d-flex align-items-stretch ">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="images/couch.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 d-flex align-items-stretch">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="images/bicycle.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 d-flex align-items-stretch">
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="images/laptop.jpg" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="col-sm-4 center-block">
-        <img src="https://www.americantoolandpartyrental.com/hdrs/homepage9.jpg" alt="" class="center-block" width="300" height="300"
-        />
-        <h2>Recreation & Party Supplies</h2>
-      </div>
-
-      <div class="col-sm-4 center-block">
-        <img src="http://sportsrec.kennesaw.edu/outdoor/images/EquipmentRental.jpg" alt="" class="center-block" width="300" height="300"
-        />
-        <h2>Sports & Outdoors</h2>
-      </div>
-
     </div>
+
   </div>
-  <!-- /END THE FEATURETTES -->
-
-  <br>
-  <br>
-  <hr>
-
-  <!-- FOOTER -->
-  <footer class="footer text-center">
-    <div class="container">
-      <small>© Copyright 2017 MOOCH</small>
-    </div>
-  </footer>
-
-</div>

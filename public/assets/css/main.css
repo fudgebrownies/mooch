@@ -3,11 +3,9 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-bottom: 3rem;
   color: #5a5a5a;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  padding-bottom: 40px;
   color: #5a5a5a;
 }
 
@@ -124,6 +122,12 @@ li {
   margin: 5px;
   padding: 5px;
 }
+
+/* Category buttons
+.btn.btn-outline-dark {
+  flex-grow: 1;
+} */
+
 
 /* List Grid view  */
 
