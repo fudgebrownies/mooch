@@ -15,7 +15,52 @@
     font-weight: 900;
 }
 
+.title.head-title.text-center{
+    line-height: 80vh;
+    color: white;
+    font-size: 70px;
+    text-align: center;
+}
+
+.category-item a {
+    color: black;
+}
+
+.card.mx-auto img{
+    height: 10rem;
+}
 
 hr{
     border: 1px solid rgb(204, 204, 204);
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 25px;
+  width: 25px;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-image: none;
+}
+
+.carousel-control-prev{
+    left: -100px;
+}
+
+.carousel-control-next{
+    right: -100px;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  color: blue;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  color: blue;
 }
