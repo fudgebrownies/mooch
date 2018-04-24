@@ -1,134 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">MOOCH</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
-        </ul>
-
-        </ul>
-
-
-        {{#if users.signedIn}}
-        <p id='usersEmail' usersEmailAddress={{users.email}}>
-            <li class="dropdown">
-                <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" style="list-style: none">
-                    <li>
-                        <a href='/user/profile'>Profile</a>
-                    </li>
-                    <li>
-                        <a href="/users/requests/{{users.email}}">Transactions</a>
-                    </li>
-                    <li>
-                        <a href='/user/products'>My Products</a>
-                    </li>
-                    <li>
-                        <p>
-                            <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
-                        </p>
-                    </li>
-                </ul>
-            </li>
-        </p>
-        {{else}}
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-            Sign-in
-        </button>
-
-        <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-
-        {{/if}}
-    </div>
-
-
-
-</nav>
-
-<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sign-In</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="usr">E-mail:</label>
-                        <input type="text" class="form-control" id="usr">
+<div class="allProductsPage" style="background: gray; height: 100%; width: 100%; padding: 75px 0;">
+    <div class="container allProdContainer" style="background:#F5F5F5; padding: 75px 25px; border-radius: 15px;">
+        {Category Listing}
+        <div class="row">
+            {{#each allProd}}
+            <div class="col-sm-4">
+                <div class="card-group">
+                    <div class="card mb-5 text-center" style="width: 18rem;">
+                        <img class="card-img-top" id='photosForAll' src='https://s3-us-west-1.amazonaws.com/techcheckbucket/{{userUploadImage1}}'
+                            upload={{userUploadImage1}}>
+                        <div class="card-body bg-light">
+                            <h5 class="card-title">{{product_name}} {{category}}</h5>
+                            <p class="card-text">{{product_description}}</p>
+                            <p class="card-text">Price : ${{daily}}/day ${{weekly}}/week</p>
+                            <p class="card-text">Security Deposit : ${{security_deposit}}</p>
+                            <button class='btn btn-outline-info align-content-center' productId={{id}} type="button" href=>More Details</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                </form>
+                </div>
             </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                <button id='signInButton' data-dismiss="modal" type="button" class="btn btn-primary">Sign In</button>
-            </div>
+            {{/each}}
         </div>
     </div>
 </div>
-
-<div class="container" id="individualProductDetails">
-    <div class="row">
-        <div class="col-sm-12">
-
-        </div>
-    </div>
-
-    <div class="row">
-        {{#each allProd}}
-        <div class="col-sm-4">
-
-            <br>
-           
-                <img id='photosForAll' src='https://s3-us-west-1.amazonaws.com/techcheckbucket /{{userUploadImage1}}' upload={{userUploadImage1}}>
- 
-
-
-            <ul><li productId={{id}}>Product Id: {{id}}</li>
-                <li>Product: {{product_name}}</li>
-                <li>Category: {{category}}</li>
-                <li>Description : {{product_description}}</li>
-            </ul>
-            <ul>Rental Costs :
-                <li>${{daily}}/day</li>
-                <li>${{weekly}}/week</li>
-                <li>${{monthly}}/month</li>
-                <li>Security Deposit : ${{security_deposit}}</li>
-            </ul>
-            <h6 id='sellersEmail'>Sellers Email: {{email}}</h6>
-
-            <a class="btn btn-primary emailOwner" productId={{id}} href="">Ask owner questions</a>
-            <a class="btn btn-primary RequestRent" productId={{id}} href="">Request/Schedule Rent</a>
-
-
-        </div>
-        {{/each}}
-
-    </div>
-
-</div>
-
-
-<br>
-<hr>
-<br>
-
-
-<!-- FOOTER -->
-<footer class="footer text-center">
-    <div class="container">
-        <small>© Copyright 2017 MOOCH</small>
-    </div>
-</footer>

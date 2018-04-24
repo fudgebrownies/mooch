@@ -293,9 +293,10 @@ a.navbar-brand {
   width: 150px;
   height: 100px;
 }
+
 #photosForAll{
-  width: 150px;
-  height: 100px;
+  width: 100%;
+  height: 150px;
 }
 #transctionPhoto{
   width: 200px;
