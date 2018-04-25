@@ -17,15 +17,16 @@
                     <a class="dropdown-item" href='/user/profile/{{users.email}}'>Profile</a>
                 </li>
                 <li>
+                    <a class="dropdown-item" href='/add/products'>Add Product</a>
+                </li>
+                <li>
                     <a class="dropdown-item" href="/users/requests/{{users.email}}">Transactions</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href='/user/products/{{users.email}}'>My Products</a>
                 </li>
                 <li>
-                    <p>
-                        <a class="dropdown-item btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
-                    </p>
+                    <a class="dropdown-item" id='signOutUser' email={{users.email}}>Sign Out</a>
                 </li>
             </ul>
         </li>
@@ -37,17 +38,6 @@
 </nav>
 
 <div class="categories">
-    {{!--
-    <div class="d-lg-flex">
-        <button class="btn btn-outline-dark btn-sm align-items-lg-stretch">Garage</button>
-        <button class="btn btn-outline-dark btn-sm align-items-lg-stretch">Sport</button>
-        <button class="btn btn-outline-dark btn-sm">Camping</button>
-        <button class="btn btn-outline-dark btn-sm">Kitchen</button>
-        <button class="btn btn-outline-dark btn-sm">Electronic</button>
-        <button class="btn btn-outline-dark btn-sm">Garden</button>
-        <button class="btn btn-outline-dark btn-sm">Vehicles</button>
-        <button class="btn btn-outline-dark btn-sm">Tools</button>
-    </div> --}}
     <ul class="nav nav-pills nav-fill border-bottom border-secondary">
         <li class="nav-item category-item">
             <a class="nav-link " href="#">Apparel</a>
@@ -80,32 +70,32 @@
 
 
 <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign-In</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign-In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
-      </div>
-      <div class="modal-body">
-        <form>
-          <div id='wrong'></div>
-          <div class="form-group">
-            <label for="usr">E-mail:</label>
-            <input type="text" class="form-control" id="usr">
-          </div>
-          <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button id='signInButton' class="btn btn-primary">Sign In</button>
-      </div>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div id='wrong'></div>
+                    <div class="form-group">
+                        <label for="usr">E-mail:</label>
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <button id='signInButton' class="btn btn-primary">Sign In</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

@@ -11,3 +11,7 @@
     background: gray;
     color: black;
 }
+
+#signOutUser:hover {
+    cursor: pointer;
+}
