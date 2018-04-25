@@ -9,6 +9,18 @@ body {
   color: #5a5a5a;
 }
 
+.page-wrapper{
+  background: gray;
+  height: 100%; 
+  width: 100%; 
+  padding: 75px 0;
+}
+
+.page-container{
+  background:#F5F5F5; 
+  padding: 75px 25px; 
+  border-radius: 15px;
+}
 
 #s{
   color:white;

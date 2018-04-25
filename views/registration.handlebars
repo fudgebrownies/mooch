@@ -1,139 +1,140 @@
  {{!-- REGISTRATION FORM --}}
+<div class="page-wrapper">
+    <div class="container page-container my-5">
+        <fieldset>
+            <legend class="text-center">Please Register to start making some $$$!!
+                <span class="req">
+                    <small> required *</small>
+                </span>
+            </legend>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="firstname">
+                            <span class="req">* </span> First name: </label>
 
-<div class="container my-5">
-    <fieldset>
-        <legend class="text-center">Please Register to start making some $$$!!
-            <span class="req">
-                <small> required *</small>
-            </span>
-        </legend>
-        <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <div class="form-group">
-                    <label for="firstname">
-                        <span class="req">* </span> First name: </label>
+                        <input class="form-control" type="text" name="firstname" id="firstName" onkeyup="Validatetxt(this)" required />
 
-                    <input class="form-control" type="text" name="firstname" id="firstName" onkeyup="Validatetxt(this)" required />
+                        <div id="errFirst"></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="lastname">
+                            <span class="req">* </span> Last name: </label>
 
-                    <div id="errFirst"></div>
+                        <input class="form-control" type="text" name="lastname" id="lastName" onkeyup="Validatetxt(this)" placeholder="hyphen or single quote OK"
+                            required />
+                        <div id="errLast"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-sm-12">
-                <div class="form-group">
-                    <label for="lastname">
-                        <span class="req">* </span> Last name: </label>
 
-                    <input class="form-control" type="text" name="lastname" id="lastName" onkeyup="Validatetxt(this)" placeholder="hyphen or single quote OK"
-                        required />
-                    <div id="errLast"></div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="phonenumber">
+                            <span class="req">* </span> Phone Number: </label>
+                        <input required type="text" name="phonenumber" id="phone" class="form-control phone" maxlength="28" onkeyup="validatephone(this);"
+                            placeholder="not used for marketing" />
+                    </div>
                 </div>
-            </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="req">* </span> Email Address: </label>
+                        <input class="form-control" required type="text" name="email" id="email" onchange="email_validate(this.value);" />
+                        <div class="status" id="status"></div>
+                    </div>
+                </div>
 
-            <div class="col-lg-6 col-sm-12">
-                <div class="form-group">
-                    <label for="phonenumber">
-                        <span class="req">* </span> Phone Number: </label>
-                    <input required type="text" name="phonenumber" id="phone" class="form-control phone" maxlength="28" onkeyup="validatephone(this);"
-                        placeholder="not used for marketing" />
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="homeAddress">
+                            <span class="req">* </span> Home Address:
+                        </label>
+                        <input class="form-control" type="text" name="homeAddress" id="address" onkeyup="Validatetxt(this)" placeholder="minimum 6 letters"
+                            required />
+                        <div id="errLast"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 col-sm-12">
-                <div class="form-group">
-                    <label for="email">
-                        <span class="req">* </span> Email Address: </label>
-                    <input class="form-control" required type="text" name="email" id="email" onchange="email_validate(this.value);" />
-                    <div class="status" id="status"></div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="form-group">
+                        <label for="homeAddress">
+                            <span class="req">* </span> City:
+                        </label>
+                        <input class="form-control" type="text" name="city" id="city" onkeyup="Validatetxt(this)" required />
+                        <div id="errLast"></div>
+                    </div>
                 </div>
-            </div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="form-group">
+                        <label for="homeState">
+                            <span class="req">* </span> State:
+                        </label>
 
-            <div class="col-lg-12">
-                <div class="form-group">
-                    <label for="homeAddress">
-                        <span class="req">* </span> Home Address:
-                    </label>
-                    <input class="form-control" type="text" name="homeAddress" id="address" onkeyup="Validatetxt(this)" placeholder="minimum 6 letters"
-                        required />
-                    <div id="errLast"></div>
+                        <input class="form-control" type="text" name="homeState" id="state" onkeyup="Validatetxt(this)" placeholder="minimum 6 letters"
+                            required />
+                        <div id="errLast"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="form-group">
-                    <label for="homeAddress">
-                        <span class="req">* </span> City:
-                    </label>
-                    <input class="form-control" type="text" name="city" id="city" onkeyup="Validatetxt(this)" required />
-                    <div id="errLast"></div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="form-group">
+                        <label for="zipCode">
+                            <span class="req">* </span> Zipcode:
+                        </label>
+                        <input class="form-control" type="number" name="zipCode" id="zip" placeholder="minimum 6 letters" required />
+                        <div id="errLast"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="form-group">
-                    <label for="homeState">
-                        <span class="req">* </span> State:
-                    </label>
-
-                    <input class="form-control" type="text" name="homeState" id="state" onkeyup="Validatetxt(this)" placeholder="minimum 6 letters"
-                        required />
-                    <div id="errLast"></div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="req">* </span> Password: </label>
+                        <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16" id="pass1" /> </p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <div class="form-group">
-                    <label for="zipCode">
-                        <span class="req">* </span> Zipcode:
-                    </label>
-                    <input class="form-control" type="number" name="zipCode" id="zip" placeholder="minimum 6 letters" required />
-                    <div id="errLast"></div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-sm-12">
-                <div class="form-group">
+                <div class="col-lg-6 col-sm-12">
                     <label for="password">
-                        <span class="req">* </span> Password: </label>
-                    <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16" id="pass1" /> </p>
+                        <span class="req">* </span> Password Confirm: </label>
+                    <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16" placeholder="Enter again to validate"
+                        id="pass2" onkeyup="checkPass(); return false;" />
+                    <span id="confirmMessage" class="confirmMessage"></span>
                 </div>
             </div>
-            <div class="col-lg-6 col-sm-12">
-                <label for="password">
-                    <span class="req">* </span> Password Confirm: </label>
-                <input required name="password" type="password" class="form-control inputpass" minlength="4" maxlength="16" placeholder="Enter again to validate"
-                    id="pass2" onkeyup="checkPass(); return false;" />
-                <span id="confirmMessage" class="confirmMessage"></span>
+
+            <div class="col-sm-12">
+                <div class="form-group text-center">
+                    <label for="profilePic">
+                        <span class="req">* </span> Please Upload A Profile Picture </label>
+                    <input required id='profilePic' type="file" onchange="return">
+
+
+                </div>
+                <div class="form-group text-center">
+
+                    {{!--
+                    <?php //$date_entered = date('m/d/Y H:i:s'); ?> --}}
+                    <input type="hidden" value="<?php //echo $date_entered; ?>" name="dateregistered">
+                    <input type="hidden" value="0" name="activate" />
+                    <hr>
+
+                    <input type="checkbox" value='true' required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');"
+                        id="field_terms">
+                    <label for="terms">I agree with the
+                        <a href="/documents/registrationTerms.pdf" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
+                    <span class="req">* </span>
+                </div>
+
+                <div class="form-group text-center">
+                    <button class="btn btn-success" id='createUser' type="submit image" name="submit_reg">Register</button>
+                </div>
+                <h5 class="text-center">You will receive an email to complete the registration and validation process. Be sure to check your spam
+                    folders.
+                </h5>
             </div>
-        </div>
-
-        <div class="col-sm-12">
-            <div class="form-group text-center">
-                <label for="profilePic">
-                    <span class="req">* </span> Please Upload A Profile Picture </label>
-                <input required id='profilePic' type="file" onchange="return">
-
-
-            </div>
-            <div class="form-group text-center">
-
-                {{!--
-                <?php //$date_entered = date('m/d/Y H:i:s'); ?> --}}
-                <input type="hidden" value="<?php //echo $date_entered; ?>" name="dateregistered">
-                <input type="hidden" value="0" name="activate" />
-                <hr>
-
-                <input type="checkbox" value='true' required name="terms" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');"
-                    id="field_terms">
-                <label for="terms">I agree with the
-                    <a href="/documents/registrationTerms.pdf" title="You may read our terms and conditions by clicking on this link">terms and conditions</a> for Registration.</label>
-                <span class="req">* </span>
-            </div>
-
-            <div class="form-group text-center">
-                <button class="btn btn-success" id='createUser' type="submit image" name="submit_reg">Register</button>
-            </div>
-            <h5 class="text-center">You will receive an email to complete the registration and validation process. Be sure to check your spam folders.
-            </h5>
-        </div>
-        <!-- ends register form -->
-    </fieldset>
+            <!-- ends register form -->
+        </fieldset>
+    </div>
 </div>
-
 
 <!-- ends register form -->
 
