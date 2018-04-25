@@ -756,4 +756,10 @@ else{
         res.json(dbPost);
       })
   })
+
+  app.get("/test/productDetails", (req, res)=>{
+    res.render('product')
+  })
 }
+
+

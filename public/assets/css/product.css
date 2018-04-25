@@ -1,0 +1,31 @@
+.sub-img {
+    height: 80px;
+    width: 80px;
+    margin: 0 auto;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+    height: 100%
+}
+
+div.container-fluid.prod-description {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+}
+
+.sub-img-ctn {
+    background: white;
+    border-radius: 10px;
+}
+
+#prod-desc-section{
+    border: 1px solid #696969;
+    border-radius: 10px;
+}

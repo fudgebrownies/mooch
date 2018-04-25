@@ -1,34 +1,135 @@
-<div class="container" id="individualProductDetails">
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>{{category}}</h1>
-            <h4>Description : {{product_description}}</h4>
+<div class="productDetails" style="background: gray; height: 100%; width: 100%; padding: 75px 0;">
+    <div class="container" style="background:#F5F5F5; padding: 75px 25px; border-radius: 15px;">
+        {{!--
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>{{category}}</h1>
+                <h4>Description : {{product_description}}</h4>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <p>{{userUploadImage1}}</p>
+        <div class="row">
+            <div class="col-sm-6">
+                <p>{{userUploadImage1}}</p>
+
+            </div>
+            <div class="col-sm-6">
+                <p>{{userUploadImage2}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <p>Rental Costs : </p>
+                <p>${{daily}}/day</p>
+                <p>${{weekly}}/week</p>
+                <p>${{monthly}}/month</p>
+                <p>Security Deposit : ${{security_deposit}}</p>
+                <p>Description : {{product_description}}</p>
+
+                <a class="btn btn-primary" href="" id="emailOwner">Ask owner questions</a>
+                <a class="btn btn-primary" href="" id="requestRent">Request/Schedule Rent</a>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div> --}}
+
+        <div class="row">
+            <div class="col-lg-6 col-sm-12" id="prod-img-section">
+                <div class="main-image">
+                    <img src="/testimg/drill.jpg" alt="">
+                </div>
+                <div class="container-fluid sub-img-ctn">
+                    <div class="row mt-3">
+                        <div class="col-sm-3">
+                            <div class="sub-img">
+                                <img data-original="/testimg/drill1.jpg" src="/testimg/drill1.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="sub-img">
+                                <img data-original="/testimg/drill2.jpg" src="/testimg/drill2.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="sub-img">
+                                <img data-original="/testimg/drill3.jpg" src="/testimg/drill3.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="sub-img">
+                                <img data-original="/testimg/drill4.jpg" src="/testimg/drill4.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 py-1" id="prod-desc-section">
+                <a href="https://blackanddecker.com">Black + Decker</a>
+                <h3 class="title my-2">Black+Decker LDX120C 20-Volt</h3>
+                <span class="title">Rental Cost:</span>
+                <div class="price-div container-fluid">
+                    <div class="row price-row">
+                        <span class='title'>Daily:</span>
+                        <p>${{product.price}}</p>
+                        <span class='title'>Weekly:</span>
+                        <p>$</p>
+                        <span class='title'>Monthly:</span>
+                        <p>$</p>
+                        <span class='title'>Security Deposit:</span>
+                        <p>$</p>
+                    </div>
+                </div>
+                <h5 class="title my-4">Description :</h5>
+                <div class="container-fluid prod-description">
+                    Minim laboris ipsum ad quis proident esse in. Ullamco eiusmod commodo irure cupidatat. Cillum ex sit proident minim laboris
+                    ad sit non quis veniam amet. Commodo id et veniam aute consequat aliqua reprehenderit velit minim laboris
+                    esse. Lorem proident sit enim labore eu deserunt commodo et eu veniam. Labore qui laborum amet culpa.
+                    Esse excepteur adipisicing ipsum pariatur et veniam veniam tempor magna.
+                </div>
+                <a href="#" class="btn btn-outline-success">Contact Owner</a>
+            </div>
 
         </div>
-        <div class="col-sm-6">
-            <p>{{userUploadImage2}}</p>
+        {{!--
+        <div id="galley">
+            <ul class="pictures">
+                <li>
+                    <img data-original="https://www.planwallpaper.com/static/images/4-Nature-Wallpapers-2014-1_ukaavUI.jpg" src="https://www.planwallpaper.com/static/images/4-Nature-Wallpapers-2014-1_ukaavUI.jpg"
+                        alt="Cuo Na Lake">
+                </li>
+                <li>
+                    <img data-original="https://www.hdwallpapers.in/walls/green_nature_dual_monitor-other.jpg" src="https://www.hdwallpapers.in/walls/green_nature_dual_monitor-other.jpg"
+                        alt="Tibetan Plateau">
+                </li>
+                <li>
+                    <img data-original="https://cdn.pixabay.com/photo/2017/12/17/19/08/away-3024773_960_720.jpg" src="https://cdn.pixabay.com/photo/2017/12/17/19/08/away-3024773_960_720.jpg"
+                        alt="Jokhang Temple">
+                </li>
+                <li>
+                    <img data-original="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                        src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                        alt="Potala Palace 1">
+                </li>
+                <li>
+                    <img data-original="../docs/images/tibet-5.jpg" src="https://image.pbs.org/video-assets/pbs/nature/241862/images/mezzanine_152.jpg"
+                        alt="Potala Palace 2">
+                </li>
+                <li>
+                    <img data-original="../docs/images/tibet-6.jpg" src="../docs/images/thumbnails/tibet-6.jpg" alt="Potala Palace 3">
+                </li>
+                <li>
+                    <img data-original="../docs/images/tibet-7.jpg" src="../docs/images/thumbnails/tibet-7.jpg" alt="Lhasa River">
+                </li>
+                <li>
+                    <img data-original="../docs/images/tibet-8.jpg" src="../docs/images/thumbnails/tibet-8.jpg" alt="Namtso 1">
+                </li>
+                <li>
+                    <img data-original="../docs/images/tibet-9.jpg" src="../docs/images/thumbnails/tibet-9.jpg" alt="Namtso 2">
+                </li>
+            </ul>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="row">
-        <div class="col-sm-6">
-            <p>Rental Costs : </p>
-            <p>${{daily}}/day</p>
-            <p>${{weekly}}/week</p>
-            <p>${{monthly}}/month</p>
-            <p>Security Deposit : ${{security_deposit}}</p>
-            <p>Description : {{product_description}}</p>
-
-            <a class="btn btn-primary" href="" id="emailOwner">Ask owner questions</a>
-            <a class="btn btn-primary" href="" id="requestRent">Request/Schedule Rent</a>
-        </div>
-        <div class="col-sm-6">
-        </div>
-    </div>
+</div>
 </div>
