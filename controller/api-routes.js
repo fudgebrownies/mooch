@@ -43,14 +43,9 @@ module.exports = function (app) {
       key: function (req, file, cb) {
         cb(null, file.originalname); //use Date.now() for unique file keys
         //var imagePath = file.originalname
-
       }
-
-
     })
   });
-
-
   app.use(bodyParser.json());
   var arrayOfPeopleRent = [];
   const users = [];
@@ -761,4 +756,10 @@ else{
         res.json(dbPost);
       })
   })
+
+  app.get("/test/productDetails", (req, res)=>{
+    res.render('product')
+  })
 }
+
+

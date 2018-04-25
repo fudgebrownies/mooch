@@ -1,0 +1,11 @@
+.profile-image{
+    background: purple;
+    border-radius: 50%; 
+    width: 250px; 
+    height: 250px !important; 
+    margin: 25px auto; 
+}
+
+.profile-text {
+    color: white;
+}
