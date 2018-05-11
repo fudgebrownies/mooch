@@ -1,138 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">MOOCH</a>
-    <div id="nav-search-wrapper">
-        <form action="" method="GET">
-            <input type="text" name="search" id="nav-search" placeholder="Search" />
-        </form>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
-        </ul>
-
-
-        {{#if users.signedIn}}
-        <p  usersEmailAddress={{users.email}} id={{users.emai}}>
-            <li class="dropdown">
-                <a href='/user/profile' class="dropdown-toggle" data-toggle="dropdown">{{users.email}}
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" style="list-style: none">
-                    <li>
-                        <a href='/user/profile'>Profile</a>
-                    </li>
-                    <li>
-                     <a href="/users/requests/{{users.email}}">Transactions</a> 
-          </li>
-          <li>
-            <a href='/user/products/{{users.email}}'>My Products</a>
-                    <li>
-                        <p>
-                            <a class="btn btn-primary" id='signOutUser' email={{users.email}}>Sign Out</a>
-                        </p>
-                    </li>
-                </ul>
-            </li>
-        </p>
-        {{else}}
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal" id="signIn">
-            Sign-in
-        </button>
-
-        <button class="newUserReg btn btn-secondary" value="Register">Register</button>
-
-        {{/if}}
-    </div>
-
-</nav>
-
-
-
-<div class="container">
-    <div class="row">
-        <a class='btn btn-primary' id='addProducts' href='/add/products'>Add A New Product</a>
-        <div class="col-sm-12">
-            <h1>{{users.firstName}}'s Listings:</h1>
-
-            <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Sign-In</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="usr">E-mail:</label>
-                                    <input type="text" class="form-control" id="usr">
-                                </div>
-                                <div class="form-group">
-                                    <label for="pwd">Password:</label>
-                                    <input type="password" class="form-control" id="pwd">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                            <button id='signInButton' data-dismiss="modal" type="button" class="btn btn-primary">Sign In</button>
-                        </div>
-                    </div>
-
+<div class="basicPage" style="background: gray; height: 100%; width: 100%; padding: 75px 0;">
+    <div class="container" style="background:#F5F5F5; padding: 25px 25px; border-radius: 15px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="userProdHead" style="display: flex; justify-content:space-between">
+                    <h3 class='title'>{{users.firstName}}'s Listings:</h3>
+                    <a class='btn btn-primary' id='addProducts' href='/add/products'>Add A New Product</a>
                 </div>
-            </div>
-
-         
-
-<div class="container">
-  
-    <div class="row">
-        {{#each userProducts}}
-        <div class="col-sm-4">
-          
-           <img id='userproductpic1' src='https://s3-us-west-1.amazonaws.com/techcheckbucket/{{userUploadImage1}}' > 
-    
-       
-          
-           
-        
-        
-            <ol>
-                <li>Product Id: {{id}}</li>
-          <li>Product Name: {{ product_name}}</li>
-            <li>Category: {{category}}</li>
-            <li>Description: {{product_description}}</li>
-            <li>${{daily}}/day</li>
-            <li>${{weekly}}/day</li>
-            <li>${{monthly}}/day</li>
-            <li>Security Deposit: ${{security_deposit}}</li>
-</ol>
-<button class='destroyButton' product={{id}}>Delete Product</button>
+                <div class="container">
+                    <div class="row">
+                        {{#each userProducts}}
+                        <div class="col-sm-4">
+                            <img id='userproductpic1' src='https://s3-us-west-1.amazonaws.com/techcheckbucket/{{userUploadImage1}}'>
+                            <ol>
+                                <li>Product Id: {{id}}</li>
+                                <li>Product Name: {{ product_name}}</li>
+                                <li>Category: {{category}}</li>
+                                <li>Description: {{product_description}}</li>
+                                <li>${{daily}}/day</li>
+                                <li>${{weekly}}/day</li>
+                                <li>${{monthly}}/day</li>
+                                <li>Security Deposit: ${{security_deposit}}</li>
+                            </ol>
+                            <button class='destroyButton' product={{id}}>Delete Product</button>
+                        </div>
+                        {{/each}}
                     </div>
-                    {{/each}}
                 </div>
-                
-
             </div>
         </div>
-
-
     </div>
+    <br>
+    <br>
 
 </div>
-<br>
-<hr>
-<br>
-
-
-<!-- FOOTER -->
-<footer class="footer text-center">
-    <div class="container">
-        <small>© Copyright 2017 MOOCH</small>
-    </div>
-</footer>

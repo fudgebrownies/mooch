@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+.navbar-brand.title {
+    font-family: 'Pacifico', cursive;
+    font-weight: 900;
+    color: white;
+}
+
+
+
+.nav-item:hover{
+    background: gray;
+    color: black;
+}
+
+#signOutUser:hover {
+    cursor: pointer;
+}

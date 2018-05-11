@@ -46,34 +46,34 @@ $(function () {
   }
   else {
 
-    console.log('no TOKEN')
+    console.log('no TOKEN');
   }
 
  
 
   $('.RequestRent').on('click', function (event) {
-    event.preventDefault()
+    event.preventDefault();
 
     var productId = $(this).attr('productId');
     var emailRequest = $('#usersEmail').attr('usersEmailAddress');
-    console.log(emailRequest)
+    console.log(emailRequest);
     requestInfo = {
       requestId: productId,
       requestEmail: emailRequest
 
-    }
+    };
 
     $.ajax("/new/request", {
       type: 'POST',
       data: requestInfo
     }).then(
       function () {
-        console.log('done')
+        console.log('done');
 
         // window.location.reload(true);
       }
-      )
-  })
+      );
+  });
   $('.newUserReg').on('click', function () {
     document.location.href = "/new/users";
   })
